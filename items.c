@@ -8,13 +8,13 @@ void itemType(){
 void itemAtbType(item *object){
     int x=rand()%10;
     if (x<5){
-        strcpy(object->nat, "físico")
+        strcpy(object->nat, "físico");
         object->nature=1;
         if (object->type==3){
             object->statm=object->stat*0.3;
         }
     }else {
-        strcpy(object->nat, "mágico")
+        strcpy(object->nat, "mágico");
         object->nature=2;
         object->statm=object->stat;
         if (object->type==3){
@@ -121,11 +121,11 @@ void itemAtbLegen(item *object){
 }
 void itemGen(item *object, chara *charac) {
     object->stat=20 + charac->level*2;
-    itemAtbType(&object);
-    itemAtbCommon(&object);
-    itemAtbRare(&object);
-    itemAtbExtra(&object);
-    itemAtbLegen(&object);
+    itemAtbType(object);
+    itemAtbCommon(object);
+    itemAtbRare(object);
+    itemAtbExtra(object);
+    itemAtbLegen(object);
 }
 
 void inventory(){
