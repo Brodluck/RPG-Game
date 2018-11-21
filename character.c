@@ -105,8 +105,8 @@ void levelUp(double *att, double *def, double *attm, double *defm, double *vel, 
     if (raze==4){
     x=x*1;
     }
-    att=att + x;
-      printf("\nataque: %d", att);
+    *att=*att + x;
+      printf("\nataque: %.0lf", att);
     x=rand()%5+1;
     if (raze==1){
     x=x*1.5;
@@ -120,8 +120,8 @@ void levelUp(double *att, double *def, double *attm, double *defm, double *vel, 
     if (raze==4){
     x=x*1;
     }
-    attm=attm + x;
-      printf("\nataque magico: %d", attm);
+    *attm=*attm + x;
+      printf("\nataque magico: %.0lf", *attm);
     x=rand()%5+1;
     if (raze==1){
     x=x*0.5;
@@ -135,8 +135,8 @@ void levelUp(double *att, double *def, double *attm, double *defm, double *vel, 
     if (raze==4){
     x=x*1;
     }
-    def=def + x;
-      printf("\ndefensa: %d", def);
+    *def=*def + x;
+      printf("\ndefensa: %.0lf", *def);
     x=rand()%5+1;
     if (raze==1){
     x=x*1.7;
@@ -150,8 +150,8 @@ void levelUp(double *att, double *def, double *attm, double *defm, double *vel, 
     if (raze==4){
     x=x*1;
     }
-    defm=defm + x;
-      printf("\nadefensa magica: %d", defm);
+    *defm=*defm + x;
+      printf("\nadefensa magica: %.0lf", *defm);
       x=rand()%5+1;
     if (raze==1){
     x=x*1.7;
@@ -165,15 +165,15 @@ void levelUp(double *att, double *def, double *attm, double *defm, double *vel, 
     if (raze==4){
     x=x*1;
     }
-    vel=vel + x;
-      printf("\nvelocidad: %d", vel);
+    *vel=*vel + x;
+      printf("\nvelocidad: %.0lf", *vel);
 }
 void expUp(chara *charac, int expg){
     printf("has conseguido %d ptos de experiencia", expg);
     charac->exp=charac->exp + expg;
     if (charac->exp>pow(3, charac->level)){
         charac->level++;
-        levelUp(&charac->att, &charac->def, &charac->attm, &charac->defm, &charac->vel, charac.raze);
+        levelUp(charac->att, charac->def, charac->attm, charac->defm, charac->vel, charac->raze);
         printf ("enhorabuena!! has subido al nivel %d", charac->level);
     }
 }
