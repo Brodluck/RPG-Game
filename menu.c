@@ -23,35 +23,42 @@ int menu() {
 }item;*/
 
 
-void inventario(item *mochila){
+int inventario(item *mochila){
     int select;
     while(1){
-    for(int i=0; (*(mochila+i)->nature==1)||(*(mochila + i))->nature==2; i++){
+    for(int i=0; mochila[i]->nature==1||mochila[i]->nature==2; i++){
         printf("Elemento nº%i: (ID: %i) \n%s %s %s %s %s\n",i+1 , *(mochila+i)->ID, *(mochila+i)->name, *(mochila+i)->atr1, *(mochila+i)->atr2, *(mochila+i)->atr3, *(mochila+i)->atr4);
     }
-    printf("¿Que elemento quieres ver? Pulsa 0 para salir del inventario\n");
+    printf("¿Que elemento quieres ver? Pulsa 0 para dejar de ver + información\n");
     scanf("%i", &select);
     if(select==0){break;}
     else{
         select--; //esto lo hago porque cuando eligen un elemento cuando los mostre tenian sumado 
                   //un uno para que fuese una interfaz mas bonita
-        printf("Elemento nº%i: (ID: %i) \n%s %s %s %s %s\n",select+1, *(mochila+select)->ID, *(mochila+select)->name, *(mochila+select)->atr1, *(mochila+select)->atr2, *(mochila+select)->atr3, *(mochila+select)->atr4);
-        switch(*(mochila+select)->type){
+        printf("Elemento nº%i: (ID: %i) \n%s %s %s %s %s\n",select+1, mochila[select]->ID, mochila[select]->name, mochila[select]->atr1, mochila[select]->atr2, mochila[select]->atr3, mochila[select]->atr4);
+        switch(mochila[select]->type){
             case 1: printf("Tipo: Arma\n"); break;
             case 2: printf("Tipo: Armadura\n"); break;
             default: printf("Ese tipo no esta definido loko, ere hackerman o q"); break;
         
         }
         
-        switch(*(mochila+select)->nature){
+        switch(mochila[select]->nature){
             case 1: printf("\nNaturaleza: Tipo Físico\n"); break;
             case 2: printf("\nNaturaleza: Tipo Mágico\n"); break;
             default: printf("Esa naturaleza no esta definido loko, ere hackerman o q"); break;
         
         }
-        printf("Estadisticas:\nAtaque Físico: %i\nAtaque mágico: %i\n", *(mochila+select)->stat, *(mochila+select)->statm);
+        printf("Estadisticas:\nAtaque Físico: %i\nAtaque mágico: %i\n", mochila[select]->stat, mochila[select]->statm);
         }
            
     }
-
+    for(int i=0; mochila[i]->nature==1||mochila[i]->nature==2; i++){
+        printf("Elemento nº%i: (ID: %i) \n%s %s %s %s %s\n",i+1 , *(mochila+i)->ID, *(mochila+i)->name, *(mochila+i)->atr1, *(mochila+i)->atr2, *(mochila+i)->atr3, *(mochila+i)->atr4);
+    }
+    int decision;
+    printf("Elige el elemento que deseas usar: ");
+    scanf("%i", &decision);
+    decision--;
+    return decision;
 }
