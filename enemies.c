@@ -50,7 +50,7 @@ void EnemyGen(chara *charac, npc *enemy) {
     }
     npc pointerNPC;
     for (i=0; i<enemy->level; i++){
-        levelUp(&pointerNPC);
+        levelUp(&enemy->att, &enemy->attm, &enemy->def, &enemy->defm, &enemy->vel, &enemy->race);
     }
 }
 
