@@ -15,6 +15,7 @@ typedef struct {
     item equip[5];
 }chara;
 typedef struct {
+    char name[10];
     int type, race, esquivar, vida, stamina;  //atrib
     int level;                               //level
     double def, att, defm, attm, vel;       //stats
