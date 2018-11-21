@@ -1,21 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   head.h
- * Author: Olinone de Guille
- *
- * Created on 20 de noviembre de 2018, 9:23
- */
 
 #ifndef HEAD_H
 #define HEAD_H
 typedef struct {
     char name[10];
-    int ID, type, nature;
+    int ID, type, nature; //type (1=armas, 2=armaduras), nature (1=fisico, 2=magico) 
     double stat, statm;
     char atr1[10], atr2[10], atr3[10], atr4[10], nat[10];
 }item;
@@ -27,7 +15,7 @@ typedef struct {
     item equip[5];
 }chara;
 typedef struct {
-    int type, race;                           //atrib
+    int type, race;                     //atrib
     int level;                          //level
     double def, att, defm, attm, vel;   //stats
     item equip[5];
