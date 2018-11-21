@@ -118,83 +118,83 @@ void character(chara *charac) {
     } while (selec2 == 0);
 }
 
-void levelUp(chara *lvl) {
+void levelUp(double *att, double *attm, double *def, double *defm, double *vel, int *race) {
 
-    double x = rand() % 5 + 1;
-    if (lvl->race == 1) {
+    double x = (rand() % 8 + 1) + 3;
+    if (*race == 1) {
         x = x * 0.5;
     } else
-        if (lvl->race == 2) {
+        if (*race == 2) {
         x = x * 1.5;
     } else
-        if (lvl->race == 3) {
+        if (*race == 3) {
         x = x * 2;
     } else
-        if (lvl->race == 4) {
+        if (*race == 4) {
         x = x * 1;
     }
-    lvl->att = lvl->att + x;
-    printf("\nataque: %.0lf", lvl->att);
+    *att = *att + x;
+    printf("\nataque: %.0lf", *att);
     x = rand() % 5 + 1;
-    if (lvl->race == 1) {
+    if (*race == 1) {
         x = x * 1.5;
     } else
-        if (lvl->race == 2) {
+        if (*race == 2) {
         x = x * 0.5;
     } else
-        if (lvl->race == 3) {
+        if (*race == 3) {
         x = x * 0;
     } else
-        if (lvl->race == 4) {
+        if (*race == 4) {
         x = x * 1;
     }
-    lvl->attm = lvl->attm + x;
-    printf("\nataque magico: %.0lf", lvl->attm);
+    *attm = *attm + x;
+    printf("\nataque magico: %.0lf", *attm);
     x = rand() % 5 + 1;
-    if (lvl->race == 1) {
+    if (*race == 1) {
         x = x * 0.5;
     } else
-        if (lvl->race == 2) {
-        x = x * 1.8;
+        if (*race == 2) {
+        x = x * 1.2;
     } else
-        if (lvl->race == 3) {
+        if (*race == 3) {
         x = x * 1;
     } else
-        if (lvl->race == 4) {
+        if (*race == 4) {
         x = x * 1;
     }
-    lvl->def = lvl->def + x;
-    printf("\ndefensa: %.0lf", lvl->def);
+    *def = *def + x;
+    printf("\ndefensa: %.0lf", *def);
     x = rand() % 5 + 1;
-    if (lvl->race == 1) {
+    if (*race == 1) {
+        x = x * 1.3;
+    } else
+        if (*race == 2) {
+        x = x * 0.5;
+    } else
+        if (*race == 3) {
+        x = x * 1;
+    } else
+        if (*race == 4) {
+        x = x * 1;
+    }
+    *defm = *defm + x;
+    printf("\nadefensa magica: %.0lf", *defm);
+    x = rand() % 5 + 1;
+    if (*race == 1) {
         x = x * 1.7;
     } else
-        if (lvl->race == 2) {
+        if (*race == 2) {
         x = x * 0.5;
     } else
-        if (lvl->race == 3) {
-        x = x * 1;
-    } else
-        if (lvl->race == 4) {
-        x = x * 1;
-    }
-    lvl->defm = lvl->defm + x;
-    printf("\nadefensa magica: %.0lf", lvl->defm);
-    x = rand() % 5 + 1;
-    if (lvl->race == 1) {
-        x = x * 1.7;
-    } else
-        if (lvl->race == 2) {
+        if (*race == 3) {
         x = x * 0.5;
     } else
-        if (lvl->race == 3) {
-        x = x * 0.5;
-    } else
-        if (lvl->race == 4) {
+        if (*race == 4) {
         x = x * 1;
     }
-    lvl->vel = lvl->vel + x;
-    printf("\nvelocidad: %.0lf", lvl->vel);
+    *vel = *vel + x;
+    printf("\nvelocidad: %.0lf", *vel);
 }
 
 void expUp(chara *charac, int expg) {
