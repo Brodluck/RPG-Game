@@ -51,14 +51,7 @@ void inventario(item *mochila){
         }
         printf("Estadisticas:\nAtaque Físico: %i\nAtaque mágico: %i\n", *(mochila+select)->stat, *(mochila+select)->statm);
         }
-        
-        
-        
-    
-    
-    
-    
+           
     }
-
 
 }
