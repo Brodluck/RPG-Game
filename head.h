@@ -21,13 +21,13 @@ typedef struct {
 }item;
 typedef struct {
     char name[10];
-    int raze, gen;                      //atrib
+    int race, gen;                      //atrib
     int level, exp;                     //level
     double def, att, defm, attm, vel;   //stats
     item equip[5];
 }chara;
 typedef struct {
-    int type, raze;                           //atrib
+    int type, race;                           //atrib
     int level;                          //level
     double def, att, defm, attm, vel;   //stats
     item equip[5];
