@@ -14,4 +14,13 @@ int menu() {
         return 1;
     }else return 0;
 }
+//ESTO DE AQUI ABAJO ME SIRVE PARA VER COMO ES LA STRUCT
+/*typedef struct {
+    char name[10];
+    int ID, type, nature;
+    double stat, statm;
+    char atr1[10], atr2[10], atr3[10], atr4[10], nat[10];
+}item;*/
 
+
+intr
