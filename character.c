@@ -106,7 +106,7 @@ void levelUp(double *att, double *def, double *attm, double *defm, double *vel, 
     x=x*1;
     }
     *att=*att + x;
-      printf("\nataque: %.0lf", att);
+      printf("\nataque: %.0lf", *att);
     x=rand()%5+1;
     if (raze==1){
     x=x*1.5;
