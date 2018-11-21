@@ -10,7 +10,7 @@ void itemAtbType(item *object){
     if (x<5){
         strcpy(object->nat, "físico");
         object->nature=1;
-        if (object->type==3){
+        if (object->type==2){
             object->statm=object->stat*0.3;
         }
     }else {
