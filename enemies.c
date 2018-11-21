@@ -25,21 +25,21 @@ void EnemyGen(chara *charac, npc *enemy) {
     enemy->defm = 10;
     enemy->vel = 20;
     printf("seleccionada la raza elfa");
-    } else if (npc->raze==2){       //enano
+    } else if (enemy->raze==2){       //enano
     enemy->att = 10;
     enemy->attm = -10;
     enemy->def = 10;
     enemy->defm = -10;
     enemy->vel = 0;
     printf("seleccionada la raza enana");
-    } else if (npc->raze==3){       //orco
+    } else if (enemy->raze==3){       //orco
     enemy->att = 20;
     enemy->attm = -100;
     enemy->def = 0;
     enemy->defm = 0;
     enemy->vel = -20;
     printf("seleccionada la raza orca");
-    } else if (npc->raze==4){       //humano
+    } else if (enemy->raze==4){       //humano
     enemy->att = 0;
     enemy->attm = 0;
     enemy->def = 0;
@@ -47,8 +47,8 @@ void EnemyGen(chara *charac, npc *enemy) {
     enemy->vel = 0;
     printf("seleccionada la raza humana");
     }
-    for (i=0; i<npc->level; i++){
-        levelUp(&enemy->att, &enemy->def, &enemy->attm, &enemy->defm, &enemy->vel, enemy.raze);
+    for (i=0; i<enemy->level; i++){
+        levelUp(&enemy->att, &enemy->def, &enemy->attm, &enemy->defm, &enemy->vel, enemy->raze);
     }
 }
 
