@@ -2,7 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include "head.h"
-
+void itemType(){
+    
+}
 void itemAtbType(item *object){
     int x=rand()%10;
     if (x<5){
