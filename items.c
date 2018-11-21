@@ -378,7 +378,7 @@ void itemAtbLegen(item *object){
             object->statm=object->statm*3;
     }
 }
-void itemGen(item *object) {
+void itemGen(item *object, chara *charac) {
     int x=rand()%10;
     x=x-5;
     object->stat=charac->level*2+x;
