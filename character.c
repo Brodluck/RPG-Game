@@ -110,12 +110,24 @@ void character(chara *charac) {
             printf("Tendras +10 de ataque fisico cosas fisiologicas, sorry\n");
             charac->gen = 1;
             charac->att = charac->att + 10;
+            printf("\nConfirmar?[Y/N]");
+            scanf("\n%c", &bool);
+            system("clear");
+            if (bool=='Y' || bool=='y'){
+                selec=1;
+            }
         } else if (gen == 'F' || gen == 'f') {
             printf("Tendras +10 de ataque magico, si... ellas son mas listas\n");
             charac->gen = 2;
             charac->attm = charac->attm + 10;
+            printf("\nConfirmar?[Y/N]");
+            scanf("\n%c", &bool);
+            system("clear");
+            if (bool=='Y' || bool=='y'){
+                selec=1;
+            }
         } else printf("Eres idiota?? Elige bien\n");
-    } while (selec2 == 0);
+    } while (selec == 0);
 }
 
 void levelUp(double *att, double *attm, double *def, double *defm, double *vel, int *race) {
