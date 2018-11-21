@@ -126,16 +126,16 @@ void itemAtbCommon(item *object){           //atributo comun
         }else{
             switch (object->type2){
                 case 0:
-                    strcpy(object->nat, "inútil");
+                    strcpy(object->atr1, "inútil");
                     break;
                 case 1:
-                    strcpy(object->nat, "inútil");
+                    strcpy(object->atr1, "inútil");
                     break;
                 case 2:
-                    strcpy(object->nat, "inútiles");
+                    strcpy(object->atr1, "inútiles");
                     break;
                 case 3:
-                    strcpy(object->nat, "inútiles");
+                    strcpy(object->atr1, "inútiles");
                     break;
             }
         }
@@ -144,21 +144,21 @@ void itemAtbCommon(item *object){           //atributo comun
     }else if (x<40){                        //20% probabilidad
         if (object->type==1){
         if (object->type2<=5 && object->type2>=3){
-              strcpy(object->nat, "imbuida");
-            }else strcpy(object->nat, "imbuido");
+              strcpy(object->atr1, "imbuida");
+            }else strcpy(object->atr1, "imbuido");
         }else{
            switch (object->type2){
                 case 0:
-                    strcpy(object->nat, "imbuido");
+                    strcpy(object->atr1, "imbuido");
                     break;
                 case 1:
-                    strcpy(object->nat, "imbuida");
+                    strcpy(object->atr1, "imbuida");
                     break;
                 case 2:
-                    strcpy(object->nat, "imbuidos");
+                    strcpy(object->atr1, "imbuidos");
                     break;
                 case 3:
-                    strcpy(object->nat, "imbuidas");
+                    strcpy(object->atr1, "imbuidas");
                     break;
             }
         }
@@ -173,11 +173,11 @@ void itemAtbCommon(item *object){           //atributo comun
             switch (object->type2){
                 case 0:
                 case 1:
-                    strcpy(object->nat, "resistente");
+                    strcpy(object->atr1, "resistente");
                     break;
                 case 2:
                 case 3:
-                    strcpy(object->nat, "resistentes");
+                    strcpy(object->atr1, "resistentes");
                     break;
             }
         }
@@ -192,11 +192,11 @@ void itemAtbCommon(item *object){           //atributo comun
             switch (object->type2){
                 case 0:
                 case 1:
-                    strcpy(object->nat, "frágil");
+                    strcpy(object->atr1, "frágil");
                     break;
                 case 2:;
                 case 3:
-                    strcpy(object->nat, "frágiles");
+                    strcpy(object->atr1, "frágiles");
                     break;
             }
         }
@@ -206,21 +206,21 @@ void itemAtbCommon(item *object){           //atributo comun
     }else{
         if (object->type==1){
         if (object->type2<=5 && object->type2>=3){
-              strcpy(object->nat, "maldita");
-        }else strcpy(object->nat, "maldito");
+              strcpy(object->atr1, "maldita");
+        }else strcpy(object->atr1, "maldito");
         }else{
             switch (object->type2){
                 case 0:
-                    strcpy(object->nat, "maldito");
+                    strcpy(object->atr1, "maldito");
                     break;
                 case 1:
-                    strcpy(object->nat, "maldita");
+                    strcpy(object->atr1, "maldita");
                     break;
                 case 2:
-                    strcpy(object->nat, "malditos");
+                    strcpy(object->atr1, "malditos");
                     break;
                 case 3:
-                    strcpy(object->nat, "malditas");
+                    strcpy(object->atr1, "malditas");
                     break;
             }
         }
@@ -241,16 +241,16 @@ void itemAtbRare(item *object){
         }else{
             switch (object->type2){
                 case 0:
-                    strcpy(object->nat, "encantado");
+                    strcpy(object->atr2, "encantado");
                     break;
                 case 1:
-                    strcpy(object->nat, "encantada");
+                    strcpy(object->atr2, "encantada");
                     break;
                 case 2:
-                    strcpy(object->nat, "encantados");
+                    strcpy(object->atr2, "encantados");
                     break;
                 case 3:
-                    strcpy(object->nat, "encantadas");
+                    strcpy(object->atr2, "encantadas");
                     break;
             }
         }
@@ -261,17 +261,17 @@ void itemAtbRare(item *object){
     }else if (x<70){
         if (object->type==1){
         if (object->type2<=5 && object->type2>=3){
-              strcpy(object->nat, "destructora");
-        }else strcpy(object->nat, "destructor");
+              strcpy(object->atr2, "destructora");
+        }else strcpy(object->atr2, "destructor");
         }else{
             switch (object->type2){
                 case 0:
                 case 1:
-                    strcpy(object->nat, "irrompible");
+                    strcpy(object->atr2, "irrompible");
                     break;
                 case 2:
                 case 3:
-                    strcpy(object->nat, "irrompibles");
+                    strcpy(object->atr2, "irrompibles");
                     break;
             }
         }
@@ -280,16 +280,16 @@ void itemAtbRare(item *object){
         }
     }else if (x<85){
         if (object->type==1){
-        strcpy(object->atr1, "cutre");
+        strcpy(object->atr2, "cutre");
         }else{
             switch (object->type2){
                 case 0:
                 case 1:
-                    strcpy(object->nat, "cutre");
+                    strcpy(object->atr2, "cutre");
                     break;
                 case 2:
                 case 3:
-                    strcpy(object->nat, "cutres");
+                    strcpy(object->atr2, "cutres");
                     break;
             }
         }
@@ -304,21 +304,21 @@ void itemAtbExtra(item *object){
     }else if (x<80){
         if (object->type==1){
         if (object->type2<=5 && object->type2>=3){
-              strcpy(object->nat, "megamagica");
-        }else strcpy(object->nat, "megamagico");
+              strcpy(object->atr3, "megamagica");
+        }else strcpy(object->atr3, "megamagico");
         }else{
             switch (object->type2){
                 case 0:
-                    strcpy(object->nat, "megamagico");
+                    strcpy(object->atr3, "megamagico");
                     break;
                 case 1:
-                    strcpy(object->nat, "megamagica");
+                    strcpy(object->atr3, "megamagica");
                     break;
                 case 2:
-                    strcpy(object->nat, "megamagicos");
+                    strcpy(object->atr3, "megamagicos");
                     break;
                 case 3:
-                    strcpy(object->nat, "megamagicas");
+                    strcpy(object->atr3, "megamagicas");
                     break;
             }
         }
@@ -328,21 +328,21 @@ void itemAtbExtra(item *object){
     }else if (x<90){
         if (object->type==1){
         if (object->type2<=5 && object->type2>=3){
-              strcpy(object->nat, "asesina");
-        }else strcpy(object->nat, "asesino");
+              strcpy(object->atr3, "asesina");
+        }else strcpy(object->atr3, "asesino");
             }else{
                 switch (object->type2){
                 case 0:
-                    strcpy(object->nat, "amparador");
+                    strcpy(object->atr3, "amparador");
                     break;
                 case 1:
-                    strcpy(object->nat, "ampadora");
+                    strcpy(object->atr3, "ampadora");
                     break;
                 case 2:
-                    strcpy(object->nat, "amparadores");
+                    strcpy(object->atr3, "amparadores");
                     break;
                 case 3:
-                    strcpy(object->nat, "amparadoras");
+                    strcpy(object->atr3, "amparadoras");
                     break;
                 }
             }
@@ -357,21 +357,21 @@ void itemAtbLegen(item *object){
         object->legen=1;
         if (object->type==1){
         if (object->type2<=5 && object->type2>=3){
-              strcpy(object->nat, "legendaria");
-        }else strcpy(object->nat, "legendario");
+              strcpy(object->atr4, 'legendaria');
+        }else strcpy(object->atr4, 'legendario');
         }else{
             switch (object->type2){
                 case 0:
-                    strcpy(object->nat, "legendario");
+                    strcpy(object->atr4, 'legendario');
                     break;
                 case 1:
-                    strcpy(object->nat, "legendaria");
+                    strcpy(object->atr4, 'legendaria');
                     break;
                 case 2:
-                    strcpy(object->nat, "legendarios");
+                    strcpy(object->atr4, 'legendarios');
                     break;
                 case 3:
-                    strcpy(object->nat, "legendarias");
+                    strcpy(object->atr4, 'legendarias');
                     break;
                 }
         }
@@ -393,3 +393,4 @@ void itemGen(item *object, chara *charac) {
     itemAtbExtra(object);
     itemAtbLegen(object);
 }
+
