@@ -198,12 +198,11 @@ void levelUp(double *att, double *attm, double *def, double *defm, double *vel, 
 }
 
 void expUp(chara *charac, int expg) {
-    chara lvl;
     printf("has conseguido %d ptos de experiencia", expg);
     charac->exp = charac->exp + expg;
     if (charac->exp > pow(charac->level, 3)) {
         charac->level++;
-        levelUp(&lvl);
+        levelUp(&charac->att, &charac->attm, &charac->def, &charac->defm, &charac->vel, &charac->race);
         printf("enhorabuena!! has subido al nivel %d", charac->level);
     }
 }
