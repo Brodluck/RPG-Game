@@ -1,15 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   head.h
- * Author: Olinone de Guille
- *
- * Created on 20 de noviembre de 2018, 9:23
- */
 
 #ifndef HEAD_H
 #define HEAD_H
