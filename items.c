@@ -44,19 +44,19 @@ void itemTypeSpecific(item *object){
         x=rand()%4;
         switch (x){
         case 0:
-            object->type2=1;
+            object->type2=0;
             strcpy(object->name, "yelmo");
             break;
         case 1:
-            object->type2=2;
+            object->type2=1;
             strcpy(object->name, "pechera");
             break;
         case 2:
-            object->type2=3;
+            object->type2=2;
             strcpy(object->name, "guanteletes");
             break;
         case 3:
-            object->type2=4;
+            object->type2=3;
             strcpy(object->name, "perneras");
             break;
         }
@@ -232,7 +232,7 @@ void itemAtbCommon(item *object){           //atributo comun
 void itemAtbRare(item *object){
     int x=rand()%100;
     if(x<40){
-        
+        strcpy(object->atr2, "not");
     }else if (x<55){
         if (object->type==1){
         if (object->type2<=5 && object->type2>=3){
@@ -295,11 +295,12 @@ void itemAtbRare(item *object){
         }
             object->stat=object->stat*0.7;
             object->statm=object->statm*0.7;
-    }
+    }else strcpy(object->atr2, "not");
 }
 void itemAtbExtra(item *object){
     int x=rand()%100;
     if (x<70){
+        strcpy(object->atr3, "not");
     }else if (x<80){
         if (object->type==1){
         if (object->type2<=5 && object->type2>=3){
@@ -345,10 +346,10 @@ void itemAtbExtra(item *object){
                     break;
                 }
             }
-        }
         if (object->nature==1){
             object->stat=object->stat*1.7;
         }
+        }else strcpy(object->atr3, "not");
     }
 void itemAtbLegen(item *object){
     int x=rand()%100;
@@ -376,7 +377,7 @@ void itemAtbLegen(item *object){
         }
             object->stat=object->stat*3;
             object->statm=object->statm*3;
-    }
+    }else strcpy(object->atr4, "not");
 }
 void itemGen(item *object, chara *charac) {
     int x=rand()%10;
