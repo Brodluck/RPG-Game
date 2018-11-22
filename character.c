@@ -52,6 +52,8 @@ void character(chara *charac) {
     switch (y) {
         case 1:
             //elfo
+            charac->vida=85;
+            charac->stamina=100;
             charac->att = -10;
             charac->attm = 10;
             charac->def = -10;
@@ -62,6 +64,8 @@ void character(chara *charac) {
 
         case 2:
             //enano
+            charac->vida=110;
+            charac->stamina=100;
             charac->att = 10;
             charac->attm = -10;
             charac->def = 10;
@@ -71,6 +75,8 @@ void character(chara *charac) {
             break;
         case 3:
             //orco
+            charac->vida=110;
+            charac->stamina=100;
             charac->att = 20;
             charac->attm = -100;
             charac->def = 0;
@@ -80,6 +86,8 @@ void character(chara *charac) {
             break;
         case 4:
             //humano
+            charac->vida=100;
+            charac->stamina=100;
             charac->att = 0;
             charac->attm = 0;
             charac->def = 0;
@@ -215,6 +223,6 @@ void expUp(chara *charac, int expg) {
     if (charac->exp > pow(charac->level, 3)) {
         charac->level++;
         levelUp(&charac->att, &charac->attm, &charac->def, &charac->defm, &charac->vel, &charac->race);
-        printf("enhorabuena!! has subido al nivel %d", charac->level);
+        printf("Enhorabuena!! has subido al nivel %d", charac->level);
     }
 }
