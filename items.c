@@ -120,7 +120,7 @@ void itemAtbType(item *object){
 }
 void itemAtbCommon(item *object){           //atributo comun
     int x=rand()%100;
-    if (x<20){                              //20% probabilidad
+    if (x<10){                              //10% probabilidad
         if (object->type==1){
         strcpy(object->atr1, "inútil");
         }else{
@@ -141,7 +141,7 @@ void itemAtbCommon(item *object){           //atributo comun
         }
         object->stat=0;                     
         object->statm=0;
-    }else if (x<40){                        //20% probabilidad
+    }else if (x<33){                        //20% probabilidad
         if (object->type==1){
         if (object->type2<=5 && object->type2>=3){
               strcpy(object->atr1, "imbuida");
@@ -166,7 +166,7 @@ void itemAtbCommon(item *object){           //atributo comun
         if (object->nature==2){                     //solamente afecta si es un item magico
             object->statm=object->statm*1.2;
         }
-    }else if (x<60){
+    }else if (x<56){
         if (object->type==1){
         strcpy(object->atr1, "resistente");         //solamente afecta si es un item fisico
         }else{
@@ -185,7 +185,7 @@ void itemAtbCommon(item *object){           //atributo comun
         if (object->nature==1){
             object->stat=object->stat*1.2;
         }
-    }else if (x<80){
+    }else if (x<78){
         if (object->type==1){
         strcpy(object->atr1, "fragil");             //solamente afecta si es un item fisico
         }else{
@@ -304,21 +304,21 @@ void itemAtbExtra(item *object){
     }else if (x<80){
         if (object->type==1){
         if (object->type2<=5 && object->type2>=3){
-              strcpy(object->atr3, "megamagica");
-        }else strcpy(object->atr3, "megamagico");
+              strcpy(object->atr3, "dracónica");
+        }else strcpy(object->atr3, "dracónico");
         }else{
             switch (object->type2){
                 case 0:
-                    strcpy(object->atr3, "megamagico");
+                    strcpy(object->atr3, "dracónico");
                     break;
                 case 1:
-                    strcpy(object->atr3, "megamagica");
+                    strcpy(object->atr3, "dracónica");
                     break;
                 case 2:
-                    strcpy(object->atr3, "megamagicos");
+                    strcpy(object->atr3, "dracónicos");
                     break;
                 case 3:
-                    strcpy(object->atr3, "megamagicas");
+                    strcpy(object->atr3, "dracónicas");
                     break;
             }
         }
@@ -353,7 +353,7 @@ void itemAtbExtra(item *object){
     }
 void itemAtbLegen(item *object){
     int x=rand()%100;
-    if (x>93){
+    if (x>97){
         object->legen=1;
         if (object->type==1){
         if (object->type2<=5 && object->type2>=3){
