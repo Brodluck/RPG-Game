@@ -384,9 +384,12 @@ void itemGen(item *object, chara *charac) {
     x=x-5;
     object->stat=charac->level*2+x;
     object->statm=charac->level*2+x;
-    
+    if (enemG==0){
     itemType(object);
+    }else object->type=enemG;
+    if (enemG2==0){
     itemTypeSpecific(object);
+    }else object->type2=enemG2-1;
     itemAtbType(object);
     itemAtbCommon(object);
     itemAtbRare(object);
