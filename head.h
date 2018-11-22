@@ -2,9 +2,9 @@
 #define HEAD_H
 typedef struct {
     char name[10];
-    int ID, type, nature, legen;                       //type (1=armas, 2=armaduras), nature (1=fisico, 2=magico) 
+    int ID, type, nature, type2, legen;                       //type (1=armas, 2=armaduras), nature (1=fisico, 2=magico) 
     double stat, statm;
-    char atr1[10], atr2[10], atr3[10], atr4[10], nat[10];
+    char atr1[15], atr2[15], atr3[15], atr4[15], nat[15];
 }item;
 typedef struct {
     char name[10];
