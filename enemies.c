@@ -12,13 +12,16 @@ void EnemyGen(chara *charac, npc *enemy) {
     }
     if (enemy->level<10){
         enemy->type=1;
-    } else if (enemy->level<20){
+        strcpy(enemy->name, "rebelde");
         enemy->type=2;
     } else if (enemy->level<30){
+        strcpy(enemy->name, "delincuente");
         enemy->type=3;
     } else if (enemy->level<40){
+        strcpy(enemy->name, "maton");
         enemy->type=4;
     } else if (enemy->level<50){
+        strcpy(enemy->name, "asesino");
         enemy->type=5;
     }
     x=(rand()%4)+1;
@@ -29,24 +32,28 @@ void EnemyGen(chara *charac, npc *enemy) {
     enemy->def = -10;
     enemy->defm = 10;
     enemy->vel = 20;
+    strcat(enemy->name, " elfo");
     } else if (enemy->race==2){       //enano
     enemy->att = 10;
     enemy->attm = -10;
     enemy->def = 10;
     enemy->defm = -10;
     enemy->vel = 0;
+    strcat(enemy->name, " enano");
     } else if (enemy->race==3){       //orco
     enemy->att = 20;
     enemy->attm = -100;
     enemy->def = 0;
     enemy->defm = 0;
     enemy->vel = -20;
+    strcat(enemy->name, " orco");
     } else if (enemy->race==4){       //humano
     enemy->att = 0;
     enemy->attm = 0;
     enemy->def = 0;
     enemy->defm = 0;
     enemy->vel = 0;
+    strcat(enemy->name, " humano");
     }
     for (i=0; i<enemy->level; i++){
         levelUp(&enemy->att, &enemy->attm, &enemy->def, &enemy->defm, &enemy->vel, &enemy->race);
