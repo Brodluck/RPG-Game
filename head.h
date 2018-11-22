@@ -25,6 +25,7 @@ typedef struct {
 int menu();
 void character(chara *charac);
 void levelUp(double *att, double *attm, double *def, double *defm, double *vel, int *race);
+void itemGen(item *object, chara *charac);
 
 #ifdef __cplusplus
 extern "C" {
