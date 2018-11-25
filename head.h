@@ -8,9 +8,11 @@ typedef struct {
 }item;
 typedef struct {
     char name[10];
-    int race, gen, esquivar, vida,stamina;       //atrib
+    int  gen, esquivar, vida,stamina;       //atrib
     int level, exp;                             //level
     double def, att, defm, attm, vel;          //stats
+    classes class;                             //Classes
+    races race;                                // Races
     
     item weapons[2], gear[4];
 }chara;
@@ -21,6 +23,13 @@ typedef struct {
     double def, att, defm, attm, vel;       //stats
     item weapons[2], gear[4];
 }npc;
+
+typedef struct{
+    int elfo, enano, orco, humano;          //Races struct
+}races;
+typedef struct{
+    int mage, warrior, paladin;             //Classes struct
+}classes;
 
 int menu();
 void character(chara *charac);
