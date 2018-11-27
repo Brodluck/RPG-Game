@@ -4,8 +4,8 @@
 #include<string.h>
 
 int main() {
-    chara *charac;
-    npc *enemy;
+ chara charac;
+ npc enemy;
     char tuto;
     int strt;
     strt = menu();
@@ -18,21 +18,15 @@ int main() {
         character(&charac);
     }
 
-    printf("¿Quieres hacer un tutorial? [Y/N]");
+    /*printf("¿Quieres hacer un tutorial? [Y/N]");
     scanf("\n%c", &tuto);
     if (tuto == 'Y' || tuto == 'y') {
-        if (charac->class->warrior == 1) {
-            combat_warrior(&enemy, &charac);
-        } else if (charac->class->mage == 1) {
-            combat_mage(&enemy, &charac);
-        } else if (charac->class->mage == 1) {
-            combat_paladin(&enemy, &charac);
-        }
+        
     } else if (tuto == 'N' || tuto == 'n') {
         printf("Bien, eres de los que aprenden sobre la marcha");
-    }
+    }*/
 
-
+    combat(&charac, &enemy);
 
 
     return 0;

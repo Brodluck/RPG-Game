@@ -11,10 +11,10 @@ typedef struct {
     double fire_ball, magic_armor, ilusion; //Hechizos mago
 } skills;
 
-short skill_book() {
+short skill_book(chara *charac) {
     int option;
     printf("Bienvenido al libro de habilidades/hechizos");
-    if (chara->class->warrior == 1) {
+    if (charac->class.warrior == 1) {
         do {
             printf("Elige la habilidad a consultar: 1.Ataque normal\n2.Ataque fuerte\n3.Romper armadura\n4.Salir");
             scanf("%d", &option);
@@ -32,7 +32,7 @@ short skill_book() {
                     return 1;
             }
         } while (option != 4);
-    } else if (chara->class->mage == 1) {
+    } else if (charac->class.mage == 1) {
         do {
             printf("Elige el hechizo a consultar: 1.Bola de fuego\n2.Armadura magica\n3.Ilusion\n4.Salir");
             scanf("%d", &option);
@@ -51,13 +51,13 @@ short skill_book() {
             }
         } while (option != 4);
 
-    } else if (chara->class->paladin == 1) {
+    } else if (charac->class.paladin == 1) {
         do {
             printf("Elige el hechizo a consultar: 1.Martillo de luz\n2.Luz sagrada\n3.Escudo divino\n4.Salir");
             scanf("%d", &option);
             switch (option) {
                 case 1:
-                    printf("'Martillo de luz'\nCoste: 35 de mana\Un martillo de luz bendita sentencia al enemigo inflingiendole tu daño base x1.5 mas x0.7 de tu daño magico\n");
+                    printf("'Martillo de luz'\nCoste: 35 de mana\nUn martillo de luz bendita sentencia al enemigo inflingiendole tu daño base x1.5 mas x0.7 de tu daño magico\n");
                     break;
                 case 2:
                     printf("'Luz sagrada'\nCoste: 30 mana\nLa luz te bendice haciendote recuperar de un 25-35 %% de tu vida maxima\n");
@@ -73,10 +73,10 @@ short skill_book() {
     }
 }
 
-short tutorial(npc enemy, chara player) {
-    int playertuto;
+/*short tutorial(npc enemy, chara charac) {
+    int charactuto;
     int enemytuto;
-    player = playertuto;
+    charac = charactuto;
     enemy = enemytuto;
 
     printf("Bien, para empezar, tienes que saber que esto es un juego de rol por turnos. Que significa esto? Pues que tu tienes unas habilidades y unos atributos\ny al enfrentarte a enemigos te pones a prueba");
@@ -89,7 +89,7 @@ short tutorial(npc enemy, chara player) {
 
 
 
-}       //FALTA acabar esto
+}       //FALTA acabar esto*/
 
 short takepotion(int currentHealth, int staminaGained) {
     if ((currentHealth + staminaGained) > 100) {
@@ -99,10 +99,11 @@ short takepotion(int currentHealth, int staminaGained) {
     }
 }  //protipo para uso de potis
 
-short range_vida(int x, chara player) { // X->vida 
-    if (x > 100 && player->race->humano==1) {
+short range_vida(chara *charac) { // X->vida 
+    int x=charac->vida;
+    if (x > 100 && charac->race.humano==1) {
         return 1;
-    }else if(x>110 && player->race->enano==1){
+    }else if(x>110 && charac->race.enano==1){
         return 1; 
     } else {
         return 0;
@@ -117,7 +118,8 @@ short range_stamina(int y) { //Y->stamina)
     }
 }
 
-int combat_warrior(npc *enemy, chara *player) { //************************Clase guerrero
+
+int combat_warrior(npc *enemy, chara *charac) { //************************Clase guerrero
     skills s;
     s.heavyattack = 2.5, s.normalattack = 1, s.break_armor = 0.25;
     s.fire_ball = 1.7;
@@ -146,20 +148,20 @@ int combat_warrior(npc *enemy, chara *player) { //************************Clase 
                 return 0; // printf("Has huido sin problema\n") hay que ponerlo en la funcion cuando se llame, que return 0 es combate nulo o whatever...
             }
         case 4:
-            y = skill_book();
+            y = skill_book(&charac);
             if (y == 1)
                 break;
 
 
     }
-    if (enemy->vel < player->vel) { //Aqui se decide quien empezará primero
+    if (enemy->vel < charac->vel) { //Aqui se decide quien empezará primero
         turno = 0;
     }
     do { //Comienzo del combate
         dmg = 0;
-        if (player->stamina <= 0) {
+        if (charac->stamina <= 0) {
             printf("Tu aguante ha llegado a cero! Debes descansar este turno\n");
-            player->stamina += 100;
+            charac->stamina += 100;
             turno = 0;
         }
         if (turno == 1) { //Si turno ==1 es el turno del jugador
@@ -171,34 +173,34 @@ combat_start_warrior:
             printf("Escribe 10 para ver tu libro de habilidades");
             scanf("%d", &option);
             if (option == 10) {
-                y = skill_book();
+                y = skill_book(&charac);
                 if (y == 1) {
                     continue;
                 }
             }
             switch (option) {
                 case 1:
-                    dmg = s.normalattack * player->att;
-                    player->stamina -= 20;
+                    dmg = s.normalattack * charac->att;
+                    charac->stamina -= 20;
                     break;
                 case 2:
                     miss = (rand() % 100) + 1;
                     if (miss >= 1 && miss <= 15) {
                         printf("Fallo!");
                     } else {
-                        dmg = s.heavyattack * player->att;
-                        player->stamina -= 40;
+                        dmg = s.heavyattack * charac->att;
+                        charac->stamina -= 40;
                     }
                     break;
                 case 3:
                     printf("La armadura del enemigo se ha reducido un 25 por ciento!");
                     deftemp = enemy->def;
                     deftemp -= (deftemp * s.break_armor);
-                    player->stamina -= 30;
+                    charac->stamina -= 30;
                     break;
 
             }
-            rangeS = range_stamina(player->stamina); //Comprobacion de stamina
+            rangeS = range_stamina(charac->stamina); //Comprobacion de stamina
             if (rangeS == 1) {
                 printf("No tienes suficiente estamina!\n");
                 goto combat_start_warrior;
@@ -206,7 +208,7 @@ combat_start_warrior:
             dmg -=(dmg * (enemy->def * 0.05));
             enemy->vida -= dmg;
             printf("Vida de %s : %d", enemy->name, enemy->vida);
-            printf("Stamina: %d", player->stamina);
+            printf("Stamina: %d", charac->stamina);
 
         } else if (turno == 0) {
             dmg=0;
@@ -229,13 +231,13 @@ combat_start_warrior:
                     enemy->stamina -= 30;
                     break;
             }
-            dmg = dmg - ((dmg * (player->def * 0.05)) / 100);
-            player->vida -= dmg;
-            printf("Tu vida: %d\n", player->vida);
+            dmg = dmg - ((dmg * (charac->def * 0.05)) / 100);
+            charac->vida -= dmg;
+            printf("Tu vida: %d\n", charac->vida);
             printf("Stamina de %s: %d\n", enemy->name, enemy->stamina);
         }
 
-    } while ((enemy->vida > 0) || (player->vida > 0));
+    } while ((enemy->vida > 0) || (charac->vida > 0));
 
     if (enemy->vida > 0) {
         printf("Estupendo! Has derrotado a %s! ", enemy->name);
@@ -243,7 +245,7 @@ combat_start_warrior:
         printf("Escarvas e inspeccionas en el cadaver aun caliente de %s y descubres un objeto interesante\n", enemy->name);
         //printf("Has recibido: % ",objeto etc etc); willy pls help con esto
         return 1; //Ganaste 1=win
-    } else if (player->vida <= 0) {
+    } else if (charac->vida <= 0) {
         printf("Has sido derrotado por %s! Volveras al ultimo punto guardado\n", enemy->name);
         return 0; // return 0, 0 será para empezar en el punto de guardado
 
@@ -254,7 +256,7 @@ combat_start_warrior:
 
 }
 
-int combat_mage(npc *enemy, chara *player) {
+int combat_mage(npc *enemy, chara *charac) {
     skills s;
     s.heavyattack = 2.5, s.normalattack = 1, s.break_armor = 0.25;
     s.fire_ball = 1.7;
@@ -283,20 +285,20 @@ int combat_mage(npc *enemy, chara *player) {
                 return 0; // printf("Has huido sin problema\n") hay que ponerlo en la funcion cuando se llame, que return 0 es combate nulo o whatever...
             }
         case 4:
-            y = skill_book();
+            y = skill_book(&charac);
             if (y == 1)
                 break;
 
 
     }
-    if (enemy->vel < player->vel) { //Aqui se decide quien empezará primero  turno=1 es turno del jugador, 0=enemy
+    if (enemy->vel < charac->vel) { //Aqui se decide quien empezará primero  turno=1 es turno del jugador, 0=enemy
         turno = 0;
     }
     do { //Comienzo del combate
         dmg = 0;
-        if (player->stamina <= 0) {
+        if (charac->stamina <= 0) {
             printf("Tu aguante ha llegado a cero! Debes descansar este turno\n");
-            player->stamina += 100;
+            charac->stamina += 100;
             turno = 0;
         }
         if (turno == 1) { //Si turno ==1 es el turno del jugador
@@ -305,21 +307,21 @@ combat_start_mage:
             scanf("%d", &option);
             switch (option) {
                 case 1:
-                    dmg = (s.fire_ball * player->attm) + 15;
-                    player->stamina -= 35;
+                    dmg = (s.fire_ball * charac->attm) + 15;
+                    charac->stamina -= 35;
                     break;
                 case 2:
                     s.magic_armor == 1;
-                    player->def += 50;
-                    player->stamina-=50;
+                    charac->def += 50;
+                    charac->stamina-=50;
                     break;
                 case 3:
                     s.ilusion = 1;
-                    player->esquivar += 50;
-                    player->stamina-=35;
+                    charac->esquivar += 50;
+                    charac->stamina-=35;
             }
 
-            rangeS = range_stamina(player->stamina); //Comprobacion de stamina
+            rangeS = range_stamina(charac->stamina); //Comprobacion de stamina
             if (rangeS == 1) {
                 printf("No tienes suficiente estamina!\n");
                 goto combat_start_mage;
@@ -327,7 +329,7 @@ combat_start_mage:
             dmg = dmg - ((dmg * (enemy->def * 0.05)) / 100);
             enemy->vida -= dmg;
             printf("Vida de %s : %d", enemy->name, enemy->vida);
-            printf("Estamina: %d", player->stamina);
+            printf("Estamina: %d", charac->stamina);
 
         } else if (turno == 0) {
             dmg=0;
@@ -351,28 +353,28 @@ combat_start_mage:
                     break;
             }
 
-            dmg -= (dmg * (player->def * 0.05));
+            dmg -= (dmg * (charac->def * 0.05));
             if (s.ilusion == 1) {
                 miss = (rand() % 100) + 1;
                 if (miss >= 1 && miss <= 50){
-                        printf("%s ha fallado el ataque porque ha atacado a la tu ilusion!");
+                        printf("%s ha fallado el ataque porque ha atacado a la tu ilusion!", enemy->name);
                     }
                 } else if (s.magic_armor == 1) {
                 reflected_dmg = dmg * 0.20;
                         enemy->vida -= reflected_dmg;
                         printf("%s ha recibido %0.lf de daño reflejado por Armadura magica", enemy->name, reflected_dmg);
             } else {
-                player->vida -= dmg;
+                charac->vida -= dmg;
 
-                        printf("Tu vida: %d\n", player->vida);
+                        printf("Tu vida: %d\n", charac->vida);
                         printf("Stamina de %s: %d\n", enemy->name, enemy->stamina);
             }
         }
 
-    } while ((enemy->vida > 0) || (player->vida > 0));
+    } while ((enemy->vida > 0) || (charac->vida > 0));
 
         if (s.magic_armor == 1) {
-            player->def -= 50;
+            charac->def -= 50;
         } //Restaurar defensa
     if (enemy->vida > 0) {
         printf("Estupendo! Has derrotado a %s! ", enemy->name);
@@ -380,7 +382,7 @@ combat_start_mage:
                 printf("Escarvas e inspeccionas en el cadaver aun caliente de %s y descubres un objeto interesante\n", enemy->name);
                 //printf("Has recibido: % ",objeto etc etc); willy pls help con esto
         return 1; //Ganaste 1=win
-    } else if (player->vida <= 0) {
+    } else if (charac->vida <= 0) {
         printf("Has sido derrotado por %s! Volveras al ultimo punto guardado\n", enemy->name);
 
         return 0; // return 0, 0 será para empezar en el punto de guardado
@@ -388,7 +390,7 @@ combat_start_mage:
     }
 
 }
-int combat_paladin(npc *enemy, chara *player) {
+int combat_paladin(npc *enemy, chara *charac) {
     skills s;
             s.heavyattack = 2.5, s.normalattack = 1, s.break_armor = 0.25;
             s.fire_ball = 1.7;
@@ -417,20 +419,20 @@ int combat_paladin(npc *enemy, chara *player) {
                 return 0; // printf("Has huido sin problema\n") hay que ponerlo en la funcion cuando se llame, que return 0 es combate nulo o whatever...
             }
         case 4:
-            y = skill_book();
+            y = skill_book(&charac);
             if (y == 1)
                 break;
 
 
             }
-    if (enemy->vel < player->vel) { //Aqui se decide quien empezará primero
+    if (enemy->vel < charac->vel) { //Aqui se decide quien empezará primero
         turno = 0;
     }
     do { //Comienzo del combate
         dmg = 0;
-        if (player->stamina <= 0) {
+        if (charac->stamina <= 0) {
             printf("Tu aguante ha llegado a cero! Debes descansar este turno\n");
-                    player->stamina += 100;
+                    charac->stamina += 100;
                     turno = 0;
         }
         if (turno == 1) { //Si turno ==1 es el turno del jugador
@@ -439,37 +441,39 @@ int combat_paladin(npc *enemy, chara *player) {
                     scanf("%d", &option);
             switch (option) {
                 case 1:
-                    dmg = (s.light_hammer*player->att)+(0.7*player->attm);
-                            player->stamina -=35;
+                    dmg = (s.light_hammer*charac->att)+(0.7*charac->attm);
+                            charac->stamina -=35;
                     break;
                 case 2:
-                    player->vida+=(player->vida*0.20);
-                    rangeV=range_vida(player->vida);
+                    
+                    charac->vida+=(charac->vida*0.20);
+                    rangeV=range_vida(charac->vida);
                     if(rangeV==1){
-                        if(player->race->humano==1){
-                        player->vida=100;}
-                    }else if(player->race->enano==1){
-                        player->vida=110;
+                        if(charac->race.humano==1){
+                        charac->vida=100;}
+                    }else if(charac->race.enano==1){
+                        charac->vida=110;
                     }else{
-                        printf("Has usado luz sagrada, tu vida pasa de %d a %d", player->-(player->vida*0.20), player->vida);
+                        int healthOld=charac->vida-(charac->vida*0.20);
+                        printf("Has usado luz sagrada, tu vida pasa de %d a %d", healthOld, charac->vida);
                     }
-                    player->stamina-=30;
+                    charac->stamina-=30;
                     break;
                 case 3:
                     s.divine_shield==1;
-                    player->stamina-=80;
+                    charac->stamina-=80;
                     
             }
-            rangeS = range_stamina(player->stamina); //Comprobacion de stamina
+            rangeS = range_stamina(charac->stamina); //Comprobacion de stamina
             if (rangeS == 1) {
                 printf("No tienes suficiente estamina!\n");
                         goto combat_start_paladin;
             }
             
-             dmg -= (dmg * (player->def * 0.05));
+             dmg -= (dmg * (charac->def * 0.05));
                     enemy->vida -= dmg;
                     printf("Vida de %s : %d", enemy->name, enemy->vida);
-                    printf("Estamina: %d", player->stamina);
+                    printf("Estamina: %d", charac->stamina);
 
 
         } else if (turno == 0) {
@@ -494,16 +498,16 @@ int combat_paladin(npc *enemy, chara *player) {
                     break;
             }
            
-            dmg = dmg - ((dmg * (player->def * 0.05)) / 100);
+            dmg = dmg - ((dmg * (charac->def * 0.05)) / 100);
              if(s.divine_shield==1){
                 dmg=0;
             }
-                    player->vida -= dmg;
-                    printf("Tu vida: %d\n", player->vida);
+                    charac->vida -= dmg;
+                    printf("Tu vida: %d\n", charac->vida);
                     printf("Stamina de %s: %d\n", enemy->name, enemy->stamina);
         }
 
-    } while ((enemy->vida > 0) || (player->vida > 0));
+    } while ((enemy->vida > 0) || (charac->vida > 0));
 
         if (enemy->vida > 0) {
             printf("Estupendo! Has derrotado a %s! ", enemy->name);
@@ -511,10 +515,40 @@ int combat_paladin(npc *enemy, chara *player) {
                     printf("Escarvas e inspeccionas en el cadaver aun caliente de %s y descubres un objeto interesante\n", enemy->name);
                     //printf("Has recibido: % ",objeto etc etc); willy pls help con esto
             return 1; //Ganaste 1=win
-        } else if (player->vida <= 0) {
+        } else if (charac->vida <= 0) {
             printf("Has sido derrotado por %s! Volveras al ultimo punto guardado\n", enemy->name);
             return 0; // return 0, 0 será para empezar en el punto de guardado
 
         }
 
+}
+int combat(chara *charac, npc *enemy){
+    int x=0, y=0, z=0;
+    if (charac->class.warrior==1){
+        x=combat_warrior(&enemy, &charac);
+        if (x){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+    else if (charac->class.mage==1){
+        y=combat_mage(&enemy, &charac);
+         if (y){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+    else if (charac->class.paladin==1){
+         z=combat_paladin(&enemy, &charac);
+          if (z){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+ 
+
+    
 }

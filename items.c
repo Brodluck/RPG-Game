@@ -379,7 +379,7 @@ void itemAtbLegen(item *object){
             object->statm=object->statm*3;
     }else strcpy(object->atr4, "not");
 }
-void itemGen(item *object, chara *charac) {
+void itemGen(item *object, chara *charac, int enemG, int enemG2) {
     int x=rand()%10;
     x=x-5;
     object->stat=charac->level*2+x;

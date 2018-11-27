@@ -10,23 +10,23 @@ void character(chara *charac) {
     char bool;
     do {
         do {
-            printf("Selecciona la raza con la que comenzaras tu aventura:\n1.elfo\n2.enano\n3.orco\n4.humano\n");
+            printf("Selecciona la raza con la que comenzaras tu aventura:\n1.Elfo\n2.Enano\n3.Orco\n4.Humano\n");
             scanf("%d", &x);
             system("clear");
             switch (x) { //Seleccion de raza
                 case 1:
                     printf("Elfos: afinidad a la magia, veloces pero debiles. Clases: Mago, Guerrero\n");
-                    printf("Ataque: -10\nAtaque magico: +10 \nDefensa: -10\nDefensa mágica: +10\nVelocidad: +20\n");
+                    printf("Ataque: -10\nAtaque magico: +10 \nDefensa: -10\nDefensa magica: +10\nVelocidad: +20\n");
 
                     break;
                 case 2:
                     printf("Enanos: expertos con armas y armaduras, resistentes pero lentos. Clases: Guerrero, Paladin\n");
-                    printf("Ataque: +10\nAtaque magico: -10 \nDefensa: +10\nDefensa mágica: +10\nVelocidad: +0\n");
+                    printf("Ataque: +10\nAtaque magico: -10 \nDefensa: +10\nDefensa magica: +10\nVelocidad: +0\n");
 
                     break;
                 case 3:
                     printf("Orcos: grandes y fuertes, expertos con armas, peligrosos pero muy lentos. No saben usar magia. Clases: Guerrero\n");
-                    printf("Ataque: +20\nAtaque magico: -100 \nDefensa: +0\nDefensa mágica: +0\nVelocidad: -20\n");
+                    printf("Ataque: +20\nAtaque magico: -100 \nDefensa: +0\nDefensa magica: +0\nVelocidad: -20\n");
                     break;
                 case 4:
                     printf("Humanos: ninguna especialidad, son normalitos, no tienen ningun atributo aumentado pero tampoco ninguno reducido\n");
@@ -55,7 +55,7 @@ void character(chara *charac) {
     switch (y) {
         case 1:
             //elfo
-            charac->race->elfo=1;
+            charac->race.elfo=1;
             charac->vida=85;
             charac->stamina=100;
             charac->att = -10;
@@ -68,7 +68,7 @@ void character(chara *charac) {
 
         case 2:
             //enano
-            charac->race->enano=1;
+            charac->race.enano=1;
             charac->vida=110;
             charac->stamina=100;
             charac->att = 10;
@@ -80,7 +80,7 @@ void character(chara *charac) {
             break;
         case 3:
             //orco
-            charac->race->orco=1;
+            charac->race.orco=1;
             charac->vida=110;
             charac->stamina=100;
             charac->att = 20;
@@ -92,7 +92,7 @@ void character(chara *charac) {
             break;
         case 4:
             //humano
-            charac->race->humano=1;
+            charac->race.humano=1;
             charac->vida=100;
             charac->stamina=100;
             charac->att = 0;
@@ -111,58 +111,57 @@ void character(chara *charac) {
     while (0 > x && x > 5);
 do {                                                //Seleccion de clase
         int slclass=0;
-        if(charac->race->elfo==1){                                  //elfo
-        printf("Has elegido elfo, ahora elige la clase:\n1.Guerrero\n2.Mago");
+        if(charac->race.elfo==1){                                  //elfo
+        printf("Has elegido elfo, ahora elige la clase:\n1.Guerrero\n2.Mago\n");
         scanf("%d", &slclass);
         switch(slclass){
             case 1:
                 printf("Has elegido elfo guerrero!");
-                charac->class->warrior=1;
+                charac->class.warrior=1;
                 break;
                 case 2:
                     printf("Has elegido elfo mago!");
-                charac->class->mage=1;
+                charac->class.mage=1;
                 break;     
         }
         }
-        else if(charac->race->enano==1){                            //enano
-                printf("Has elegido enano, ahora elige la clase:\n1.Guerrero\n2.Paladin");
+        else if(charac->race.enano==1){                            //enano
+                printf("Has elegido enano, ahora elige la clase:\n1.Guerrero\n2.Paladin\n");
         scanf("%d", &slclass);
         switch(slclass){
             case 1:
                 printf("Has elegido enano guerrero!");
-                charac->class->warrior=1;
+                charac->class.warrior=1;
                 break;
             case 2:
                 printf("Has elegido enano paladin!");
-                charac->class->paladin=1;  
+                charac->class.paladin=1;  
         }       
         }
         
-        else if(charac->race->orco==1){                                 //orco
+        else if(charac->race.orco==1){                                 //orco
             printf("Has elegido orco guerrero!");
-            charac->class->warrior=1;
+            charac->class.warrior=1;
             
-        }else if(charac->race->humano==1){
-           printf("Has elegido humano, ahora elige la clase:\n1.Guerrero\n2.Paladin");
+        }else if(charac->race.humano==1){
+           printf("Has elegido humano, ahora elige la clase:\n1.Guerrero\n2.Paladin\n");
         scanf("%d", &slclass);
         switch(slclass){
             case 1:
                 printf("Has elegido humano guerrero!");
-                charac->class->warrior=1;
+                charac->class.warrior=1;
                 break;
             case 2:
                 printf("Has elegido humano paladin!");
-                charac->class->paladin=1;
+                charac->class.paladin=1;
             case 3:
                 printf("Has elegido humano mago!");
-                charac->class->mage=1;
+                charac->class.mage=1;
         }
         }
             
         }while(0 > x && x > 5);
 
-    charac->race = x;
     int selec2;
     char gen;
     do {
@@ -196,79 +195,79 @@ do {                                                //Seleccion de clase
     } while (selec == 0);
 }
 
-void levelUp(double *att, double *attm, double *def, double *defm, double *vel, int *race) {
+void levelUp(double *att, double *attm, double *def, double *defm, double *vel, races *race) {
 
     double x = (rand() % 8 + 1) + 3;
-    if (*race == 1) {
+    if (race->elfo == 1) {
         x = x * 0.5;
     } else
-        if (*race == 2) {
+        if (race->enano == 1) {
         x = x * 1.5;
     } else
-        if (*race == 3) {
+        if (race->orco== 1) {
         x = x * 2;
     } else
-        if (*race == 4) {
+        if (race->humano == 1) {
         x = x * 1;
     }
-    *att = *att + x;
+    *att += x;
     printf("\nataque: %.0lf", *att);
     x = rand() % 5 + 1;
-    if (*race == 1) {
-        x = x * 1.5;
-    } else
-        if (*race == 2) {
+    if (race->elfo == 1) {
         x = x * 0.5;
     } else
-        if (*race == 3) {
-        x = x * 0;
+        if (race->enano == 1) {
+        x = x * 1.5;
     } else
-        if (*race == 4) {
+        if (race->orco== 1) {
+        x = x * 2;
+    } else
+        if (race->humano == 1) {
         x = x * 1;
     }
     *attm = *attm + x;
     printf("\nataque magico: %.0lf", *attm);
     x = rand() % 5 + 1;
-    if (*race == 1) {
+    if (race->elfo == 1) {
         x = x * 0.5;
     } else
-        if (*race == 2) {
-        x = x * 1.2;
+        if (race->enano == 1) {
+        x = x * 1.5;
     } else
-        if (*race == 3) {
-        x = x * 1;
+        if (race->orco== 1) {
+        x = x * 2;
     } else
-        if (*race == 4) {
+        if (race->humano == 1) {
         x = x * 1;
     }
     *def = *def + x;
     printf("\ndefensa: %.0lf", *def);
     x = rand() % 5 + 1;
-    if (*race == 1) {
-        x = x * 1.3;
-    } else
-        if (*race == 2) {
+    if (race->elfo == 1) {
         x = x * 0.5;
     } else
-        if (*race == 3) {
-        x = x * 1;
+        if (race->enano == 1) {
+        x = x * 1.5;
     } else
-        if (*race == 4) {
+        if (race->orco== 1) {
+        x = x * 2;
+    } else
+        if (race->humano == 1) {
         x = x * 1;
     }
     *defm = *defm + x;
     printf("\nadefensa magica: %.0lf", *defm);
     x = rand() % 5 + 1;
-    if (*race == 1) {
-        x = x * 1.7;
-    } else
-        if (*race == 2) {
+    if (race->elfo == 1) {
         x = x * 0.5;
     } else
-        if (*race == 3) {
-        x = x * 0.5;
+        if (race->enano == 1) {
+        x = x * 1.5;
     } else
-        if (*race == 4) {
+        if (race->orco== 1) {
+        x = x * 2;
+    } else
+        if (race->humano == 1) {
         x = x * 1;
     }
     *vel = *vel + x;

@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/character.o \
+	${OBJECTDIR}/combat.o \
 	${OBJECTDIR}/enemies.o \
 	${OBJECTDIR}/items.o \
 	${OBJECTDIR}/main.o \
@@ -70,6 +71,11 @@ ${OBJECTDIR}/character.o: character.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/character.o character.c
+
+${OBJECTDIR}/combat.o: combat.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/combat.o combat.c
 
 ${OBJECTDIR}/enemies.o: enemies.c
 	${MKDIR} -p ${OBJECTDIR}

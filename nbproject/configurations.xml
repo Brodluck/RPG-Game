@@ -14,6 +14,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>character.c</itemPath>
+      <itemPath>combat.c</itemPath>
       <itemPath>enemies.c</itemPath>
       <itemPath>items.c</itemPath>
       <itemPath>main.c</itemPath>
@@ -42,6 +43,8 @@
       <compileType>
       </compileType>
       <item path="character.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="combat.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="enemies.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -75,6 +78,8 @@
         </asmTool>
       </compileType>
       <item path="character.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="combat.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="enemies.c" ex="false" tool="0" flavor2="0">
       </item>

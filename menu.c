@@ -21,7 +21,7 @@ int menu() {
     double stat, statm;
     char atr1[10], atr2[10], atr3[10], atr4[10], nat[10];
 }item;*/
-
+/*
 
 int inventario(item *mochila){
     int select;
@@ -62,3 +62,4 @@ int inventario(item *mochila){
     decision--;
     return decision;
 }
+*/
