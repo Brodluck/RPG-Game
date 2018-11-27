@@ -3,9 +3,11 @@
 #include "head.h"
 #include<string.h>
 
+
+
 int main() {
- chara charac;
- npc enemy;
+ chara *charac;
+ npc *enemy;
     char tuto;
     int strt;
     strt = menu();
@@ -15,9 +17,9 @@ int main() {
     } else {
         printf("Bienvenido al rpg game\n");
         printf("Cree su personaje\n\n");
-        character(&charac);
+        character(charac);
     }
-
+    system("clear");
     /*printf("¿Quieres hacer un tutorial? [Y/N]");
     scanf("\n%c", &tuto);
     if (tuto == 'Y' || tuto == 'y') {
@@ -26,7 +28,7 @@ int main() {
         printf("Bien, eres de los que aprenden sobre la marcha");
     }*/
 
-    combat(&charac, &enemy);
+    combat(charac, enemy);
 
 
     return 0;

@@ -357,21 +357,21 @@ void itemAtbLegen(item *object){
         object->legen=1;
         if (object->type==1){
         if (object->type2<=5 && object->type2>=3){
-              strcpy(object->atr4, 'legendaria');
-        }else strcpy(object->atr4, 'legendario');
+              strcpy(object->atr4, "legendaria");
+        }else strcpy(object->atr4, "legendario");
         }else{
             switch (object->type2){
                 case 0:
-                    strcpy(object->atr4, 'legendario');
+                    strcpy(object->atr4, "legendario");
                     break;
                 case 1:
-                    strcpy(object->atr4, 'legendaria');
+                    strcpy(object->atr4, "legendaria");
                     break;
                 case 2:
-                    strcpy(object->atr4, 'legendarios');
+                    strcpy(object->atr4, "legendario");
                     break;
                 case 3:
-                    strcpy(object->atr4, 'legendarias');
+                    strcpy(object->atr4, "legendarias");
                     break;
                 }
         }

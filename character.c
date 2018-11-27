@@ -144,7 +144,7 @@ do {                                                //Seleccion de clase
             charac->class.warrior=1;
             
         }else if(charac->race.humano==1){
-           printf("Has elegido humano, ahora elige la clase:\n1.Guerrero\n2.Paladin\n");
+           printf("Has elegido humano, ahora elige la clase:\n1.Guerrero\n2.Paladin\n3.Mage\n");
         scanf("%d", &slclass);
         switch(slclass){
             case 1:

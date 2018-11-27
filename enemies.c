@@ -63,11 +63,11 @@ void EnemyGen(chara *charac, npc *enemy) {
         levelUp(&enemy->att, &enemy->attm, &enemy->def, &enemy->defm, &enemy->vel, &enemy->race);
     }
 
-    itemGen(&enemy->weapons[0], &charac->level, 1, 0);
-    itemGen(&enemy->weapons[1],&charac->level, 1, 0);
-    itemGen(&enemy->gear[0], &charac->level, 2, 1);
-    itemGen(&enemy->gear[1], &charac->level, 2, 2);
-    itemGen(&enemy->gear[2], &charac->level, 2, 3);
-    itemGen(&enemy->gear[3], &charac->level, 2, 4);
+    itemGen(&enemy->weapons[0], charac, 1, 0);
+    itemGen(&enemy->weapons[1],charac, 1, 0);
+    itemGen(&enemy->gear[0], charac, 2, 1);
+    itemGen(&enemy->gear[1], charac, 2, 2);
+    itemGen(&enemy->gear[2], charac, 2, 3);
+    itemGen(&enemy->gear[3], charac, 2, 4);
 }
 

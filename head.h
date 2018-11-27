@@ -4,7 +4,7 @@ typedef struct {
     char name[10];
     int ID, type, nature, type2, legen;                       //type (1=armas, 2=armaduras), nature (1=fisico, 2=magico) 
     double stat, statm;
-    char atr1[30], atr2[30], atr3[30], atr4[30], nat[30];
+    char atr1[100], atr2[100], atr3[100], atr4[100], nat[100];
 }item;
 typedef struct{
     int elfo, enano, orco, humano;          //Races struct
