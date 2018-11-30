@@ -3,7 +3,13 @@
 #include "head.h"
 #include<string.h>
 
-
+void sequential(char *seq){
+ short i;
+ for(i=0; i<strlen(seq);i++){
+  printf("%c", seq[i]);
+  sleep(0.1);
+ }
+}
 
 int main() {
  chara charac;
