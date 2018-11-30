@@ -2,12 +2,13 @@
 #include <stdlib.h>
 #include "head.h"
 #include<string.h>
+#include <unistd.h>
 
 void sequential(char *seq){
  short i;
  for(i=0; i<strlen(seq);i++){
   printf("%c", seq[i]);
-  sleep(0.3);
+  usleep(0.3);
  }
 }
 
