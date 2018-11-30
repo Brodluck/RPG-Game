@@ -4,14 +4,6 @@
 #include<string.h>
 #include <unistd.h>
 
-void sequential(char *seq){
- short i;
- for(i=0; i<strlen(seq);i++){
-  printf("%c", seq[i]);
-  usleep(0.3);
- }
-}
-
 int main() {
  chara charac;
  npc enemy;
