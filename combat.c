@@ -145,8 +145,9 @@ int combat_warrior(npc *enemy, chara *charac) { //************************Clase 
                 printf("No puedes huir! %s te ha atrapado! Tocará luchar", enemy->name);
                 break;
             } else {
-                return 0; // printf("Has huido sin problema\n") hay que ponerlo en la funcion cuando se llame, que return 0 es combate nulo o whatever...
-            }
+                //Huido sin problemas
+                return -1;
+           }
         case 4:
             y = skill_book(charac);
             if (y == 1)
@@ -284,7 +285,8 @@ int combat_mage(npc *enemy, chara *charac) {
                 printf("No puedes huir! %s te ha atrapado! Tocará luchar\n", enemy->name);
                 break;
             } else {
-                return 0; // printf("Has huido sin problema\n") hay que ponerlo en la funcion cuando se llame, que return 0 es combate nulo o whatever...
+               //Has huido sin problemas
+                return -1; 
             }
         case 4:
             y = skill_book(charac);
@@ -422,7 +424,8 @@ int combat_paladin(npc *enemy, chara *charac) {
                 printf("No puedes huir! %s te ha atrapado! Tocará luchar", enemy->name);
                 break;
             } else {
-                return 0; // printf("Has huido sin problema\n") hay que ponerlo en la funcion cuando se llame, que return 0 es combate nulo o whatever...
+                //Has huido sin problemas
+                return -1;
             }
         case 4:
             y = skill_book(charac);
@@ -534,22 +537,28 @@ int combat(chara *charac, npc *enemy) {
     int x = 0, y = 0, z = 0;
     if (charac->class.warrior == 1) {
         x = combat_warrior(enemy, charac);
-        if (x) {
+        if (x==1) {
             return 1;
+        }else if(x==-1){
+            return -1;
         } else {
             return 0;
         }
     } else if (charac->class.mage == 1) {
         y = combat_mage(enemy, charac);
-        if (y) {
+        if (y==1) {
             return 1;
+        }else if(x==-1){
+            return -1;
         } else {
             return 0;
         }
     } else if (charac->class.paladin == 1) {
         z = combat_paladin(enemy, charac);
-        if (z) {
+        if (z==1) {
             return 1;
+        }else if(x==-1){
+            return -1;
         } else {
             return 0;
         }

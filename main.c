@@ -6,10 +6,10 @@
 
 
 int main() {
- chara *charac;
- npc *enemy;
+ chara charac;
+ npc enemy;
     char tuto;
-    int strt;
+    int strt, combatResult;
     strt = menu();
 
     if (strt == 0) {
@@ -17,7 +17,7 @@ int main() {
     } else {
         printf("Bienvenido al rpg game\n");
         printf("Cree su personaje\n\n");
-        character(charac);
+        character(&charac);
     }
     system("clear");
     /*printf("¿Quieres hacer un tutorial? [Y/N]");
@@ -28,7 +28,12 @@ int main() {
         printf("Bien, eres de los que aprenden sobre la marcha");
     }*/
 
-    combat(charac, enemy);
+    combatResult=combat(&charac, &enemy);
+    if(combatResult==1){
+        
+    }else if(combatResult==-1){
+        printf("Has huido sin problemas\n");
+    }
 
 
     return 0;
