@@ -5,7 +5,7 @@
 #include <unistd.h>
 
 int main() {
- /*   chara charac;
+    chara charac;
     npc enemy;
     char tuto;
     int strt, combatResult, dead = 0;
@@ -30,13 +30,13 @@ int main() {
     }
 
 
-    printf("¿Quieres hacer un tutorial? [Y/N]");
+    /*printf("¿Quieres hacer un tutorial? [Y/N]");
     scanf("\n%c", &tuto);
     if (tuto == 'Y' || tuto == 'y') {
         
     } else if (tuto == 'N' || tuto == 'n') {
         printf("Bien, eres de los que aprenden sobre la marcha");
-    }
+    }*/
 
     combatResult = combat(&charac, &enemy);
     if (combatResult == 1) {
@@ -51,8 +51,5 @@ int main() {
         }
     }
 
-*/  personDisplay();
-      personAttack1(30, 100, 80, 110);
-      personAttack2(30, 100, 80, 110);
     return 0;
 }
