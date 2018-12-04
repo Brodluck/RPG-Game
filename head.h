@@ -45,7 +45,11 @@ void itemGen(item *object, chara *charac, int enemG, int enemG2);
 int combat(chara *charac, npc *enemy);
 void EnemyGen(chara charac, npc *enemy);
 void itemIDLoad(item *object, char *ID);
-void type_text(char *s, unsigned ms_delay);
+void typeText(char *s, unsigned ms_delay);
+void healthBar(int vida1, int vidamax1, int vida2, int vidamax2);
+void personDisplay();
+void personAttack1(int vida1, int vidamax1, int vida2, int vidamax2);
+void personAttack2(int vida1, int vidamax1, int vida2, int vidamax2);
 #ifdef __cplusplus
 extern "C" {
 #endif
