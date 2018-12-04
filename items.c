@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "head.h"
-void itemType(item *object){
+void itemType(item *object, int load){
     int x=rand()%10;
     if (x<5){
         object->type=1;                     //arma
@@ -11,8 +11,11 @@ void itemType(item *object){
     }
 }
 
-void itemTypeSpecific(item *object){
-    int x=rand()%6;
+void itemTypeSpecific(item *object, int load){
+    int x;
+    if (load==-1) {
+        x==rand()%6;
+    }else x=load;
     if (object->type==1){
     switch (x){
         case 0:
@@ -41,7 +44,9 @@ void itemTypeSpecific(item *object){
             break;
         }
     }else{
-        x=rand()%4;
+        if (load==-1) {
+        x==rand()%4;
+    }else x=load;
         switch (x){
         case 0:
             object->type2=0;
@@ -63,8 +68,19 @@ void itemTypeSpecific(item *object){
     }
 }
 
-void itemAtbType(item *object){
-    int x=rand()%10;
+void itemAtbType(item *object, int load){
+    int x;
+    switch (load){
+        case -1:
+            x=rand()%10;
+            break;
+        case 1:
+            x=1;
+            break;
+        case 2:
+            x=6;
+            break;
+    }
     if (x<5){                               //50% probabilidad
         if (object->type==1){
         if (object->type2<=5 && object->type2>=3){
@@ -118,8 +134,28 @@ void itemAtbType(item *object){
         }else object->stat=0;               //is no lo es, elimina estadistica fisica
     }
 }
-void itemAtbCommon(item *object){           //atributo comun
-    int x=rand()%100;
+void itemAtbCommon(item *object, int load){           //atributo comun
+    int x;
+    switch (load){
+        case -1:
+            x==rand()%100;
+            break;
+        case 1:
+            x=9;
+            break;
+        case 2:
+            x=32;
+            break;
+        case 3:
+            x=55;
+            break;
+        case 4:
+            x=77;
+            break;
+        case 5:
+            x=80;
+            break;
+    }
     if (x<10){                              //10% probabilidad
         object->comm=1;
         if (object->type==1){
@@ -234,8 +270,25 @@ void itemAtbCommon(item *object){           //atributo comun
         }
     }
 }
-void itemAtbRare(item *object){
-    int x=rand()%100;
+void itemAtbRare(item *object, int load){
+    int x;
+    switch (load){
+        case -1:
+            x==rand()%100;
+            break;
+        case 0:
+            x=39;
+            break;
+        case 1:
+            x=54;
+            break;
+        case 2:
+            x=69;
+            break;
+        case 3:
+            x=84;
+            break;
+    }
     if(x<40){
         object->rare=0;
     }else if (x<55){
@@ -306,8 +359,22 @@ void itemAtbRare(item *object){
             object->statm=object->statm*0.7;
     }
 }
-void itemAtbExtra(item *object){
-    int x=rand()%100;
+void itemAtbExtra(item *object, int load){
+    int x;
+    switch (load){
+        case -1:
+            x=rand()%100;
+            break;
+        case 0:
+            x=69;
+            break;
+        case 1:
+            x=79;
+            break;
+        case 2:
+            x=89;
+            break;
+    }
     if (x<70){
         object->extr=0;
     }else if (x<80){
@@ -362,8 +429,19 @@ void itemAtbExtra(item *object){
         }
         }
     }
-void itemAtbLegen(item *object){
-    int x=rand()%100;
+void itemAtbLegen(item *object, int load){
+    int x;
+    switch  (load){
+        case -1:
+            x=rand()%100;
+            break;
+        case 0:
+            x=96;
+            break;
+        case 1:
+            x=99;
+            break;
+    }
     if (x>97){
         object->legen=1;
         if (object->type==1){
@@ -390,21 +468,7 @@ void itemAtbLegen(item *object){
             object->statm=object->statm*3;
     }
 }
-void itemGen(item *object, chara *charac, int enemG, int enemG2) {
-    object->stat=charac->level*2;
-    object->statm=charac->level*2;
-    if (enemG==0){
-    itemType(object);
-    }else object->type=enemG;
-    if (enemG2==0){
-    itemTypeSpecific(object);
-    }else object->type2=enemG2-1;
-    itemAtbType(object);
-    itemAtbCommon(object);
-    itemAtbRare(object);
-    itemAtbExtra(object);
-    itemAtbLegen(object);
-}
+
 void itemGenID(item *object){
     object->ID[0]=object->type;
     object->ID[1]=object->type2;
@@ -415,12 +479,32 @@ void itemGenID(item *object){
     object->ID[6]=object->legen;
 }
 
+void itemGen(item *object, chara *charac, int enemG, int enemG2) {
+    object->lvl=charac->level;
+    object->stat=object->lvl*2;
+    object->statm=object->lvl*2;
+    if (enemG==0){
+    itemType(object, -1);
+    }else object->type=enemG;
+    if (enemG2==0){
+    itemTypeSpecific(object, 0);
+    }else object->type2=enemG2-1;
+    itemAtbType(object, -1);
+    itemAtbCommon(object, -1);
+    itemAtbRare(object, -1);
+    itemAtbExtra(object, -1);
+    itemAtbLegen(object, -1);
+    itemGenID(object);
+}
+
 void itemIDLoad(item *object, char *ID){
-    object->type=ID[0];
-    object->type2=ID[1];
-    object->nature=ID[2];
-    object->comm=ID[3];
-    object->rare=ID[4];
-    object->extr=ID[5];
-    object->legen=ID[6];
+    
+    itemType(object, object->ID[0]);
+    itemTypeSpecific(object, object->ID[1]);
+    itemAtbType(object, object->ID[2]);
+    itemAtbCommon(object, object->ID[3]);
+    itemAtbRare(object, object->ID[4]);
+    itemAtbExtra(object, object->ID[5]);
+    itemAtbLegen(object, object->ID[6]);
+    itemGenID(object);
 }
