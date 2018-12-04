@@ -2,7 +2,7 @@
 #define HEAD_H
 typedef struct {
     char name[100];
-    int type, nature, type2, legen, comm, rare, extr;                       //type (1=armas, 2=armaduras), nature (1=fisico, 2=magico) 
+    int lvl, type, nature, type2, legen, comm, rare, extr;                       //type (1=armas, 2=armaduras), nature (1=fisico, 2=magico) 
     double stat, statm;
     char ID[9];
 }item;
@@ -39,7 +39,6 @@ void levelUp(double *att, double *attm, double *def, double *defm, double *vel, 
 void itemGen(item *object, chara *charac, int enemG, int enemG2);
 int combat(chara *charac, npc *enemy);
 void EnemyGen(chara charac , npc *enemy);
-void itemGenID(item *object);
 void itemIDLoad(item *object, char *ID);
 
 #ifdef __cplusplus
