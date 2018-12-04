@@ -1,8 +1,16 @@
 ﻿#include <stdio.h>
 #include <stdlib.h>
 #include "head.h"
-#include<string.h>
+#include <string.h>
 #include <unistd.h>
+
+void sequential(char *string){
+    int i;
+    for(i=0;i<strlen(string);i++){
+        printf("%c", string[i]);
+        usleep(30);
+    }
+}
 
 int main() {
  chara charac;
