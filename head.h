@@ -1,10 +1,10 @@
 #ifndef HEAD_H
 #define HEAD_H
 typedef struct {
-    char name[10];
+    char name[100];
     int type, nature, type2, legen, comm, rare, extr;                       //type (1=armas, 2=armaduras), nature (1=fisico, 2=magico) 
     double stat, statm;
-    char ID[9], atr1[100], atr2[100], atr3[100], atr4[100], nat[100];
+    char ID[9];
 }item;
 typedef struct{
     int elfo, enano, orco, humano;          //Races struct
