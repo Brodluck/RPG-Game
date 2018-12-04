@@ -6,7 +6,7 @@
 #include <time.h>
 
 void character(chara *charac) {
-    int x, y, selec;
+    int x, y, selec=0;
     char bool;
     do {
         do {
@@ -39,6 +39,7 @@ void character(chara *charac) {
             }
         } while (0 > x && x > 5);
         
+        
         do { //confirmar seleccion
             printf("\nDe verdad quieres seleccionar esta raza? [Y/N]");
             scanf("\n%c", &bool);
@@ -50,7 +51,7 @@ void character(chara *charac) {
             } else printf("Eres idiota?? Elige bien\n");
         } while ((bool == 'Y' || bool == 'y') && (bool == 'N' || bool == 'n'));
     } while (selec == 0);
-    
+    system("clear");
     y = x;
     switch (y) {
         case 1:
@@ -64,7 +65,7 @@ void character(chara *charac) {
             charac->def = -10;
             charac->defm = 10;
             charac->vel = 20;
-            printf("Enhorabuena, ahora seras un elfo!");
+            
             break;
 
         case 2:
@@ -78,7 +79,7 @@ void character(chara *charac) {
             charac->def = 10;
             charac->defm = 10;
             charac->vel = 0;
-            printf("Enano, eres de esos entonces");
+            
             break;
         case 3:
             //orco
@@ -91,7 +92,7 @@ void character(chara *charac) {
             charac->def = 0;
             charac->defm = 0;
             charac->vel = -20;
-            printf("Enhorabuena eres un Orco!");
+            
             break;
         case 4:
             //humano
@@ -104,7 +105,7 @@ void character(chara *charac) {
             charac->def = 0;
             charac->defm = 0;
             charac->vel = 0;
-            printf("Enhorabuena, eres el tipico humano");
+            
 
             break;
         default:
@@ -204,14 +205,11 @@ void levelUp(double *att, double *attm, double *def, double *defm, double *vel, 
     double x = (rand() % 8 + 1) + 3;
     if (race->elfo == 1) {
         x = x * 0.5;
-    } else
-        if (race->enano == 1) {
+    } else if (race->enano == 1) {
         x = x * 1.5;
-    } else
-        if (race->orco== 1) {
+    } else if (race->orco== 1) {
         x = x * 2;
-    } else
-        if (race->humano == 1) {
+    } else if (race->humano == 1) {
         x = x * 1;
     }
     *att += x;
@@ -219,14 +217,11 @@ void levelUp(double *att, double *attm, double *def, double *defm, double *vel, 
     x = rand() % 5 + 1;
     if (race->elfo == 1) {
         x = x * 0.5;
-    } else
-        if (race->enano == 1) {
+    } else if (race->enano == 1) {
         x = x * 1.5;
-    } else
-        if (race->orco== 1) {
+    } else if (race->orco== 1) {
         x = x * 2;
-    } else
-        if (race->humano == 1) {
+    } else if (race->humano == 1) {
         x = x * 1;
     }
     *attm = *attm + x;
@@ -234,14 +229,11 @@ void levelUp(double *att, double *attm, double *def, double *defm, double *vel, 
     x = rand() % 5 + 1;
     if (race->elfo == 1) {
         x = x * 0.5;
-    } else
-        if (race->enano == 1) {
+    } else if (race->enano == 1) {
         x = x * 1.5;
-    } else
-        if (race->orco== 1) {
+    } else if (race->orco== 1) {
         x = x * 2;
-    } else
-        if (race->humano == 1) {
+    } else if (race->humano == 1) {
         x = x * 1;
     }
     *def = *def + x;
@@ -249,14 +241,11 @@ void levelUp(double *att, double *attm, double *def, double *defm, double *vel, 
     x = rand() % 5 + 1;
     if (race->elfo == 1) {
         x = x * 0.5;
-    } else
-        if (race->enano == 1) {
+    } else if (race->enano == 1) {
         x = x * 1.5;
-    } else
-        if (race->orco== 1) {
+    } else if (race->orco== 1) {
         x = x * 2;
-    } else
-        if (race->humano == 1) {
+    } else if (race->humano == 1) {
         x = x * 1;
     }
     *defm = *defm + x;
@@ -264,14 +253,11 @@ void levelUp(double *att, double *attm, double *def, double *defm, double *vel, 
     x = rand() % 5 + 1;
     if (race->elfo == 1) {
         x = x * 0.5;
-    } else
-        if (race->enano == 1) {
+    } else if (race->enano == 1) {
         x = x * 1.5;
-    } else
-        if (race->orco== 1) {
+    } else if (race->orco== 1) {
         x = x * 2;
-    } else
-        if (race->humano == 1) {
+    } else if (race->humano == 1) {
         x = x * 1;
     }
     *vel = *vel + x;
