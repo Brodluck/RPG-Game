@@ -53,6 +53,7 @@ void personAttack1(int vida1, int vidamax1, int vida2, int vidamax2){
     usleep(80);
     healthBar(vida1, vidamax1, vida2, vidamax2);
 }
+
 void personAttack2(int vida1, int vidamax1, int vida2, int vidamax2){
     system("clear");
     printf("\n                  o\n      o          / \\\n     / \\\n\n");
