@@ -4,33 +4,42 @@
 #include <string.h>
 #include <unistd.h>
 
-void type_text(char *s, unsigned ms_delay)
-{
-   unsigned usecs = ms_delay * 1000; /* 1000 microseconds per ms */
+void type_text(char *s, unsigned ms_delay) {
+    unsigned usecs = ms_delay * 1000; /* 1000 microseconds per ms */
 
-   for (; *s; s++) {
-      putchar(*s);
-      fflush(stdout); /* alternatively, do once: setbuf(stdout, NULL); */
-      usleep(usecs);
-   }
+    for (; *s; s++) {
+        putchar(*s);
+        fflush(stdout); /* alternatively, do once: setbuf(stdout, NULL); */
+        usleep(usecs);
+    }
 }
 
-
 int main() {
- chara charac;
- npc enemy;
+    chara charac;
+    npc enemy;
     char tuto;
-    int strt, combatResult;
-    strt = menu();
+    int strt, combatResult, dead = 0;
+    strt = menu(&charac, dead);
+    switch (strt) {
+        case 1:
+            printf("Bienvenido al rpg game\n");
+            printf("Cree su personaje\n\n");
+            character(&charac);
+            break;
+        case -1:
+            printf("Error al leer el archivo de guardado\n");
+            break;
+        case 0:
+            exit;
+            break;
+        case 2:
+            printf("Cargado correctamente\n");
+            break;
 
-    if (strt == 0) {
-        return 0;
-    } else {
-        printf("Bienvenido al rpg game\n");
-        printf("Cree su personaje\n\n");
-        character(&charac);
     }
-    system("clear");
+
+
+
     /*printf("¿Quieres hacer un tutorial? [Y/N]");
     scanf("\n%c", &tuto);
     if (tuto == 'Y' || tuto == 'y') {
@@ -39,11 +48,17 @@ int main() {
         printf("Bien, eres de los que aprenden sobre la marcha");
     }*/
 
-    combatResult=combat(&charac, &enemy);
-    if(combatResult==1){
-        
-    }else if(combatResult==-1){
+    combatResult = combat(&charac, &enemy);
+    if (combatResult == 1) {
+
+    } else if (combatResult == -1) {
         printf("Has huido sin problemas\n");
+    } else if (combatResult == 0) {
+        dead = 1;
+        strt = menu(&charac, dead);
+        if (strt = 2) {
+            printf("Se ha cargado partida correctamente en el ultimo punto guardado");
+        }
     }
 
 

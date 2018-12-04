@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=Cygwin-Windows
 CND_ARTIFACT_DIR_Debug=dist/Debug/Cygwin-Windows
-CND_ARTIFACT_NAME_Debug=rpg-game
-CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/rpg-game
+CND_ARTIFACT_NAME_Debug=rpg
+CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/rpg
 CND_PACKAGE_DIR_Debug=dist/Debug/Cygwin-Windows/package
-CND_PACKAGE_NAME_Debug=rpg-game.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/rpg-game.tar
+CND_PACKAGE_NAME_Debug=rpg.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/rpg.tar
 # Release configuration
 CND_PLATFORM_Release=Cygwin-Windows
 CND_ARTIFACT_DIR_Release=dist/Release/Cygwin-Windows
-CND_ARTIFACT_NAME_Release=rpg-game
-CND_ARTIFACT_PATH_Release=dist/Release/Cygwin-Windows/rpg-game
+CND_ARTIFACT_NAME_Release=rpg
+CND_ARTIFACT_PATH_Release=dist/Release/Cygwin-Windows/rpg
 CND_PACKAGE_DIR_Release=dist/Release/Cygwin-Windows/package
-CND_PACKAGE_NAME_Release=rpg-game.tar
-CND_PACKAGE_PATH_Release=dist/Release/Cygwin-Windows/package/rpg-game.tar
+CND_PACKAGE_NAME_Release=rpg.tar
+CND_PACKAGE_PATH_Release=dist/Release/Cygwin-Windows/package/rpg.tar
 #
 # include compiler specific variables
 #

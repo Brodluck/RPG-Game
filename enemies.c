@@ -28,8 +28,7 @@ void EnemyGen(chara charac, npc *enemy) {
 
     if (x == 1) { //elfo
         enemy->race.elfo = 1;
-        enemy->vida=80;
-        enemy->stamina=100;
+        enemy->vida = 80;
         enemy->att = -10;
         enemy->attm = 10;
         enemy->def = -10;
@@ -38,8 +37,7 @@ void EnemyGen(chara charac, npc *enemy) {
         strcat(enemy->name, " elfo");
     } else if (x = 2) { //enano
         enemy->race.enano = 1;
-        enemy->vida=110;
-        enemy->stamina=100;
+        enemy->vida = 110;
         enemy->att = 10;
         enemy->attm = -10;
         enemy->def = 10;
@@ -48,8 +46,7 @@ void EnemyGen(chara charac, npc *enemy) {
         strcat(enemy->name, " enano");
     } else if (x == 3) { //orco
         enemy->race.orco = 1;
-        enemy->vida=110;
-        enemy->stamina=100;
+        enemy->vida = 110;
         enemy->att = 20;
         enemy->attm = -100;
         enemy->def = 0;
@@ -58,8 +55,7 @@ void EnemyGen(chara charac, npc *enemy) {
         strcat(enemy->name, " orco");
     } else if (x == 4) { //humano
         enemy->race.humano = 1;
-        enemy->vida=100;
-        enemy->stamina=100;
+        enemy->vida = 100;
         enemy->att = 0;
         enemy->attm = 0;
         enemy->def = 0;
@@ -67,12 +63,12 @@ void EnemyGen(chara charac, npc *enemy) {
         enemy->vel = 0;
         strcat(enemy->name, " humano");
     }
-    for (i = 0; i < enemy->level; i++) {
+    /*for (i = 0; i < enemy->level; i++) {
         levelUp(&enemy->att, &enemy->attm, &enemy->def, &enemy->defm, &enemy->vel, &enemy->race);
-    }
+    }*/
 
     itemGen(&enemy->weapons[0], &charac, 1, 0);
-    itemGen(&enemy->weapons[1],&charac, 1, 0);
+    itemGen(&enemy->weapons[1], &charac, 1, 0);
     itemGen(&enemy->gear[0], &charac, 2, 1);
     itemGen(&enemy->gear[1], &charac, 2, 2);
     itemGen(&enemy->gear[2], &charac, 2, 3);

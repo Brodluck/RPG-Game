@@ -3,17 +3,61 @@
 #include <time.h>
 #include "head.h"
 
-int menu() {
+int menu(chara *charac, int dead) {
+    FILE *f;
     srand(time(NULL));
-    int x;
-    printf("WELCOME TO THE RPG GAME\n1.Start\n2.Exit\n");
-    scanf("%d", &x);
+    int option, gen, esquivar, vida, lvl, def, att, defm, attm, vel, class, race;
+
+    if (dead) {
+        option = 2;
+        goto load;
+    }
+
+    printf("WELCOME TO THE RPG GAME\n1.Start\n2.Load Game\n3.Exit\n");
+    scanf("%d", &option);
     system("clear");
-   
-    if (x==1){
-        return 1;
-    }else return 0;
+load:
+    switch (option) {
+        case 1:
+            return 1;
+        case 2:
+            f = fopen("Save.txt", "r");
+            if (f == NULL) {
+                return 0;
+            }
+            while ((fscanf(f, "%d %d %d %d %d %d %d %d %d %d", &gen, &vida, &lvl, &def, &att, &defm, &attm, &vel, &class, &race)) == 10);
+    }
+    charac->gen = gen;
+    charac->vida = vida;
+    charac->level = lvl;
+    charac->def = def;
+    charac->att = att;
+    charac->defm = defm;
+    charac->attm = attm;
+    charac->vel = vel;
+
+    if (class == 1) {
+        charac->class.warrior = 1;
+    } else if(class==2){
+        charac->class.mage = 1;
+    } else if (class == 3) {
+        charac->class.paladin = 1;
+    }
+
+    if (race == 1) {
+        charac->race.elfo = 1;
+    } else if (race == 2) {
+        charac->race.enano == 1;
+    } else if (race == 3) {
+        charac->race.orco = 1;
+    } else if (race == 4) {
+        charac->race.humano = 1;
+    }
+
+    return 2;
 }
+
+
 //ESTO DE AQUI ABAJO ME SIRVE PARA VER COMO ES LA STRUCT
 /*typedef struct {
     char name[10];
@@ -62,4 +106,4 @@ int inventario(item *mochila){
     decision--;
     return decision;
 }
-*/
+ */

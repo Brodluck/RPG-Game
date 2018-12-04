@@ -58,7 +58,6 @@ void character(chara *charac) {
             //elfo
             charac->race.elfo=1;
             charac->vida=85;
-            charac->stamina=100;
             charac->level=1;
             charac->att = -10;
             charac->attm = 10;
@@ -72,7 +71,6 @@ void character(chara *charac) {
             //enano
             charac->race.enano=1;
             charac->vida=110;
-            charac->stamina=100;
             charac->level=1;
             charac->att = 10;
             charac->attm = -10;
@@ -85,7 +83,6 @@ void character(chara *charac) {
             //orco
             charac->race.orco=1;
             charac->vida=110;
-            charac->stamina=100;
             charac->level=1;
             charac->att = 20;
             charac->attm = -100;
@@ -98,7 +95,6 @@ void character(chara *charac) {
             //humano
             charac->race.humano=1;
             charac->vida=100;
-            charac->stamina=100;
             charac->level=1;
             charac->att = 0;
             charac->attm = 0;
@@ -264,7 +260,7 @@ void levelUp(double *att, double *attm, double *def, double *defm, double *vel, 
     printf("\nvelocidad: %.0lf", *vel);
 }
 
-void expUp(chara *charac, int expg) {
+/* void expUp(chara *charac, int expg) {
     printf("has conseguido %d ptos de experiencia", expg);
     charac->exp = charac->exp + expg;
     if (charac->exp > pow(charac->level, 3)) {
@@ -273,3 +269,4 @@ void expUp(chara *charac, int expg) {
         printf("Enhorabuena!! has subido al nivel %d", charac->level);
     }
 }
+ */
