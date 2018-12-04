@@ -4,13 +4,17 @@
 #include <string.h>
 #include <unistd.h>
 
-void sequential(char *string){
-    int i;
-    for(i=0;i<strlen(string);i++){
-        printf("%c", string[i]);
-        usleep(30);
-    }
+void type_text(char *s, unsigned ms_delay)
+{
+   unsigned usecs = ms_delay * 1000; /* 1000 microseconds per ms */
+
+   for (; *s; s++) {
+      putchar(*s);
+      fflush(stdout); /* alternatively, do once: setbuf(stdout, NULL); */
+      usleep(usecs);
+   }
 }
+
 
 int main() {
  chara charac;
