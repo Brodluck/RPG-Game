@@ -121,6 +121,7 @@ void itemAtbType(item *object){
 void itemAtbCommon(item *object){           //atributo comun
     int x=rand()%100;
     if (x<10){                              //10% probabilidad
+        object->comm=1;
         if (object->type==1){
         strcpy(object->atr1, "inútil");
         }else{
@@ -142,6 +143,7 @@ void itemAtbCommon(item *object){           //atributo comun
         object->stat=0;                     
         object->statm=0;
     }else if (x<33){                        //20% probabilidad
+        object->comm=2;
         if (object->type==1){
         if (object->type2<=5 && object->type2>=3){
               strcpy(object->atr1, "imbuida");
@@ -167,6 +169,7 @@ void itemAtbCommon(item *object){           //atributo comun
             object->statm=object->statm*1.2;
         }
     }else if (x<56){
+        object->comm=3;
         if (object->type==1){
         strcpy(object->atr1, "resistente");         //solamente afecta si es un item fisico
         }else{
@@ -186,6 +189,7 @@ void itemAtbCommon(item *object){           //atributo comun
             object->stat=object->stat*1.2;
         }
     }else if (x<78){
+        object->comm=4;
         if (object->type==1){
         strcpy(object->atr1, "fragil");             //solamente afecta si es un item fisico
         }else{
@@ -204,6 +208,7 @@ void itemAtbCommon(item *object){           //atributo comun
             object->stat=object->stat*0.8;
         }
     }else{
+        object->comm=5;
         if (object->type==1){
         if (object->type2<=5 && object->type2>=3){
               strcpy(object->atr1, "maldita");
@@ -232,13 +237,16 @@ void itemAtbCommon(item *object){           //atributo comun
 void itemAtbRare(item *object){
     int x=rand()%100;
     if(x<40){
+        object->rare=0;
         strcpy(object->atr2, "not");
     }else if (x<55){
+        object->rare=1;
         if (object->type==1){
         if (object->type2<=5 && object->type2>=3){
               strcpy(object->nat, "encantada");
         }else strcpy(object->nat, "encantado");
         }else{
+            
             switch (object->type2){
                 case 0:
                     strcpy(object->atr2, "encantado");
@@ -259,6 +267,7 @@ void itemAtbRare(item *object){
             object->statm=object->statm*1.4;
         }
     }else if (x<70){
+        object->rare=2;
         if (object->type==1){
         if (object->type2<=5 && object->type2>=3){
               strcpy(object->atr2, "destructora");
@@ -279,6 +288,7 @@ void itemAtbRare(item *object){
             object->stat=object->stat*1.4;
         }
     }else if (x<85){
+        object->rare=3;
         if (object->type==1){
         strcpy(object->atr2, "cutre");
         }else{
@@ -300,8 +310,10 @@ void itemAtbRare(item *object){
 void itemAtbExtra(item *object){
     int x=rand()%100;
     if (x<70){
+        object->extr=0;
         strcpy(object->atr3, "not");
     }else if (x<80){
+        object->extr=1;
         if (object->type==1){
         if (object->type2<=5 && object->type2>=3){
               strcpy(object->atr3, "dracónica");
@@ -326,6 +338,7 @@ void itemAtbExtra(item *object){
             object->statm=object->statm*1.7;
         }
     }else if (x<90){
+        object->extr=2;
         if (object->type==1){
         if (object->type2<=5 && object->type2>=3){
               strcpy(object->atr3, "asesina");
@@ -380,10 +393,8 @@ void itemAtbLegen(item *object){
     }else strcpy(object->atr4, "not");
 }
 void itemGen(item *object, chara *charac, int enemG, int enemG2) {
-    int x=rand()%10;
-    x=x-5;
-    object->stat=charac->level*2+x;
-    object->statm=charac->level*2+x;
+    object->stat=charac->level*2;
+    object->statm=charac->level*2;
     if (enemG==0){
     itemType(object);
     }else object->type=enemG;
@@ -396,4 +407,22 @@ void itemGen(item *object, chara *charac, int enemG, int enemG2) {
     itemAtbExtra(object);
     itemAtbLegen(object);
 }
+void itemGenID(item *object){
+    object->ID[0]=object->type;
+    object->ID[1]=object->type2;
+    object->ID[2]=object->nature;
+    object->ID[3]=object->comm;
+    object->ID[4]=object->rare;
+    object->ID[5]=object->extr;
+    object->ID[6]=object->legen;
+}
 
+void itemIDLoad(item *object, char *ID){
+    object->type=ID[0];
+    object->type2=ID[1];
+    object->nature=ID[2];
+    object->comm=ID[3];
+    object->rare=ID[4];
+    object->extr=ID[5];
+    object->legen=ID[6];
+}
