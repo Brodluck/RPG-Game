@@ -156,7 +156,7 @@ int combat_warrior(npc *enemy, chara *charac) { //************************Clase 
                 break;
             
     }
-    }while(option<1 || option>4);
+    }while(option<1 && option>4);
     if (turno==0){
         turno=1;
     }else if (enemy->vel < charac->vel) { //Aqui se decide quien empezará primero
@@ -294,7 +294,7 @@ int combat_mage(npc *enemy, chara *charac) {
         case 3:
             percentage = (rand() % 100) + 1;
             if (percentage >= 1 && percentage <= 20) {
-                printf("No puedes huir! %s te ha atrapado! Tocará luchar\n", enemy->name);
+                printf("No puedes huir! %s te ha atrapado! Toca luchar\n", enemy->name);
                 break;
             } else {
                //Has huido sin problemas
@@ -305,14 +305,13 @@ int combat_mage(npc *enemy, chara *charac) {
             if (y == 1)
                 break;
             }
-            }while(option<1 || option>4);
+            }while(option<1 && option>4);
 
     
-    if (turno==0){
-        turno=1;
-    }
-    else if (enemy->vel < charac->vel) { //Aqui se decide quien empezará primero
-        turno = 0;  
+    
+    if (enemy->vel < charac->vel) { //Aqui se decide quien empezará primero
+        turno = 0;
+        printf("Comienza atacando %s ya que es mas rapido\n", enemy->name);
     }
     do { //Comienzo del combate
         dmg = 0;
@@ -325,11 +324,13 @@ int combat_mage(npc *enemy, chara *charac) {
              printf("El aguante de %s ha llegado a cero! Descansara este turno\n", enemy->name);
             enemy->stamina += 100;
             turno = 1;
-            
+          
         }
+        checkTurn:  
         if (turno == 1) { //Si turno ==1 es el turno del jugador
 combat_start_mage:
-            printf("Elige la habilidad que quieres utilizar\n: 1.Bola de fuego\n 2.Armadura magica\n3.Ilusion\n");
+            printf("Tu turno\n");
+            printf("Elige la habilidad que quieres utilizar:\n1.Bola de fuego\n2.Armadura magica\n3.Ilusion\n");
             scanf("%d", &option);
             do{
             switch (option) {
@@ -341,24 +342,50 @@ combat_start_mage:
                     s.magic_armor == 1;
                     charac->def += 50;
                     charac->stamina -= 50;
+                    printf("Has utilizado armadura magica\n");
                     break;
                 case 3:
                     s.ilusion = 1;
                     charac->esquivar += 50;
                     charac->stamina -= 35;
+                    printf("Has utilizado ilusion\n");
             }
-}while(x!=3 || x!=2 || x!=1);
+}while(x<1 && x>3);
             rangeS = range_stamina(charac->stamina); //Comprobacion de stamina
             if (rangeS == 1) {
                 printf("No tienes suficiente estamina!\n");
-                goto combat_start_mage;
+                printf("Debes utilizar una habilidad que cueste menos[1], o pasar turno[2].\n");
+                scanf("%d",&option);
+                switch(option){
+                    case 1:
+                        goto combat_start_mage;
+                    case 2:
+                    break;     
+                }
+                turno=0;
+                charac->stamina=100;
+                goto checkTurn;
+                
             }
             dmg = dmg - ((dmg * (enemy->def * 0.05)) / 100);
             enemy->vida -= dmg;
-            printf("Has inflingido %0.2lf a %s", dmg, enemy->name);
+            printf("Has inflingido %0.2lf a %s\n", dmg, enemy->name);
             printf("Vida de %s : %d\n", enemy->name, enemy->vida);
-            printf("Estamina: %d\n", charac->stamina);
-
+            printf("Tienes %d de mana\n", charac->stamina);
+            turno=0;
+            
+            if(enemy->vida<=0){
+        printf("Estupendo! Has derrotado a %s! ", enemy->name);
+        //items(caca caca); llamamos a la funcion de items para poner el drop etc
+        printf("Escarvas e inspeccionas en el cadaver aun caliente de %s y descubres un objeto interesante\n", enemy->name);
+        //printf("Has recibido: % ",objeto etc etc); willy pls help con esto
+        if (s.magic_armor == 1) { //Restaurar defensa
+        charac->def -= 50;
+    }
+        return 1; //Ganaste 1=win
+            }
+            
+            //Turno enemigo
         } else if (turno == 0) {
             dmg = 0;
             x = (rand() % 2) + 1;
@@ -385,7 +412,7 @@ combat_start_mage:
             if (s.ilusion == 1) {
                 miss = (rand() % 100) + 1;
                 if (miss >= 1 && miss <= 50) {
-                    printf("%s ha fallado el ataque porque ha atacado a la tu ilusion!\n", enemy->name);
+                    printf("%s ha fallado el ataque porque ha atacado a tu ilusion!\n", enemy->name);
                 }
             } else if (s.magic_armor == 1) {
                 reflected_dmg = dmg * 0.20;
@@ -393,29 +420,19 @@ combat_start_mage:
                 printf("%s ha recibido %0.lf de daño reflejado por Armadura magica\n", enemy->name, reflected_dmg);
             } else {
                 charac->vida -= dmg;
-                printf("%s te ha inflingido %0.2lf", enemy->name, dmg);
+                printf("%s te ha inflingido %0.2lf\n", enemy->name, dmg);
                 printf("Tu vida: %d\n", charac->vida);
                 printf("Stamina de %s: %d\n", enemy->name, enemy->stamina);
+            }
+            turno=1;
+            if(charac->vida <= 0){
+                 printf("Has sido derrotado por %s! Volveras al ultimo punto guardado\n", enemy->name);
+
+        return 0; // return 0, 0 será para empezar en el punto de guardado
             }
         }
 
     } while ((enemy->vida > 0) || (charac->vida > 0));
-
-    if (s.magic_armor == 1) {
-        charac->def -= 50;
-    } //Restaurar defensa
-    if (enemy->vida > 0) {
-        printf("Estupendo! Has derrotado a %s! ", enemy->name);
-        //items(caca caca); llamamos a la funcion de items para poner el drop etc
-        printf("Escarvas e inspeccionas en el cadaver aun caliente de %s y descubres un objeto interesante\n", enemy->name);
-        //printf("Has recibido: % ",objeto etc etc); willy pls help con esto
-        return 1; //Ganaste 1=win
-    } else if (charac->vida <= 0) {
-        printf("Has sido derrotado por %s! Volveras al ultimo punto guardado\n", enemy->name);
-
-        return 0; // return 0, 0 será para empezar en el punto de guardado
-
-    }
 
 }
 
@@ -455,7 +472,7 @@ int combat_paladin(npc *enemy, chara *charac) {
             if (y == 1)
                 break;
             }
-}while(option<1 || option>4);
+}while(option<1 && option>4);
 
     if (turno==0){
         turno=1;
