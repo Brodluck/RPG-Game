@@ -54,6 +54,7 @@ load:
         charac->race.humano = 1;
     }
 
+    fclose(f);
     return 2;
 }
 
