@@ -348,18 +348,23 @@ combat_start_mage:
 
             dmg = dmg - (charac->def * 0.05);
             if (s.ilusion == 1) {
+                s.ilusion=0;
                 miss = (rand() % 100) + 1;
                 if (miss >= 1 && miss <= 50) {
                     printf("%s ha fallado el ataque porque ha atacado a tu ilusion!\n", enemy->name);
+                    dmg=0;
                 }
             } else if (s.magic_armor) {
                 reflected_dmg = dmg * 0.20;
                 enemy->vida -= reflected_dmg;
+                if(dmg!=0){
                 printf("%s ha recibido %0.lf de daño reflejado por Armadura magica\n", enemy->name, reflected_dmg);
+                }
             }
             charac->vida -= dmg;
             printf("%s te ha inflingido %0.2lf\n", enemy->name, dmg);
             printf("Tu vida: %d\n", charac->vida);
+            printf("Vida de %s: %d\n", enemy->name, enemy->vida);
 
             turno = 1;
             if (charac->vida <= 0) {
