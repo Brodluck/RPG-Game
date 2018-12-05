@@ -188,7 +188,7 @@ combat_start_warrior:
                     break;
 
             }
-            dmg -= (dmg * (enemy->def * 0.05));
+            dmg -=  (enemy->def * 0.05);
             enemy->vida -= dmg;
             printf("e inflinges %0.2lf a %s\n", dmg, enemy->name);
             printf(", su vida ahora es: %d\n", enemy->vida);
@@ -220,7 +220,7 @@ combat_start_warrior:
                     }
                     break;
             }
-            dmg = dmg - ((dmg * (charac->def * 0.05)) / 100);
+            dmg = dmg - (charac->def * 0.05);
             charac->vida -= dmg;
             printf("y ha inflingido %0.2lf\n", dmg);
             printf("T vida: %d\n", charac->vida);
@@ -305,7 +305,7 @@ combat_start_mage:
                         printf("Has utilizado ilusion\n");
                 }
             } while (x < 1 && x > 3);
-            dmg = dmg - ((dmg * (enemy->def * 0.05)) / 100);
+            dmg = dmg - (enemy->def * 0.05);
             enemy->vida -= dmg;
             if (flag) {
                 printf("inflinge %0.2lf a %s\n", dmg, enemy->name);
@@ -346,7 +346,7 @@ combat_start_mage:
                     break;
             }
 
-            dmg = dmg - (dmg * (charac->def * 0.05));
+            dmg = dmg - (charac->def * 0.05);
             if (s.ilusion == 1) {
                 miss = (rand() % 100) + 1;
                 if (miss >= 1 && miss <= 50) {
@@ -450,7 +450,7 @@ combat_start_paladin:
                     s.divine_shield == 1;
 
             }
-            dmg -= (dmg * (charac->def * 0.05));
+            dmg -= (charac->def * 0.05);
             enemy->vida -= dmg;
             printf("inflinge %0.2lf a %s\n", dmg, enemy->name);
             printf("La vida de %s ahora es %d\n", enemy->name, enemy->vida);
@@ -483,7 +483,7 @@ combat_start_paladin:
                     break;
             }
 
-            dmg = dmg - ((dmg * (charac->def * 0.05)) / 100);
+            dmg = dmg - (charac->def * 0.05);
             if (s.divine_shield == 1) {
                 dmg = 0;
                 s.divine_shield = 0;
