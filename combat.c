@@ -99,17 +99,30 @@ short takepotion(int currentHealth) {
     }
 } //protipo para uso de potis
 
-short range_vida(chara *charac, int vida) { // X->vida 
-    int x = vida;
-    if (x > 100 && charac->race.humano == 1) {
-        return 1;
-    } else if (x > 110 && charac->race.enano == 1) {
-        return 1;
-    } else {
+short range_health_above(chara *charac, npc *enemy) { //Check if life goes over than the max
+    
+    if ((charac->vida || enemy->vida) > 100 && (charac->race.humano == 1 || enemy->race.humano==1)) {
+        return 100;
+    } else if ((charac->vida || enemy->vida)> 110 && (charac->race.enano == 1 || enemy->race.enano==1)) {
+        return 110;
+    } else if((charac->vida || enemy->vida)> 85 && (charac->race.elfo== 1 || enemy->race.elfo==1))  {
+        return 85;
+    }else if((charac->vida || enemy->vida)> 110 && (charac->race.orco == 1 || enemy->race.orco==1)){
+        return 110;
+    } else{
         return 0;
     }
 }
-
+short range_health_below(chara *charac, npc *enemy) { //Check if life goes under the min
+    
+    if (charac->vida <= 0 || enemy->vida <=0 ){
+        return 1;
+    
+    }else if(charac->vida >0 || enemy->vida > 0 ){
+        return 0;
+    }
+    
+}
 int combat_warrior(npc *enemy, chara *charac) { //************************Clase guerrero
     skills s;
     s.heavyattack = 2.5, s.normalattack = 1, s.break_armor = 0.25;
@@ -118,7 +131,7 @@ int combat_warrior(npc *enemy, chara *charac) { //************************Clase 
 
     double dmg, deftemp;
     int turno = 1, option, percentage, x, miss, flag;
-    short y, rangeV, rangeS;
+    short y, rangeHA, rangeHB;
 
     //turno=1 es turno del jugador
     printf("Te enfrentas a %s !! Es hora de un combate glorioso! Que quieres hacer?\n", enemy->name);
@@ -184,14 +197,21 @@ combat_start_warrior:
                     printf("La armadura del enemigo se ha reducido un 25 por ciento!\n");
                     deftemp = enemy->def;
                     deftemp -= (deftemp * s.break_armor);
+                    dmg=0;
 
                     break;
 
             }
             dmg -=  (enemy->def * 0.05);
             enemy->vida -= dmg;
+            rangeHB=range_health_below(charac,enemy);
+            if(rangeHB){
+                printf("e inflinges %0.2lf a %s\n", dmg, enemy->name);
+                printf("La vida de %s es 0\n", enemy->name);
+            }else if (!rangeHB){
             printf("e inflinges %0.2lf a %s\n", dmg, enemy->name);
             printf(", su vida ahora es: %d\n", enemy->vida);
+            }
             turno = 0;
             if (enemy->vida <= 0) {
                 printf("Estupendo! Has derrotado a %s! ", enemy->name);
@@ -222,8 +242,14 @@ combat_start_warrior:
             }
             dmg = dmg - (charac->def * 0.05);
             charac->vida -= dmg;
+            rangeHB=range_health_below(charac,enemy);
+            if(rangeHB){
+            printf("y ha inflingido %0.2lf\n", dmg);
+            printf("T vida es 0");
+            }else if(!rangeHB){
             printf("y ha inflingido %0.2lf\n", dmg);
             printf("T vida: %d\n", charac->vida);
+            }
             turno = 1;
             if (charac->vida <= 0) {
                 printf("Has sido derrotado por %s! Volveras al ultimo punto guardado\n", enemy->name);
@@ -245,7 +271,7 @@ int combat_mage(npc *enemy, chara *charac) {
 
     double dmg, deftemp, reflected_dmg;
     int turno = 1, option, percentage, x, miss, flag;
-    short y, rangeV, rangeS;
+    short y, rangeHA, rangeHB;
 
 
     printf("Te enfrentas a %s !! Es hora de un combate glorioso! Que quieres hacer?\n", enemy->name);
@@ -291,7 +317,7 @@ combat_start_mage:
                 switch (option) {
                     case 1:
                         dmg = (s.fire_ball * charac->attm) + 15;
-                        printf("Has conjurado una bola de fuego, que");
+                        printf("Has conjurado una bola de fuego, que ");
                         flag = 1;
                         break;
                     case 2:
@@ -307,10 +333,19 @@ combat_start_mage:
             } while (x < 1 && x > 3);
             dmg = dmg - (enemy->def * 0.05);
             enemy->vida -= dmg;
-            if (flag) {
+            rangeHB=range_health_below(charac,enemy);
+            if(rangeHB){
+                 if (flag) {
                 printf("inflinge %0.2lf a %s\n", dmg, enemy->name);
             }
-            printf("Vida de %s : %d\n", enemy->name, enemy->vida);
+                printf("La vida de %s es 0\n", enemy->name);
+            }else if (!rangeHB){
+             if (flag) {
+                printf("inflinge %0.2lf a %s", dmg, enemy->name);
+            }
+            printf(", su vida ahora es: %d\n", enemy->vida);
+            }
+           
             turno = 0;
 
             if (enemy->vida <= 0) {
@@ -362,9 +397,15 @@ combat_start_mage:
                 }
             }
             charac->vida -= dmg;
+            rangeHB=range_health_below(charac,enemy);
+            if(rangeHB){
+            printf("%s te ha inflingido %0.2lf\n", enemy->name, dmg);
+            printf("Tu vida es 0\n");
+            }else if(!rangeHB){
             printf("%s te ha inflingido %0.2lf\n", enemy->name, dmg);
             printf("Tu vida: %d\n", charac->vida);
             printf("Vida de %s: %d\n", enemy->name, enemy->vida);
+            }
 
             turno = 1;
             if (charac->vida <= 0) {
@@ -391,7 +432,7 @@ int combat_paladin(npc *enemy, chara *charac) {
 
     double dmg, deftemp;
     int turno = 1, option, percentage, x, miss;
-    short y, rangeV, rangeS;
+    short y, rangeHA,rangeHB;
 
     //turno=1 es turno del jugador
     printf("Te enfrentas a %s !! Es hora de un combate glorioso! Que quieres hacer?\n", enemy->name);
@@ -437,18 +478,17 @@ combat_start_paladin:
                     printf("Has utilizado martillo de luz que");
                     break;
                 case 2:
-
-                    charac->vida += (charac->vida * 0.35);
-                    rangeV = range_vida(charac, charac->vida);
-                    if (rangeV == 1) {
-                        if (charac->race.humano == 1) {
-                            charac->vida = 100;
-                        }
-                    } else if (charac->race.enano == 1) {
-                        charac->vida = 110;
-                    } else {
-                        int healthOld = charac->vida - (charac->vida * 0.20);
+                    if(charac->race.enano){
+                    charac->vida += (110 * 0.35);
+                    }else if(charac->race.humano){
+                        charac->vida+=(100*0.35);
+                    }
+                    rangeHA = range_health_above(charac, enemy);
+                    if (rangeHA == 0) {
+                        int healthOld = charac->vida - (charac->vida * 0.35);
                         printf("Has usado luz sagrada, tu vida pasa de %d a %d", healthOld, charac->vida);
+                    } else {
+                        charac->vida = rangeHA;
                     }
                     break;
                 case 3:
@@ -457,8 +497,14 @@ combat_start_paladin:
             }
             dmg -= (charac->def * 0.05);
             enemy->vida -= dmg;
-            printf("inflinge %0.2lf a %s\n", dmg, enemy->name);
+             rangeHB=range_health_below(charac,enemy);
+            if(rangeHB){
+                printf(" inflinge %0.2lf a %s\n", dmg, enemy->name);
+                printf("La vida de %s es 0\n", enemy->name);
+            }else if (!rangeHB){
+            printf(" inflinge %0.2lf a %s\n", dmg, enemy->name);
             printf("La vida de %s ahora es %d\n", enemy->name, enemy->vida);
+            }
             turno = 0;
             if (enemy->vida <= 0) {
                 printf("Estupendo! Has derrotado a %s! ", enemy->name);
@@ -492,13 +538,18 @@ combat_start_paladin:
             if (s.divine_shield == 1) {
                 dmg = 0;
                 s.divine_shield = 0;
-                printf("Escudo divino te ha protegido de los ataques de %s\n", enemy->name);
-                goto after_divine_shield;
+                printf("Pero tu escudo divino te ha protegido de los ataques de %s\n", enemy->name);                
             }
+            
             charac->vida -= dmg;
-            printf("%s te ha inflingido %0.2lf", enemy->name, dmg);
-after_divine_shield:
-            printf("Tu vida es de : %d\n", charac->vida);
+            rangeHB=range_health_below(charac,enemy);
+            if(rangeHB){
+            printf("y ha inflingido %0.2lf\n", dmg);
+            printf("T vida es 0");
+            }else if(!rangeHB){
+            printf("y ha inflingido %0.2lf\n", dmg);
+            printf("T vida: %d\n", charac->vida);
+            }
             turno = 1;
             if (charac->vida <= 0) {
 

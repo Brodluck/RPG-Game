@@ -29,37 +29,37 @@ void EnemyGen(chara charac, npc *enemy) {
     if (x == 1) { //elfo
         enemy->race.elfo = 1;
         enemy->vida = 80;
-        enemy->att = -10;
+        enemy->att = 5;
         enemy->attm = 10;
-        enemy->def = -10;
+        enemy->def = 5;
         enemy->defm = 10;
-        enemy->vel = 20;
+        enemy->vel = 25;
         strcat(enemy->name, " elfo");
     } else if (x = 2) { //enano
         enemy->race.enano = 1;
         enemy->vida = 110;
         enemy->att = 10;
-        enemy->attm = -10;
-        enemy->def = 10;
-        enemy->defm = -10;
+        enemy->attm = 5;
+        enemy->def = 20;
+        enemy->defm = 15;
         enemy->vel = 0;
         strcat(enemy->name, " enano");
     } else if (x == 3) { //orco
         enemy->race.orco = 1;
         enemy->vida = 110;
         enemy->att = 20;
-        enemy->attm = -100;
-        enemy->def = 0;
-        enemy->defm = 0;
-        enemy->vel = -20;
+        enemy->attm = 0;
+        enemy->def = 20;
+        enemy->defm = 5;
+        enemy->vel = -10;
         strcat(enemy->name, " orco");
     } else if (x == 4) { //humano
         enemy->race.humano = 1;
         enemy->vida = 100;
-        enemy->att = 0;
-        enemy->attm = 0;
-        enemy->def = 0;
-        enemy->defm = 0;
+        enemy->att = 10;
+        enemy->attm = 10;
+        enemy->def = 10;
+        enemy->defm = 10;
         enemy->vel = 0;
         strcat(enemy->name, " humano");
     }

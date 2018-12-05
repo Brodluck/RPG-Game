@@ -13,6 +13,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>animations.c</itemPath>
       <itemPath>character.c</itemPath>
       <itemPath>combat.c</itemPath>
       <itemPath>enemies.c</itemPath>
@@ -42,6 +43,8 @@
       </toolsSet>
       <compileType>
       </compileType>
+      <item path="animations.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="character.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="combat.c" ex="false" tool="0" flavor2="0">
@@ -77,6 +80,8 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="animations.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="character.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="combat.c" ex="false" tool="0" flavor2="0">

@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/animations.o \
 	${OBJECTDIR}/character.o \
 	${OBJECTDIR}/combat.o \
 	${OBJECTDIR}/enemies.o \
@@ -66,6 +67,11 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/rpg.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/rpg ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/animations.o: animations.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/animations.o animations.c
 
 ${OBJECTDIR}/character.o: character.c
 	${MKDIR} -p ${OBJECTDIR}

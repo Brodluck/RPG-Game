@@ -59,11 +59,11 @@ void character(chara *charac) {
             charac->race.elfo=1;
             charac->vida=85;
             charac->level=1;
-            charac->att = -10;
+            charac->att = 0;
             charac->attm = 10;
-            charac->def = -10;
+            charac->def = 5;
             charac->defm = 10;
-            charac->vel = 20;
+            charac->vel = 25;
             
             break;
 
@@ -73,9 +73,9 @@ void character(chara *charac) {
             charac->vida=110;
             charac->level=1;
             charac->att = 10;
-            charac->attm = -10;
-            charac->def = 10;
-            charac->defm = 10;
+            charac->attm = 5;
+            charac->def = 20;
+            charac->defm = 15;
             charac->vel = 0;
             
             break;
@@ -85,10 +85,10 @@ void character(chara *charac) {
             charac->vida=110;
             charac->level=1;
             charac->att = 20;
-            charac->attm = -100;
-            charac->def = 0;
-            charac->defm = 0;
-            charac->vel = -20;
+            charac->attm = 0;
+            charac->def = 20;
+            charac->defm = 5;
+            charac->vel = -10;
             
             break;
         case 4:
@@ -96,10 +96,10 @@ void character(chara *charac) {
             charac->race.humano=1;
             charac->vida=100;
             charac->level=1;
-            charac->att = 0;
-            charac->attm = 0;
-            charac->def = 0;
-            charac->defm = 0;
+            charac->att = 10;
+            charac->attm = 10;
+            charac->def = 10;
+            charac->defm = 10;
             charac->vel = 0;
             
 

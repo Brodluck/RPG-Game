@@ -7,12 +7,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/USER/Desktop/RPG-Game/character.c</file>
-            <file>file:/C:/Users/USER/Desktop/RPG-Game/items.c</file>
-            <file>file:/C:/Users/USER/Desktop/RPG-Game/combat.c</file>
-            <file>file:/C:/Users/USER/Desktop/RPG-Game/enemies.c</file>
-            <file>file:/C:/Users/USER/Desktop/RPG-Game/head.h</file>
-            <file>file:/C:/Users/USER/Desktop/RPG-Game/main.c</file>
+            <file>file:/C:/Users/Enmanuel/Desktop/RPG/items.c</file>
+            <file>file:/C:/Users/Enmanuel/Desktop/RPG/enemies.c</file>
+            <file>file:/C:/Users/Enmanuel/Desktop/RPG/head.h</file>
+            <file>file:/C:/Users/Enmanuel/Desktop/RPG/menu.c</file>
+            <file>file:/C:/Users/Enmanuel/Desktop/RPG/combat.c</file>
+            <file>file:/C:/Users/Enmanuel/Desktop/RPG/main.c</file>
+            <file>file:/C:/Users/Enmanuel/Desktop/RPG/character.c</file>
         </group>
     </open-files>
 </project-private>
