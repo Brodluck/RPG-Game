@@ -20,13 +20,13 @@ short skill_book(chara *charac) {
             scanf("%d", &option);
             switch (option) {
                 case 1:
-                    printf("'Ataque normal'\nCoste: 20 realiza un ataque basico inflingiendo x1 tu daño de ataque base\n");
+                    printf("'Ataque normal'\nrealiza un ataque basico inflingiendo x1 tu daño de ataque base\n");
                     break;
                 case 2:
-                    printf("'Ataque fuerte'\nCoste: 40 realiza un ataque mas fuerte infligiendo x2.5 de tu daño de ataque base.\nAdemas de esto tiene una probabilidad de fallar del 15 por ciento\n");
+                    printf("'Ataque fuerte'\nrealiza un ataque mas fuerte infligiendo x2.5 de tu daño de ataque base.\nAdemas de esto tiene una probabilidad de fallar del 15 por ciento\n");
                     break;
                 case 3:
-                    printf("'Romper armadura'\nCoste: 30 reduce la armadura de tu enemigo un 25 %% durante todo el combate\n");
+                    printf("'Romper armadura'\nreduce la armadura de tu enemigo un 25 %% durante todo el combate\n");
                     break;
                 case 4:
                     return 1;
@@ -38,13 +38,13 @@ short skill_book(chara *charac) {
             scanf("%d", &option);
             switch (option) {
                 case 1:
-                    printf("'Bola de fuego'\nCoste: 35 mana\nConjuras una flameante bola de intenso fuego que inflinge 15 de daño base mas x1.8 de tu daño magico\n");
+                    printf("'Bola de fuego'\nConjuras una flameante bola de intenso fuego que inflinge 15 de daño base mas x1.8 de tu daño magico\n");
                     break;
                 case 2:
-                    printf("'Armadura magica'\nCoste: 50 mana\nTe imbuyes en magia arcana aumentando tu armadura en 50 y al recibir daño, reflejas un 20 %% al enemigo\n");
+                    printf("'Armadura magica'\nTe imbuyes en magia arcana aumentando tu armadura en 50 y al recibir daño, reflejas un 20 %% al enemigo\n");
                     break;
                 case 3:
-                    printf("'Ilusion'\nCoste: 35 mana\nCreas una copia falsa de ti mismo, aumentando tu probabilidad de esquivar en el proximo turno de un 50 %%\n");
+                    printf("'Ilusion'\nCreas una copia falsa de ti mismo, aumentando tu probabilidad de esquivar en el proximo turno de un 50 %%\n");
                     break;
                 case 4:
                     return 1;
@@ -57,13 +57,13 @@ short skill_book(chara *charac) {
             scanf("%d", &option);
             switch (option) {
                 case 1:
-                    printf("'Martillo de luz'\nCoste: 35 de mana\nUn martillo de luz bendita sentencia al enemigo inflingiendole tu daño base x1.5 mas x0.7 de tu daño magico\n");
+                    printf("'Martillo de luz'\nUn martillo de luz bendita sentencia al enemigo inflingiendole tu daño base x1.5 mas x0.7 de tu daño magico\n");
                     break;
                 case 2:
-                    printf("'Luz sagrada'\nCoste: 30 mana\nLa luz te bendice haciendote recuperar de un 25-35 %% de tu vida maxima\n");
+                    printf("'Luz sagrada'\nLa luz te bendice haciendote recuperar de un 25-35 %% de tu vida maxima\n");
                     break;
                 case 3:
-                    printf("'Escudo divino'\nCoste: 80 mana\nCreas una barrera de luz impenetrable que te protege el proximo turno de cualquier daño o accion del enemigo\n");
+                    printf("'Escudo divino'\nCreas una barrera de luz impenetrable que te protege el proximo turno de cualquier daño o accion del enemigo\n");
                     break;
                 case 4:
                     return 1;
