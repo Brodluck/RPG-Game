@@ -35,8 +35,10 @@ void healthBar(int vida1, int vidamax1, int vida2, int vidamax2){
     printf("%d/%d", vida2, vidamax2);
 }
 
-void personDisplay(){
+void personDisplay(int vida1, int vidamax1, int vida2, int vidamax2){
+    system("clear");
     printf("\n                    o\n      o            / \\\n     / \\\n\n");
+    healthBar(vida1, vidamax1, vida2, vidamax2);
 }
 
 void personAttack1(int vida1, int vidamax1, int vida2, int vidamax2){
