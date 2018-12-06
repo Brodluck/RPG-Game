@@ -12,17 +12,17 @@ int main() {
     strt = menu(&charac, dead);
     switch (strt) {
         case 1:
-            typeText("Cree su personaje\n\n",30);
+            typeText("Cree su personaje\n\n",delay);
             character(&charac);
             break;
         case -1:
-            typeText("Error al leer el archivo de guardado\n",30);
+            typeText("Error al leer el archivo de guardado\n",delay);
             break;
         case 0:
             exit;
             break;
         case 2:
-             typeText("Cargado correctamente\n",30);
+             typeText("Cargado correctamente\n",delay);
             break;
 
    
