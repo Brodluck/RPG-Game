@@ -1,4 +1,4 @@
-﻿#include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include "head.h"
 #include <string.h>
@@ -20,7 +20,7 @@ int main() {
             typeText("Error al leer el archivo de guardado\n", delay);
             break;
         case 0:
-            exit;
+            return 0;
             break;
         case 2:
              typeText("Cargado correctamente\n", delay);
