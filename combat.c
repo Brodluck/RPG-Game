@@ -334,8 +334,8 @@ combat_start_mage:
             enemy->vida -= dmg;
             rangeHB=range_health_below(charac,enemy);
             if(rangeHB){
-                 if (flag) {
-                typeText("inflinge ",delay); typeText_double(dmg,delay); typeText("a ",delay); typeText(enemy->name,delay);
+                 if (flag) { // 0 para char, 1 para double, 2 para int
+                typeText("inflinge ",delay); typeText_double(&dmg,delay); typeText("a ",delay); typeText(enemy->name,delay);
             }
                 printf("La vida de %s es 0\n", enemy->name);
             }else if (!rangeHB){
