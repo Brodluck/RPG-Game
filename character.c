@@ -18,21 +18,21 @@ void character(chara *charac) {
             switch (x) { //Seleccion de raza
                 case 1:
                     typeText("Elfos: afinidad a la magia, veloces pero debiles. Clases: Mago, Guerrero\n", delay);
-                    typeText("Ataque: -10\nAtaque magico: +10 \nDefensa: -10\nDefensa magica: +10\nVelocidad: +20\n", delay);
+                    printf("Ataque: -10\nAtaque magico: +10 \nDefensa: -10\nDefensa magica: +10\nVelocidad: +20\n");
 
                     break;
                 case 2:
                     typeText("Enanos: expertos con armas y armaduras, resistentes pero lentos. Clases: Guerrero, Paladin\n", delay);
-                    typeText("Ataque: +10\nAtaque magico: -10 \nDefensa: +10\nDefensa magica: +10\nVelocidad: +0\n", delay);
+                    printf("Ataque: +10\nAtaque magico: -10 \nDefensa: +10\nDefensa magica: +10\nVelocidad: +0\n");
 
                     break;
                 case 3:
                     typeText("Orcos: grandes y fuertes, expertos con armas, peligrosos pero muy lentos. No saben usar magia. Clases: Guerrero\n", delay);
-                    typeText("Ataque: +20\nAtaque magico: -100 \nDefensa: +0\nDefensa magica: +0\nVelocidad: -20\n", delay);
+                    printf("Ataque: +20\nAtaque magico: -100 \nDefensa: +0\nDefensa magica: +0\nVelocidad: -20\n");
                     break;
                 case 4:
                     typeText("Humanos: ninguna especialidad, son normalitos, no tienen ningun atributo aumentado pero tampoco ninguno reducido\n", delay);
-                    typeText("Clases: Paladin, Guerrero, Mago\n", delay);
+                    printf("Clases: Paladin, Guerrero, Mago\n");
 
                     break;
                 default:
@@ -130,7 +130,7 @@ do {                                                //Seleccion de clase
         if(charac->race.elfo==1 || charac->race.enano==1 || charac->race.humano==1){                                  //elfo
             do{
         typeText("Has elegido ", delay);
-        typeText(&race, delay);
+        typeText(race, delay);
         typeText( ", ahora elige la clase:\n", delay);
         printf("1.Guerrero\n2.Mago\n");
         scanf("%d", &slclass);
