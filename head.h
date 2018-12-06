@@ -36,7 +36,7 @@ typedef struct {
     races race;
 } npc;
 
-
+#define delay 30
 
 int menu(chara *charac, int dead);
 void character(chara *charac);
