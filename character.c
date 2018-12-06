@@ -10,45 +10,50 @@ void character(chara *charac) {
     char bool;
     do {
         do {
-            printf("Selecciona la raza con la que comenzaras tu aventura:\n1.Elfo\n2.Enano\n3.Orco\n4.Humano\n");
+            Begcharac:
+            typeText("Selecciona la raza con la que comenzaras tu aventura:", delay);
+            printf("\n1.Elfo\n2.Enano\n3.Orco\n4.Humano\n");
             scanf("%d", &x);
             system("clear");
             switch (x) { //Seleccion de raza
                 case 1:
-                    printf("Elfos: afinidad a la magia, veloces pero debiles. Clases: Mago, Guerrero\n");
-                    printf("Ataque: -10\nAtaque magico: +10 \nDefensa: -10\nDefensa magica: +10\nVelocidad: +20\n");
+                    typeText("Elfos: afinidad a la magia, veloces pero debiles. Clases: Mago, Guerrero\n", delay);
+                    typeText("Ataque: -10\nAtaque magico: +10 \nDefensa: -10\nDefensa magica: +10\nVelocidad: +20\n", delay);
 
                     break;
                 case 2:
-                    printf("Enanos: expertos con armas y armaduras, resistentes pero lentos. Clases: Guerrero, Paladin\n");
-                    printf("Ataque: +10\nAtaque magico: -10 \nDefensa: +10\nDefensa magica: +10\nVelocidad: +0\n");
+                    typeText("Enanos: expertos con armas y armaduras, resistentes pero lentos. Clases: Guerrero, Paladin\n", delay);
+                    typeText("Ataque: +10\nAtaque magico: -10 \nDefensa: +10\nDefensa magica: +10\nVelocidad: +0\n", delay);
 
                     break;
                 case 3:
-                    printf("Orcos: grandes y fuertes, expertos con armas, peligrosos pero muy lentos. No saben usar magia. Clases: Guerrero\n");
-                    printf("Ataque: +20\nAtaque magico: -100 \nDefensa: +0\nDefensa magica: +0\nVelocidad: -20\n");
+                    typeText("Orcos: grandes y fuertes, expertos con armas, peligrosos pero muy lentos. No saben usar magia. Clases: Guerrero\n", delay);
+                    typeText("Ataque: +20\nAtaque magico: -100 \nDefensa: +0\nDefensa magica: +0\nVelocidad: -20\n", delay);
                     break;
                 case 4:
-                    printf("Humanos: ninguna especialidad, son normalitos, no tienen ningun atributo aumentado pero tampoco ninguno reducido\n");
-                    printf("Clases: Paladin, Guerrero, Mago\n");
+                    typeText("Humanos: ninguna especialidad, son normalitos, no tienen ningun atributo aumentado pero tampoco ninguno reducido\n", delay);
+                    typeText("Clases: Paladin, Guerrero, Mago\n", delay);
 
                     break;
                 default:
                     printf("Eres idiota?? Elige bien\n");
+                    goto Begcharac;
                     break;
             }
         } while (0 > x && x > 5);
         
         
         do { //confirmar seleccion
-            printf("\nDe verdad quieres seleccionar esta raza? [Y/N]");
+            typeText("\nDe verdad quieres seleccionar esta raza? [Y/N]", delay);
             scanf("\n%c", &bool);
             system("clear");
             if (bool == 'Y' || bool == 'y') {
                 selec = 1;
             } else if (bool == 'N' || bool == 'n') {
                 selec = 0;
-            } else printf("Eres idiota?? Elige bien\n");
+            } else{ 
+                printf("Eres idiota?? Elige bien\n");
+                }
         } while ((bool == 'Y' || bool == 'y') && (bool == 'N' || bool == 'n'));
     } while (selec == 0);
     system("clear");
@@ -105,88 +110,81 @@ void character(chara *charac) {
 
             break;
         default:
-            printf("Eres idiota?? Elige bien\n");
+            typeText("Eres idiota?? Elige bien\n", delay);
             break;
 
     }
     while (0 > x && x > 5);
 do {                                                //Seleccion de clase
         int slclass=0;
-        if(charac->race.elfo==1){                                  //elfo
-        printf("Has elegido elfo, ahora elige la clase:\n1.Guerrero\n2.Mago\n");
+        char race[10];
+        if (charac->race.elfo==1){
+            strcpy(race, "elfo");
+        }else if (charac->race.enano==1){
+            strcpy(race, "enano");
+        }else if (charac->race.orco==1){
+            strcpy(race, "orco");
+        }else if (charac->race.humano==1){
+            strcpy(race, "humano");
+        }
+        if(charac->race.elfo==1 || charac->race.enano==1 || charac->race.humano==1){                                  //elfo
+            do{
+        typeText("Has elegido ", delay);
+        typeText(&race, delay);
+        typeText( ", ahora elige la clase:\n", delay);
+        printf("1.Guerrero\n2.Mago\n");
         scanf("%d", &slclass);
         switch(slclass){
             case 1:
-                printf("Has elegido elfo guerrero!");
+                printf("Has elegido %s guerrero!", race);
                 charac->class.warrior=1;
-                break;
-                case 2:
-                    printf("Has elegido elfo mago!");
-                charac->class.mage=1;
-                break;     
-        }
-        }
-        else if(charac->race.enano==1){                            //enano
-                printf("Has elegido enano, ahora elige la clase:\n1.Guerrero\n2.Paladin\n");
-        scanf("%d", &slclass);
-        switch(slclass){
-            case 1:
-                printf("Has elegido enano guerrero!");
-                charac->class.warrior=1;
+                selec=1;
                 break;
             case 2:
-                printf("Has elegido enano paladin!");
-                charac->class.paladin=1;  
-        }       
+                printf("Has elegido %s mago!", race);
+                selec=1;
+                charac->class.mage=1;
+                break;
+            default:
+                typeText("Eres idiota?? Elige bien\n", delay);
+                selec=0;
+                break;
+                  
+        }
+            }while (selec==0);
         }
         
         else if(charac->race.orco==1){                                 //orco
             printf("Has elegido orco guerrero!");
             charac->class.warrior=1;
             
-        }else if(charac->race.humano==1){
-           printf("Has elegido humano, ahora elige la clase:\n1.Guerrero\n2.Paladin\n3.Mage\n");
-        scanf("%d", &slclass);
-        switch(slclass){
-            case 1:
-                printf("Has elegido humano guerrero!");
-                charac->class.warrior=1;
-                break;
-            case 2:
-                printf("Has elegido humano paladin!");
-                charac->class.paladin=1;
-            case 3:
-                printf("Has elegido humano mago!");
-                charac->class.mage=1;
-        }
         }
             
         }while(0 > x && x > 5);
 
-    int selec2;
+    selec=0;
     char gen;
-    do {
-        printf("\nAhora seleccione el genero [M/F]\n");
-        printf("Masculino: +10 de ataque fisico (no soy machista lo juro)\n");
-        printf("Femenino: +10 de ataque magico (no soy sexista lo juro)\n");
+    do {typeText("\nAhora seleccione el genero [M/F]\n", delay);
+        typeText("Masculino: +10 de ataque fisico (no soy machista lo juro)\n", delay);
+        typeText("Femenino: +10 de ataque magico (no soy sexista lo juro)\n", delay);
         scanf("\n%c", &gen); 
         system("clear");
         
         if (gen == 'M' || gen == 'm') {
-            printf("Tendras +10 de ataque fisico cosas fisiologicas, sorry\n");
+            typeText("Tendras +10 de ataque fisico cosas fisiologicas, sorry\n", delay);
             charac->gen = 1;
             charac->att = charac->att + 10;
-            printf("\nConfirmar?[Y/N]");
+            typeText("\nConfirmar?[Y/N]", delay);
             scanf("\n%c", &bool);
             system("clear");
             if (bool=='Y' || bool=='y'){
                 selec=1;
             }
         } else if (gen == 'F' || gen == 'f') {
-            printf("Tendras +10 de ataque magico, si... ellas son mas listas\n");
+            typeText("Tendras +10 de ataque magico, si... ellas son mas listas\n", delay);
             charac->gen = 2;
             charac->attm = charac->attm + 10;
-            printf("\nConfirmar?[Y/N]");
+            typeText("\nConfirmar?[Y/N]", delay);
             scanf("\n%c", &bool);
             system("clear");
             if (bool=='Y' || bool=='y'){
