@@ -9,20 +9,21 @@ int main() {
     npc enemy;
     char tuto;
     int strt, combatResult, dead = 0;
+    
     strt = menu(&charac, dead);
     switch (strt) {
         case 1:
-            typeText("Cree su personaje\n\n",delay);
+            typeText("Cree su personaje\n\n", delay);
             character(&charac);
             break;
         case -1:
-            typeText("Error al leer el archivo de guardado\n",delay);
+            typeText("Error al leer el archivo de guardado\n", delay);
             break;
         case 0:
             exit;
             break;
         case 2:
-             typeText("Cargado correctamente\n",delay);
+             typeText("Cargado correctamente\n", delay);
             break;
 
    
