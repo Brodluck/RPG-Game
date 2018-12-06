@@ -35,7 +35,7 @@ void EnemyGen(chara charac, npc *enemy) {
         enemy->defm = 10;
         enemy->vel = 25;
         strcat(enemy->name, " elfo");
-    } else if (x = 2) { //enano
+    } else if (x == 2) { //enano
         enemy->race.enano = 1;
         enemy->vida = 110;
         enemy->att = 10;
