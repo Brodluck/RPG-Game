@@ -1,0 +1,23 @@
+# Macros
+
+CC = gcc
+CFLAGS = -g -Wall -O0
+OBJ = main.o character.o combat.o menu.o items.o enemies.o
+
+
+# Reglas explicitas
+
+all: $(OBJ)
+	$(CC) $(CFLAGS) -o main $(OBJ)
+
+clean:
+	$(RM) $(OBJ) main
+
+# Reglas implicitas
+main.o: main.c head.h
+character.o: character.c head.h
+combat.o: combat.c head.h
+menu.o: menu.c head.h
+items.o: items.c head.h
+enemies.o: enemies.c head.h
+
