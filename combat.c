@@ -4,7 +4,7 @@
 #include <math.h>
 #include <time.h>
 #include "head.h"
-#define delay 25
+
 typedef struct {
     double normalattack, heavyattack, break_armor; // Habilidades warrior
     double light_hammer, heal, divine_shield; //Hechizos paladin
@@ -337,9 +337,10 @@ combat_start_mage:
                  if (flag) { // 0 para char, 1 para double, 2 para int
                 typeText("inflinge ",delay); typeText_double(&dmg,delay); typeText("a ",delay); typeText(enemy->name,delay);
             }
-                typeText("La vida de %s es 0\n", enemy->name);
+                printf("La vida de %s es 0\n", enemy->name,delay);
             }else if (!rangeHB){
              if (flag) {
+               
                 printf("inflinge %0.2lf a %s", dmg, enemy->name);
             }
             printf(", su vida ahora es: %d\n", enemy->vida);
