@@ -4,7 +4,7 @@
 #include <math.h>
 #include <time.h>
 #include "head.h"
-
+#define delay 25
 typedef struct {
     double normalattack, heavyattack, break_armor; // Habilidades warrior
     double light_hammer, heal, divine_shield; //Hechizos paladin
@@ -273,9 +273,8 @@ int combat_mage(npc *enemy, chara *charac) {
     int turno = 1, option, percentage, x, miss, flag;
     short y, rangeHA, rangeHB;
 
-
-    printf("Te enfrentas a %s !! Es hora de un combate glorioso! Que quieres hacer?\n", enemy->name);
-    printf("1.Luchar\n2.Objetos\n3.Huir\n4.Ver libro de habilidades\n");
+    typeText("Te enfrentas a ",delay); typeText(enemy->name,delay); typeText(" !! Es hora de un combate glorioso! Que quieres hacer?\n",delay);
+    typeText("1.Luchar\n2.Objetos\n3.Huir\n4.Ver libro de habilidades\n",delay);
     do {
         scanf("%d", &option);
         switch (option) {
@@ -287,7 +286,7 @@ int combat_mage(npc *enemy, chara *charac) {
             case 3:
                 percentage = (rand() % 100) + 1;
                 if (percentage >= 1 && percentage <= 20) {
-                    printf("No puedes huir! %s te ha atrapado! Toca luchar\n", enemy->name);
+                    typeText("No puedes huir! ,",delay); typeText(enemy->name,delay); typeText(" te ha atrapado! Toca luchar\n",delay);
                     break;
                 } else {
                     //Has huido sin problemas
@@ -304,31 +303,31 @@ int combat_mage(npc *enemy, chara *charac) {
 
     if (enemy->vel < charac->vel) { //Aqui se decide quien empezará primero
         turno = 0;
-        printf("Comienza atacando %s ya que es mas rapido\n", enemy->name);
+        typeText("Comienza atacando ,",delay); typeText(enemy->name,delay); typeText(" ya que es mas rapido\n",delay);
     }
     do { //Comienzo del combate
         dmg = 0;
         if (turno == 1) { //Si turno ==1 es el turno del jugador
 combat_start_mage:
-            printf("Tu turno\n");
-            printf("Elige la habilidad que quieres utilizar:\n1.Bola de fuego\n2.Armadura magica\n3.Ilusion\n");
+            typeText("Tu turno\n",delay);
+            typeText("Elige la habilidad que quieres utilizar:\n1.Bola de fuego\n2.Armadura magica\n3.Ilusion\n",delay);
             scanf("%d", &option);
             do {
                 switch (option) {
                     case 1:
                         dmg = (s.fire_ball * charac->attm) + 15;
-                        printf("Has conjurado una bola de fuego, que ");
+                        typeText("Has conjurado una bola de fuego, que ",delay);
                         flag = 1;
                         break;
                     case 2:
                         s.magic_armor = 1;
                         charac->def += 50;
-                        printf("Has utilizado armadura magica\n");
+                        typeText("Has utilizado armadura magica\n",delay);
                         break;
                     case 3:
                         s.ilusion = 1;
                         charac->esquivar += 50;
-                        printf("Has utilizado ilusion\n");
+                        typeText("Has utilizado ilusion\n",delay);
                 }
             } while (x < 1 && x > 3);
             dmg = dmg - (enemy->def * 0.05);
@@ -336,7 +335,7 @@ combat_start_mage:
             rangeHB=range_health_below(charac,enemy);
             if(rangeHB){
                  if (flag) {
-                printf("inflinge %0.2lf a %s\n", dmg, enemy->name);
+                typeText("inflinge ",delay); typeText_double(dmg,delay); typeText("a ",delay); typeText(enemy->name,delay);
             }
                 printf("La vida de %s es 0\n", enemy->name);
             }else if (!rangeHB){

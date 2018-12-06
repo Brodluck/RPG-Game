@@ -13,7 +13,7 @@ int menu(chara *charac, int dead) {
         goto load;
     }
 
-    printf("WELCOME TO THE RPG GAME\n1.Start\n2.Load Game\n3.Exit\n");
+    typeText("WELCOME TO THE RPG GAME\n1.Start\n2.Load Game\n3.Exit\n",30);
     scanf("%d", &option);
     system("clear");
 load:

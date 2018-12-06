@@ -46,6 +46,7 @@ int combat(chara *charac, npc *enemy);
 void EnemyGen(chara charac, npc *enemy);
 void itemIDLoad(item *object, char *ID);
 void typeText(char *s, unsigned ms_delay);
+void typeText_double(double *s, unsigned msDelay);
 void healthBar(int vida1, int vidamax1, int vida2, int vidamax2);
 void personDisplay();
 void personAttack1(int vida1, int vidamax1, int vida2, int vidamax2);

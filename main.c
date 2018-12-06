@@ -12,18 +12,17 @@ int main() {
     strt = menu(&charac, dead);
     switch (strt) {
         case 1:
-            printf("Bienvenido al rpg game\n");
-            printf("Cree su personaje\n\n");
+            typeText("Cree su personaje\n\n",30);
             character(&charac);
             break;
         case -1:
-            printf("Error al leer el archivo de guardado\n");
+            typeText("Error al leer el archivo de guardado\n",30);
             break;
         case 0:
             exit;
             break;
         case 2:
-            printf("Cargado correctamente\n");
+             typeText("Cargado correctamente\n",30);
             break;
 
    
