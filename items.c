@@ -470,6 +470,7 @@ void itemAtbLegen(item *object, int load){
 }
 
 void itemGenID(item *object){
+    int lvl=object->lvl/10;;
     object->ID[0]=object->type;
     object->ID[1]=object->type2;
     object->ID[2]=object->nature;
@@ -477,6 +478,8 @@ void itemGenID(item *object){
     object->ID[4]=object->rare;
     object->ID[5]=object->extr;
     object->ID[6]=object->legen;
+    object->ID[7]=(object->lvl / 10) + 0x30;
+    object->ID[8]=(object->lvl % 10) + 0x30;
 }
 
 void itemGen(item *object, chara *charac, int enemG, int enemG2) {
@@ -496,15 +499,20 @@ void itemGen(item *object, chara *charac, int enemG, int enemG2) {
     itemAtbLegen(object, -1);
     itemGenID(object);
 }
-
+int parseInt(char cha) {
+    return cha - '0';
+}
 void itemIDLoad(item *object, char *ID){
-    
-    itemType(object, object->ID[0]);
-    itemTypeSpecific(object, object->ID[1]);
-    itemAtbType(object, object->ID[2]);
-    itemAtbCommon(object, object->ID[3]);
-    itemAtbRare(object, object->ID[4]);
-    itemAtbExtra(object, object->ID[5]);
-    itemAtbLegen(object, object->ID[6]);
+    int IDN[9], i;
+    for (i=0;i<9;i++){
+    IDN[i]=parseInt(ID[i]);
+    }
+    itemType(object, IDN[0]);
+    itemTypeSpecific(object, IDN[1]);
+    itemAtbType(object, IDN[2]);
+    itemAtbCommon(object, IDN[3]);
+    itemAtbRare(object, IDN[4]);
+    itemAtbExtra(object, IDN[5]);
+    itemAtbLegen(object, IDN[6]);
     itemGenID(object);
 }
