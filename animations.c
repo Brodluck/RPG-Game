@@ -13,25 +13,6 @@ void typeText(char *s, unsigned msDelay) {
         usleep(usecs);
     }
 }
-void typeText_double(double *s, unsigned msDelay) {
-    unsigned usecs = msDelay * 1000; /* 1000 microseconds per ms */
-
-    for (; *s; s++) {
-        putchar(*s);
-        fflush(stdout); /* alternatively, do once: setbuf(stdout, NULL); */
-        usleep(usecs);
-    }
-}
-void typeText_int(int *s, unsigned msDelay) {
-    unsigned usecs = msDelay * 1000; /* 1000 microseconds per ms */
-
-    for (; *s; s++) {
-        putchar(*s);
-        fflush(stdout); /* alternatively, do once: setbuf(stdout, NULL); */
-        usleep(usecs);
-    }
-}
-
 void healthBar(int vida1, int vidamax1, int vida2, int vidamax2){
     int i;
     double percent1, percent2;
