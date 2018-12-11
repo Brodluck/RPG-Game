@@ -26,6 +26,12 @@ load:
                 return 0;
             }
             while ((fscanf(f, "%d %d %d %d %d %d %d %d %d %d", &gen, &vida, &lvl, &def, &att, &defm, &attm, &vel, &class, &race)) == 10);
+            break;
+        case 3:
+            return 0;
+            break;
+    }
+    
     }
     charac->gen = gen;
     charac->vida = vida;
