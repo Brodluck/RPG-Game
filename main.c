@@ -9,7 +9,7 @@ int main() {
     strt = menu(&charac, dead);
     switch (strt) {
         case 1:
-            typeText("Cree su personaje\n\n", delay);
+            typeText("Cree su personaje", delay);
             character(&charac);
             break;
         case -1:
@@ -33,8 +33,8 @@ int main() {
     } else if (tuto == 'N' || tuto == 'n') {
         printf("Bien, eres de los que aprenden sobre la marcha");
     }*/
-
-    combatResult = combat(&charac, &enemy);
+    enemyGen(charac, &enemy);
+    combatResult = combat(&enemy, &charac);
     if (combatResult == 1) {
 
     } else if (combatResult == -1) {
@@ -45,6 +45,8 @@ int main() {
         if (strt = 2) {
             printf("Se ha cargado partida correctamente en el ultimo punto guardado");
         }
+    } else if (combatResult == 1){
+        
     }
 
     return 0;
