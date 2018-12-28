@@ -6,7 +6,7 @@ void character(chara *charac) {
     char bool;
     do {
         do {
-            typeText("Selecciona la raza con la que comenzaras tu aventura:", delay);
+            typeText("\n*----Selecciona la raza con la que comenzaras tu aventura:", delay);
             printf("\n1.Elfo\n2.Enano\n3.Orco\n4.Humano\n");
             scanf("%d", &x);
             system("clear");
@@ -55,8 +55,9 @@ void character(chara *charac) {
     switch (y) {
         case 1:
             //elfo
-            charac->race.elfo=1;
+            charac->race=1;
             charac->vida=85;
+            charac->vidamax=85;
             charac->level=1;
             charac->att = 0;
             charac->attm = 10;
@@ -68,8 +69,9 @@ void character(chara *charac) {
 
         case 2:
             //enano
-            charac->race.enano=1;
+            charac->race=2;
             charac->vida=110;
+            charac->vidamax=110;
             charac->level=1;
             charac->att = 10;
             charac->attm = 5;
@@ -80,8 +82,9 @@ void character(chara *charac) {
             break;
         case 3:
             //orco
-            charac->race.orco=1;
+            charac->race=3;
             charac->vida=110;
+            charac->vidamax=110;
             charac->level=1;
             charac->att = 20;
             charac->attm = 0;
@@ -92,8 +95,9 @@ void character(chara *charac) {
             break;
         case 4:
             //humano
-            charac->race.humano=1;
+            charac->race=4;
             charac->vida=100;
+            charac->vidamax=100;
             charac->level=1;
             charac->att = 10;
             charac->attm = 10;
@@ -112,16 +116,16 @@ void character(chara *charac) {
 do {                                                //Seleccion de clase
         int slclass=0;
         char race[10];
-        if (charac->race.elfo==1){
+        if (charac->race==1){
             strcpy(race, "elfo");
-        }else if (charac->race.enano==1){
+        }else if (charac->race==2){
             strcpy(race, "enano");
-        }else if (charac->race.orco==1){
+        }else if (charac->race==3){
             strcpy(race, "orco");
-        }else if (charac->race.humano==1){
+        }else if (charac->race==4){
             strcpy(race, "humano");
         }
-        if(charac->race.elfo==1 || charac->race.enano==1 || charac->race.humano==1){                                  //elfo
+        if(charac->race==1 || charac->race==2 || charac->race==4){                                  //elfo
             do{
         typeText("Has elegido ", delay);
         typeText(race, delay);
@@ -131,13 +135,13 @@ do {                                                //Seleccion de clase
         switch(slclass){
             case 1:
                 printf("Has elegido %s guerrero!", race);
-                charac->class.warrior=1;
+                charac->class=1;
                 selec=1;
                 break;
             case 2:
                 printf("Has elegido %s mago!", race);
                 selec=1;
-                charac->class.mage=1;
+                charac->class=2;
                 break;
             default:
                 typeText("Eres idiota?? Elige bien\n", delay);
@@ -148,9 +152,9 @@ do {                                                //Seleccion de clase
             }while (selec==0);
         }
         
-        else if(charac->race.orco==1){                                 //orco
+        else if(charac->race==3){                                 //orco
             printf("Has elegido orco guerrero!");
-            charac->class.warrior=1;
+            charac->class=1;
             
         }
             
@@ -191,64 +195,64 @@ do {                                                //Seleccion de clase
     }
 }
 
-void levelUp(double *att, double *attm, double *def, double *defm, double *vel, races *race) {
+void levelUp(double *att, double *attm, double *def, double *defm, double *vel, int race) {
 
     double x = (rand() % 8 + 1) + 3;
-    if (race->elfo == 1) {
+    if (race == 1) {
         x = x * 0.5;
-    } else if (race->enano == 1) {
+    } else if (race == 2) {
         x = x * 1.5;
-    } else if (race->orco== 1) {
+    } else if (race == 3) {
         x = x * 2;
-    } else if (race->humano == 1) {
+    } else if (race == 4) {
         x = x * 1;
     }
     *att += x;
     printf("\nataque: %.0lf", *att);
     x = rand() % 5 + 1;
-    if (race->elfo == 1) {
+    if (race == 1) {
         x = x * 0.5;
-    } else if (race->enano == 1) {
+    } else if (race == 2) {
         x = x * 1.5;
-    } else if (race->orco== 1) {
+    } else if (race == 3) {
         x = x * 2;
-    } else if (race->humano == 1) {
+    } else if (race == 4) {
         x = x * 1;
     }
     *attm = *attm + x;
     printf("\nataque magico: %.0lf", *attm);
     x = rand() % 5 + 1;
-    if (race->elfo == 1) {
+    if (race == 1) {
         x = x * 0.5;
-    } else if (race->enano == 1) {
+    } else if (race == 2) {
         x = x * 1.5;
-    } else if (race->orco== 1) {
+    } else if (race == 3) {
         x = x * 2;
-    } else if (race->humano == 1) {
+    } else if (race == 4) {
         x = x * 1;
     }
     *def = *def + x;
     printf("\ndefensa: %.0lf", *def);
     x = rand() % 5 + 1;
-    if (race->elfo == 1) {
+    if (race == 1) {
         x = x * 0.5;
-    } else if (race->enano == 1) {
+    } else if (race == 2) {
         x = x * 1.5;
-    } else if (race->orco== 1) {
+    } else if (race == 3) {
         x = x * 2;
-    } else if (race->humano == 1) {
+    } else if (race == 4) {
         x = x * 1;
     }
     *defm = *defm + x;
     printf("\nadefensa magica: %.0lf", *defm);
     x = rand() % 5 + 1;
-    if (race->elfo == 1) {
+    if (race == 1) {
         x = x * 0.5;
-    } else if (race->enano == 1) {
+    } else if (race == 2) {
         x = x * 1.5;
-    } else if (race->orco== 1) {
+    } else if (race == 3) {
         x = x * 2;
-    } else if (race->humano == 1) {
+    } else if (race == 4) {
         x = x * 1;
     }
     *vel = *vel + x;
