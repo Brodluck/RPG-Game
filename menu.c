@@ -34,24 +34,8 @@ int menu(chara *charac, int dead) {
     charac->defm = defm;
     charac->attm = attm;
     charac->vel = vel;
-
-    if (class == 1) {
-        charac->class.warrior = 1;
-    } else if(class==2){
-        charac->class.mage = 1;
-    } else if (class == 3) {
-        charac->class.paladin = 1;
-    }
-
-    if (race == 1) {
-        charac->race.elfo = 1;
-    } else if (race == 2) {
-        charac->race.enano == 1;
-    } else if (race == 3) {
-        charac->race.orco = 1;
-    } else if (race == 4) {
-        charac->race.humano = 1;
-    }
+    charac->class = class;
+    charac->race = race;
 
     fclose(f);
     return 2;
@@ -61,7 +45,7 @@ int menu(chara *charac, int dead) {
 short skill_book(chara *charac) {
     int option;
     printf("Bienvenido al libro de habilidades/hechizos\n");
-    if (charac->class.warrior == 1) {
+    if (charac->class == 1) {
         do {
             printf("Elige la habilidad a consultar:\n1.Ataque normal\n2.Ataque fuerte\n3.Romper armadura\n4.Salir\n");
             scanf("%d", &option);
@@ -79,7 +63,7 @@ short skill_book(chara *charac) {
                     return 1;
             }
         } while (option != 4);
-    } else if (charac->class.mage == 1) {
+    } else if (charac->class == 2) {
         do {
             printf("Elige el hechizo a consultar:\n1.Bola de fuego\n2.Armadura magica\n3.Ilusion\n4.Salir\n");
             scanf("%d", &option);
@@ -98,7 +82,7 @@ short skill_book(chara *charac) {
             }
         } while (option != 4);
 
-    } else if (charac->class.paladin == 1) {
+    } else if (charac->class == 3) {
         do {
             printf("Elige el hechizo a consultar:\n1.Martillo de luz\n2.Luz sagrada\n3.Escudo divino\n4.Salir\n");
             scanf("%d", &option);
