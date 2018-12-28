@@ -1,9 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "head.h"
-#include<string.h>
 
-void EnemyGen(chara charac, npc *enemy) {
+void enemyGen(chara charac, npc *enemy) {
 
     int x = rand() % 21, i;
     enemy->level = charac.level + (x - 10);
