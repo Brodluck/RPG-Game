@@ -1,16 +1,11 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include<string.h>
 #include "head.h"
-#include <time.h>
+
 
 void character(chara *charac) {
-    int x, y, selec=0;
+    int x, y, selec=0, i;
     char bool;
     do {
         do {
-            Begcharac:
             typeText("Selecciona la raza con la que comenzaras tu aventura:", delay);
             printf("\n1.Elfo\n2.Enano\n3.Orco\n4.Humano\n");
             scanf("%d", &x);
@@ -37,10 +32,9 @@ void character(chara *charac) {
                     break;
                 default:
                     printf("Eres idiota?? Elige bien\n");
-                    goto Begcharac;
                     break;
             }
-        } while (0 > x && x > 5);
+        } while (0 > x || x >= 5);
         
         
         do { //confirmar seleccion
@@ -192,6 +186,9 @@ do {                                                //Seleccion de clase
             }
         } else printf("Eres idiota?? Elige bien\n");
     } while (selec == 0);
+    for (i=0;i<100;i++){
+        strcpy(charac->inv[i].name, "not");
+    }
 }
 
 void levelUp(double *att, double *attm, double *def, double *defm, double *vel, races *race) {
