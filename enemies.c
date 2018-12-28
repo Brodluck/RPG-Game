@@ -24,8 +24,9 @@ void enemyGen(chara charac, npc *enemy) {
     x = (rand() % 4) + 1;
 
     if (x == 1) { //elfo
-        enemy->race.elfo = 1;
-        enemy->vida = 80;
+        enemy->race = 1;
+        enemy->vida = 85;
+        enemy->vidamax = 85;
         enemy->att = 5;
         enemy->attm = 10;
         enemy->def = 5;
@@ -33,8 +34,9 @@ void enemyGen(chara charac, npc *enemy) {
         enemy->vel = 25;
         strcat(enemy->name, " elfo");
     } else if (x == 2) { //enano
-        enemy->race.enano = 1;
+        enemy->race = 2;
         enemy->vida = 110;
+        enemy->vidamax = 110;
         enemy->att = 10;
         enemy->attm = 5;
         enemy->def = 20;
@@ -42,8 +44,9 @@ void enemyGen(chara charac, npc *enemy) {
         enemy->vel = 0;
         strcat(enemy->name, " enano");
     } else if (x == 3) { //orco
-        enemy->race.orco = 1;
+        enemy->race = 3;
         enemy->vida = 110;
+        enemy->vidamax = 110;
         enemy->att = 20;
         enemy->attm = 0;
         enemy->def = 20;
@@ -51,8 +54,9 @@ void enemyGen(chara charac, npc *enemy) {
         enemy->vel = -10;
         strcat(enemy->name, " orco");
     } else if (x == 4) { //humano
-        enemy->race.humano = 1;
+        enemy->race = 4;
         enemy->vida = 100;
+        enemy->vidamax = 100;
         enemy->att = 10;
         enemy->attm = 10;
         enemy->def = 10;
