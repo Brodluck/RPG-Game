@@ -1,6 +1,14 @@
 #ifndef HEAD_H
 #define HEAD_H
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include <time.h>
+#include <unistd.h>
+#define delay 15
+
 typedef struct {
     char name[100];
     int lvl, type, nature, type2, legen, comm, rare, extr; //type (1=armas, 2=armaduras), nature (1=fisico, 2=magico) 
@@ -23,7 +31,7 @@ typedef struct {
     double def, att, defm, attm, vel; //stats
     classes class; //Classes
     races race; // Races
-
+    item inv[100];
     item weapons[2], gear[4];
 } chara;
 
@@ -36,20 +44,20 @@ typedef struct {
     races race;
 } npc;
 
-#define delay 15
-
 int menu(chara *charac, int dead);
 void character(chara *charac);
 void levelUp(double *att, double *attm, double *def, double *defm, double *vel, races *race);
 void itemGen(item *object, chara *charac, int enemG, int enemG2);
 int combat(chara *charac, npc *enemy);
-void EnemyGen(chara charac, npc *enemy);
+void enemyGen(chara charac, npc *enemy);
 void itemIDLoad(item *object, char *ID);
 void typeText(char *s, unsigned msDelay);
 void healthBar(int vida1, int vidamax1, int vida2, int vidamax2);
 void personDisplay();
 void personAttack1(int vida1, int vidamax1, int vida2, int vidamax2);
 void personAttack2(int vida1, int vidamax1, int vida2, int vidamax2);
+short skill_book(chara *charac);
+short mochila(chara *charac);
 #ifdef __cplusplus
 extern "C" {
 #endif
