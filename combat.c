@@ -1,8 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
-#include <time.h>
 #include "head.h"
 
 typedef struct {
@@ -11,67 +6,7 @@ typedef struct {
     double fire_ball, magic_armor, ilusion; //Hechizos mago
 } skills;
 
-short skill_book(chara *charac) {
-    int option;
-    printf("Bienvenido al libro de habilidades/hechizos\n");
-    if (charac->class.warrior == 1) {
-        do {
-            printf("Elige la habilidad a consultar:\n1.Ataque normal\n2.Ataque fuerte\n3.Romper armadura\n4.Salir\n");
-            scanf("%d", &option);
-            switch (option) {
-                case 1:
-                    printf("'Ataque normal'\nrealiza un ataque basico inflingiendo x1 tu daño de ataque base\n");
-                    break;
-                case 2:
-                    printf("'Ataque fuerte'\nrealiza un ataque mas fuerte infligiendo x2.5 de tu daño de ataque base.\nAdemas de esto tiene una probabilidad de fallar del 15 por ciento\n");
-                    break;
-                case 3:
-                    printf("'Romper armadura'\nreduce la armadura de tu enemigo un 25 %% durante todo el combate\n");
-                    break;
-                case 4:
-                    return 1;
-            }
-        } while (option != 4);
-    } else if (charac->class.mage == 1) {
-        do {
-            printf("Elige el hechizo a consultar:\n1.Bola de fuego\n2.Armadura magica\n3.Ilusion\n4.Salir\n");
-            scanf("%d", &option);
-            switch (option) {
-                case 1:
-                    printf("'Bola de fuego'\nConjuras una flameante bola de intenso fuego que inflinge 15 de daño base mas x1.8 de tu daño magico\n");
-                    break;
-                case 2:
-                    printf("'Armadura magica'\nTe imbuyes en magia arcana aumentando tu armadura en 50 y al recibir daño, reflejas un 20 %% al enemigo\n");
-                    break;
-                case 3:
-                    printf("'Ilusion'\nCreas una copia falsa de ti mismo, aumentando tu probabilidad de esquivar en el proximo turno de un 50 %%\n");
-                    break;
-                case 4:
-                    return 1;
-            }
-        } while (option != 4);
 
-    } else if (charac->class.paladin == 1) {
-        do {
-            printf("Elige el hechizo a consultar:\n1.Martillo de luz\n2.Luz sagrada\n3.Escudo divino\n4.Salir\n");
-            scanf("%d", &option);
-            switch (option) {
-                case 1:
-                    printf("'Martillo de luz'\nUn martillo de luz bendita sentencia al enemigo inflingiendole tu daño base x1.5 mas x0.7 de tu daño magico\n");
-                    break;
-                case 2:
-                    printf("'Luz sagrada'\nLa luz te bendice haciendote recuperar de un 25-35 %% de tu vida maxima\n");
-                    break;
-                case 3:
-                    printf("'Escudo divino'\nCreas una barrera de luz impenetrable que te protege el proximo turno de cualquier daño o accion del enemigo\n");
-                    break;
-                case 4:
-                    return 1;
-            }
-        } while (option != 4);
-
-    }
-}
 
 /*short tutorial(npc enemy, chara charac) {
     int charactuto;
@@ -99,125 +34,184 @@ short takepotion(int currentHealth) {
     }
 } //protipo para uso de potis
 
-short range_health_above(chara *charac, npc *enemy) { //Check if life goes over than the max
-    
-    if ((charac->vida || enemy->vida) > 100 && (charac->race.humano == 1 || enemy->race.humano==1)) {
+short range_health_above(chara *charac, npc *enemy, short x) { //Check if life goes over than the max
+   
+    if(x==1){
+    if (charac->vida > 100 && charac->race.humano == 1) {
         return 100;
-    } else if ((charac->vida || enemy->vida)> 110 && (charac->race.enano == 1 || enemy->race.enano==1)) {
+    } else if (charac->vida > 100 && charac->race.humano == 1) {
         return 110;
-    } else if((charac->vida || enemy->vida)> 85 && (charac->race.elfo== 1 || enemy->race.elfo==1))  {
+    } else if(charac->vida > 100 && charac->race.humano == 1)  {
         return 85;
-    }else if((charac->vida || enemy->vida)> 110 && (charac->race.orco == 1 || enemy->race.orco==1)){
+    }else if(charac->vida > 100 && charac->race.humano == 1){
         return 110;
     } else{
         return 0;
     }
-}
-short range_health_below(chara *charac, npc *enemy) { //Check if life goes under the min
-    
-    if (charac->vida <= 0 || enemy->vida <=0 ){
-        return 1;
-    
-    }else if(charac->vida >0 || enemy->vida > 0 ){
+    }else{
+    if (enemy->vida > 100 && enemy->race.humano == 1) {
+        return 100;
+    } else if (enemy->vida > 100 && enemy->race.humano == 1) {
+        return 110;
+    } else if(enemy->vida > 100 && enemy->race.humano == 1)  {
+        return 85;
+    }else if(enemy->vida > 100 && enemy->race.humano == 1){
+        return 110;
+    } else{
         return 0;
     }
+    }
+}
+
+
+short range_health_below(chara *charac, npc *enemy, short x) { //Check if life goes under the min
+    if (x==1){
+    if (charac->vida <= 0){
+        return 1;
     
+    }else{
+        return 0;
+        }
+    }else{
+        if (enemy->vida <=0 ){
+        return 1;
+    
+    }else{
+        return 0;
+        }
+    }
 }
 int combat_warrior(npc *enemy, chara *charac) { //************************Clase guerrero
     skills s;
     s.heavyattack = 2.5, s.normalattack = 1, s.break_armor = 0.25;
     s.fire_ball = 1.7;
     s.light_hammer = 1.5;
-
+    item drop;
     double dmg, deftemp;
-    int turno = 1, option, percentage, x, miss, flag;
-    short y, rangeHA, rangeHB;
-
+    int turno = 1, option, percentage, x, miss, flag, cont;
+    short y, rangeHA, rangeHB, moch=0;
+    
     //turno=1 es turno del jugador
-   typeText("Te enfrentas a ",delay); typeText(enemy->name,delay); typeText(" !! Es hora de un combate glorioso! Que quieres hacer?\n",delay);
-    printf("1.Luchar\n2.Objetos\n3.Huir\n4.Ver libro de habilidades\n");
-    scanf("%d", &option);
+    typeText("Te enfrentas a ",delay); typeText(enemy->name,delay); typeText("!! Es hora de un combate glorioso! Que quieres hacer?\n",delay);
+    do { //Comienzo del combate
     do {
+    printf("1.Luchar \n2.Objetos \n3.Huir \n4.Ver libro de habilidades\n");
+    scanf("%d", &option);
+    system("clear");
         switch (option) {
             case 1:
-
+                cont=1;
                 break;
             case 2:
-                //Esto lo tiene que hacer rodri que no sé que ha hecho en el equipamiento/mochila
+                do{
+                moch=mochila(charac);
+                }while (moch==1);
+                option = 5;
+                cont=0;
+                break;
             case 3:
                 percentage = (rand() % 100) + 1;
                 if (percentage >= 1 && percentage <= 20) {
-                   typeText("No puedes huir! ,",delay); typeText(enemy->name,delay); typeText(" te ha atrapado! Toca luchar\n",delay);
-                    break;
+                   typeText("No puedes huir! ", delay); typeText(enemy->name, delay); typeText(" te ha atrapado! Toca luchar\n", delay);
                 } else {
                     //Huido sin problemas
                     return -1;
                 }
+                cont=1;
+                break;
             case 4:
                 y = skill_book(charac);
                 if (y == 1)
-                    break;
+                cont=0;
+                break;
+            default:
+                printf("Eres idiota?? Elige bien\n");
+                cont=0;
+                break;
 
         }
-    } while (option < 1 && option > 4);
+    } while (cont==0);
 
     if (enemy->vel < charac->vel) { //Aqui se decide quien empezará primero
         turno = 0;
-        typeText("Comienza atacando ,",delay); typeText(enemy->name,delay); typeText(" ya que es mas rapido\n",delay);
+        typeText("Comienza atacando ",delay); typeText(enemy->name,delay); typeText(" ya que es mas rapido\n",delay);
     }
-    do { //Comienzo del combate
         dmg = 0;
         if (turno == 1) { //Si turno ==1 es el turno del jugador
-combat_start_warrior:
            printf("----------------------------------\nTu turno\n");
-            printf("Elige la habilidad que quieres utilizar:\n1.Ataque\t2.Ataque fuerte\t3.Romper armadura\n10. para ver tu libro de habilidades\n");
+           do{
+            printf("Elige la habilidad que quieres utilizar: \n1.Ataque \n2.Ataque fuerte \n3.Romper armadura \n4.ver libro de habilidades\n");
             scanf("%d", &option);
-            if (option == 10) {
-                y = skill_book(charac);
-                if (y == 1) {
-                    continue;
-                }
-            }
+            system("clear");
             switch (option) {
                 case 1:
                     dmg = s.normalattack * charac->att;
                     typeText("Has realizado un ataque normal",delay);
+                    cont=1;
                     break;
                 case 2:
                     miss = (rand() % 100) + 1;
-                    if (miss >= 1 && miss <= 15) {
+                    if (miss >= 1 && miss <= 15){
                         typeText("Fallo\n!",delay);
                     } else {
                         dmg = s.heavyattack * charac->att;
 
                     }
+                    cont=1;
                     break;
                 case 3:
                     typeText("La armadura del enemigo se ha reducido un 25 por ciento!\n",delay);
                     deftemp = enemy->def;
                     deftemp -= (deftemp * s.break_armor);
                     dmg=0;
-
+                    cont=1;
                     break;
-
-            }
+                case 4:
+                    do{
+                    y = skill_book(charac);
+                    }while (y!=1);
+                    cont=0;
+                    break;
+                default:
+                    printf ("eres idiota?? Elige bien\n");
+                    cont=0;
+                    break;
+                }
+            }while (cont==0);
             dmg -=  (enemy->def * 0.05);
             enemy->vida -= dmg;
-            rangeHB=range_health_below(charac,enemy);
+            rangeHB=range_health_below(charac,enemy, 2);
              if(rangeHB){
-                typeText("e inflinges ",delay);printf("%0.2lf",dmg);typeText(" a ",delay);typeText(enemy->name,delay);printf("\n");
-                typeText("La vida de",delay); typeText(enemy->name,delay); typeText(" is 0\n", delay);
-            }else if (!rangeHB){
-            typeText("e inflinges ",delay); printf("%0.2lf",dmg); typeText("a ",delay); typeText(enemy->name,delay);
-            typeText("La vida de ",delay);typeText(enemy->name,delay);typeText(" ahora es de", delay); printf("%d\n",enemy->vida);
+                typeText("infliges ",delay);printf(" %0.2lf ",dmg);typeText(" a ",delay);typeText(enemy->name,delay);
+                typeText("\nLa vida de ",delay); typeText(enemy->name,delay); typeText(" ahora es de 0\n", delay);
+            }else{
+            typeText("infliges ",delay); printf("%0.2lf",dmg); typeText(" a ",delay); typeText(enemy->name,delay);
+            typeText("\nLa vida de ",delay);typeText(enemy->name,delay);typeText(" ahora es de ", delay); printf("%d\n",enemy->vida);
             }
             turno = 0;
             
             if (enemy->vida <= 0) {
                 typeText("Estupendo! Has derrotado a ",delay); typeText(enemy->name,delay);
-                //items(caca caca); llamamos a la funcion de items para poner el drop etc
+                x=rand()%4;
+                if(x==1){
+                    x=rand()%7;
+                    if(x==1){
+                        drop = enemy->gear[0];
+                    }else if (x==2){
+                        drop = enemy->gear[1];
+                    }else if (x==3){
+                        drop = enemy->gear[2];
+                    }else if (x==4){
+                        drop = enemy->gear[3];
+                    }else if (x==5){
+                        drop = enemy->weapons[0];
+                    }else{
+                        drop = enemy->weapons[1];
+                    }
+                    printf("\n");
                 typeText("Escarvas e inspeccionas en el cadaver aun caliente de ",delay);typeText(enemy->name,delay);typeText(" y descubres un objeto interesante\n", delay);
-                //printf("Has recibido: % ",objeto etc etc); willy pls help con esto
+                printf("obtienes el siguiente item: %s", drop.name);
+                }
                 return 1;
             }
 
@@ -233,9 +227,8 @@ combat_start_warrior:
                 case 2:
                     typeText(enemy->name,delay);typeText(" ha hecho un ataque fuerte\n",delay);
                     miss = (rand() % 100) + 1;
-                    if (miss >= 1 && miss <= 15) {
+                    if (miss <= 15) {
                         typeText("Fallo!",delay);
-                        break;
                     } else {
                         dmg = s.heavyattack * enemy->att;
                     }
@@ -244,12 +237,12 @@ combat_start_warrior:
             }
             dmg = dmg - (charac->def * 0.05);
             charac->vida -= dmg;
-            rangeHB=range_health_below(charac,enemy);
+            rangeHB=range_health_below(charac,enemy, 1);
             if(rangeHB){
-            typeText(enemy->name,delay);typeText(" te ha inflingido ",delay); printf("%0.2lf \n",dmg);
+            typeText(enemy->name,delay);typeText(" te ha infligido ",delay); printf("%0.2lf \n",dmg);
             typeText("Tu vida es 0\n",delay);
             }else if(!rangeHB){
-            typeText(enemy->name,delay);typeText(" te ha inflingido ",delay); printf("%0.2lf \n",dmg);
+            typeText(enemy->name,delay);typeText(" te ha infligido ",delay); printf("%0.2lf \n",dmg);
             typeText("Tu vida: ",delay); printf("%d\n",charac->vida);
             typeText("Vida de ",delay);typeText(enemy->name,delay); typeText(": ",delay);printf("%d\n",enemy->vida);
             }
@@ -260,7 +253,7 @@ combat_start_warrior:
             }
         }
 
-    } while ((enemy->vida < 0) || (charac->vida < 0));
+    } while ((enemy->vida > 0) && (charac->vida > 0));
 
 }
 
@@ -288,7 +281,7 @@ int combat_mage(npc *enemy, chara *charac) {
             case 3:
                 percentage = (rand() % 100) + 1;
                 if (percentage >= 1 && percentage <= 20) {
-                    typeText("No puedes huir! ,",delay); typeText(enemy->name,delay); typeText(" te ha atrapado! Toca luchar\n",delay);
+                    typeText("No puedes huir!",delay); typeText(enemy->name,delay); typeText(" te ha atrapado! Toca luchar\n",delay);
                     break;
                 } else {
                     //Has huido sin problemas
@@ -305,14 +298,13 @@ int combat_mage(npc *enemy, chara *charac) {
 
     if (enemy->vel < charac->vel) { //Aqui se decide quien empezará primero
         turno = 0;
-        typeText("Comienza atacando ,",delay); typeText(enemy->name,delay); typeText(" ya que es mas rapido\n",delay);
+        typeText("Comienza atacando ",delay); typeText(enemy->name,delay); typeText(" ya que es mas rapido\n",delay);
     }
     do { //Comienzo del combate
         dmg = 0;
         if (turno == 1) { //Si turno ==1 es el turno del jugador
-combat_start_mage:
             printf("----------------------------------\nTu turno\n");
-            printf("Elige la habilidad que quieres utilizar:\n1.Bola de fuego \t2.Armadura magica\t3.Ilusion\t10.Ver libro de habilidades\n");
+            printf("Elige la habilidad que quieres utilizar:\n1.Bola de fuego \n2.Armadura magica\n3.Ilusion\n10.Ver libro de habilidades\n");
             scanf("%d", &option);
             if (option == 10) {
                 y = skill_book(charac);
@@ -340,15 +332,15 @@ combat_start_mage:
             } while (x < 1 && x > 3);
             dmg = dmg - (enemy->def * 0.05);
             enemy->vida -= dmg;
-            rangeHB=range_health_below(charac,enemy);
+            rangeHB=range_health_below(charac,enemy, 0);
             if(rangeHB){
                  if (flag) { // 0 para char, 1 para double, 2 para int
-                typeText("inflinge ",delay); printf("%0.2lf",dmg); typeText("a ",delay); typeText(enemy->name,delay);
+                typeText("inflinge ",delay); printf("%0.2lf",dmg); typeText(" a ",delay); typeText(enemy->name,delay);
             }
-                 typeText("La vida de",delay); typeText(enemy->name,delay); typeText(" is 0\n", delay);
+                 typeText("La vida de ",delay); typeText(enemy->name,delay); typeText(" is 0\n", delay);
             }else if (!rangeHB){
              if (flag) {
-                 typeText("inflinge ",delay); printf("%0.2lf",dmg); typeText("a ",delay); typeText(enemy->name,delay);
+                 typeText("inflinge ",delay); printf("%0.2lf",dmg); typeText(" a ",delay); typeText(enemy->name,delay);
                 
             }
             typeText(", su vida ahora es: ", delay); printf("%d\n",enemy->vida);
@@ -405,7 +397,7 @@ combat_start_mage:
                 }
             }
             charac->vida -= dmg;
-            rangeHB=range_health_below(charac,enemy);
+            rangeHB=range_health_below(charac,enemy, 1);
             if(rangeHB){
             typeText(enemy->name,delay);typeText(" te ha inflingido ",delay); printf("%0.2lf \n",dmg);
             typeText("Tu vida es 0\n",delay);
@@ -477,7 +469,6 @@ int combat_paladin(npc *enemy, chara *charac) {
     do { //Comienzo del combate
         dmg = 0;
         if (turno == 1) { //Si turno ==1 es el turno del jugador
-combat_start_paladin:
             printf("----------------------------------\nTu turno\n");
             printf("Elige la habilidad que quieres utilizar:\n1.Martillo de luz\t2.Luz sagrada\t3.Escudo divino\t10. Ver libro de habilidades\n");
             scanf("%d", &option);
@@ -498,7 +489,7 @@ combat_start_paladin:
                     }else if(charac->race.humano){
                         charac->vida+=(100*0.35);
                     }
-                    rangeHA = range_health_above(charac, enemy);
+                    rangeHA = range_health_above(charac, enemy, 1);
                     if (rangeHA == 0) {
                         int healthOld = charac->vida - (charac->vida * 0.35);
                        
@@ -513,7 +504,7 @@ typeText("Has usado luz sagrada, tu vida pasa de ",delay); printf("%d",healthOld
             }
             dmg -= (charac->def * 0.05);
             enemy->vida -= dmg;
-             rangeHB=range_health_below(charac,enemy);
+             rangeHB=range_health_below(charac,enemy, 0);
              
             if(rangeHB){
                 typeText(" inflinge ",delay);printf("%0.2lf ",dmg);typeText(" a ",delay);typeText(enemy->name,delay);printf("\n");
@@ -527,7 +518,7 @@ typeText("Has usado luz sagrada, tu vida pasa de ",delay); printf("%d",healthOld
              if (enemy->vida <= 0) {
                 typeText("Estupendo! Has derrotado a ",delay); typeText(enemy->name,delay);
                 //items(caca caca); llamamos a la funcion de items para poner el drop etc
-                typeText("Escarvas e inspeccionas en el cadaver aun caliente de ",delay);typeText(enemy->name,delay);typeText(" y descubres un objeto interesante\n", delay);
+                typeText("\nEscarvas e inspeccionas en el cadaver aun caliente de ",delay);typeText(enemy->name,delay);typeText(" y descubres un objeto interesante\n", delay);
                 //printf("Has recibido: % ",objeto etc etc); willy pls help con esto
                 return 1;
             }
@@ -561,7 +552,7 @@ typeText("Has usado luz sagrada, tu vida pasa de ",delay); printf("%d",healthOld
             }
             
             charac->vida -= dmg;
-            rangeHB=range_health_below(charac,enemy);
+            rangeHB=range_health_below(charac,enemy, 1);
             if(rangeHB){
             typeText(enemy->name,delay);typeText(" te ha inflingido ",delay); printf("%0.2lf \n",dmg);
             typeText("Tu vida es 0\n",delay);
@@ -582,7 +573,7 @@ typeText("Has usado luz sagrada, tu vida pasa de ",delay); printf("%d",healthOld
 
 int combat(chara *charac, npc *enemy) {
     int x = 0, y = 0, z = 0;
-    EnemyGen(*charac, enemy);
+    enemyGen(*charac, enemy);
     if (charac->class.warrior == 1) {
         x = combat_warrior(enemy, charac);
         if (x == 1) {
