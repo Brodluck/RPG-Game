@@ -1,7 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "head.h"
+
 void itemType(item *object, int load){
     int x=rand()%10;
     if (x<5){
@@ -11,11 +9,15 @@ void itemType(item *object, int load){
     }
 }
 
-void itemTypeSpecific(item *object, int load){
-    int x;
+void itemTypeSpecific(item *object,int enemG, int load){
+    int x, g;
+    
     if (load==-1) {
         x==rand()%6;
     }else x=load;
+    if (load==-1 && enemG!=-1){
+        x=enemG;
+    }
     if (object->type==1){
     switch (x){
         case 0:
@@ -490,8 +492,10 @@ void itemGen(item *object, chara *charac, int enemG, int enemG2) {
     itemType(object, -1);
     }else object->type=enemG;
     if (enemG2==0){
-    itemTypeSpecific(object, 0);
-    }else object->type2=enemG2-1;
+    itemTypeSpecific(object, -1, -1);
+    }else{
+        itemTypeSpecific(object, enemG2-1, -1);
+    }
     itemAtbType(object, -1);
     itemAtbCommon(object, -1);
     itemAtbRare(object, -1);
@@ -508,7 +512,7 @@ void itemIDLoad(item *object, char *ID){
     IDN[i]=parseInt(ID[i]);
     }
     itemType(object, IDN[0]);
-    itemTypeSpecific(object, IDN[1]);
+    itemTypeSpecific(object, -1, IDN[1]);
     itemAtbType(object, IDN[2]);
     itemAtbCommon(object, IDN[3]);
     itemAtbRare(object, IDN[4]);
