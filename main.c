@@ -1,8 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "head.h"
-#include <string.h>
-#include <unistd.h>
 
 int main() {
     chara charac;
