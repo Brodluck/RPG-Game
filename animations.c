@@ -1,8 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "head.h"
-#include <string.h>
-#include <unistd.h>
+
 
 void typeText(char *s, unsigned msDelay) {
     unsigned usecs = msDelay * 1000; /* 1000 microseconds per ms */
