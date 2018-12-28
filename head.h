@@ -26,29 +26,29 @@ typedef struct {
 
 typedef struct {
     char name[10];
-    int gen, esquivar, vida; //atrib
+    int gen, esquivar, vida, vidamax; //atrib
     int level, exp; //level
     double def, att, defm, attm, vel; //stats
-    classes class; //Classes
-    races race; // Races
+    int class; // 1=warrior, 2=mage, 3=paladin
+    int race; // 1=elfo, 2=enano, 3=orco, 4=humano
     item inv[100];
     item weapons[2], gear[4];
 } chara;
 
 typedef struct {
     char name[10];
-    int type, esquivar, vida; //atrib
+    int type, esquivar, vida, vidamax; //atrib
     int level; //level
     double def, att, defm, attm, vel; //stats
     item weapons[2], gear[4];
-    races race;
+    int race;
 } npc;
 
 int menu(chara *charac, int dead);
 void character(chara *charac);
-void levelUp(double *att, double *attm, double *def, double *defm, double *vel, races *race);
+void levelUp(double *att, double *attm, double *def, double *defm, double *vel, int race);
 void itemGen(item *object, chara *charac, int enemG, int enemG2);
-int combat(chara *charac, npc *enemy);
+int combat(npc *enemy, chara *charac);
 void enemyGen(chara charac, npc *enemy);
 void itemIDLoad(item *object, char *ID);
 void typeText(char *s, unsigned msDelay);
