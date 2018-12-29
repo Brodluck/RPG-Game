@@ -17,16 +17,8 @@ typedef struct {
 } item;
 
 typedef struct {
-    int elfo, enano, orco, humano; //Races struct
-} races;
-
-typedef struct {
-    int mage, warrior, paladin; //Classes struct
-} classes;
-
-typedef struct {
     char name[10];
-    int gen, esquivar, vida, vidamax; //atrib
+    int gen, esquivar, vida, vidamax, rest; //atrib
     int level, exp; //level
     double def, att, defm, attm, vel; //stats
     int class; // 1=warrior, 2=mage, 3=paladin
@@ -58,6 +50,11 @@ void personAttack1(int vida1, int vidamax1, int vida2, int vidamax2);
 void personAttack2(int vida1, int vidamax1, int vida2, int vidamax2);
 short skill_book(chara *charac);
 short mochila(chara *charac);
+void tutorial();
+void characterDisplay(chara *charac);
+void Cofre(chara *charac);
+short shelter(chara *charac);
+void changeEquip(chara *charac);
 #ifdef __cplusplus
 extern "C" {
 #endif
