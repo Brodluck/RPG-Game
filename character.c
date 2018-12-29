@@ -1,12 +1,13 @@
 #include "head.h"
 
+item cofre[1000];
 
 void character(chara *charac) {
     int x, y, selec=0, i;
     char bool;
     do {
         do {
-            typeText("\n*----Selecciona la raza con la que comenzaras tu aventura:", delay);
+            typeText("\nSelecciona la raza con la que comenzaras tu aventura:", delay);
             printf("\n1.Elfo\n2.Enano\n3.Orco\n4.Humano\n");
             scanf("%d", &x);
             system("clear");
@@ -193,6 +194,16 @@ do {                                                //Seleccion de clase
     for (i=0;i<100;i++){
         strcpy(charac->inv[i].name, "not");
     }
+    for (i=0;i<1000;i++){
+        strcpy(cofre[i].name, "not");
+    }
+    strcpy(charac->weapons[0].name, "not");
+    strcpy(charac->weapons[1].name, "not");
+    strcpy(charac->gear[0].name, "not");
+    strcpy(charac->gear[1].name, "not");
+    strcpy(charac->gear[2].name, "not");
+    strcpy(charac->gear[3].name, "not");
+    
 }
 
 void levelUp(double *att, double *attm, double *def, double *defm, double *vel, int race) {
@@ -269,3 +280,179 @@ void levelUp(double *att, double *attm, double *def, double *defm, double *vel, 
     }
 }
  */
+
+void Cofre(chara *charac){
+    int x, y, z, itemnum, itemnum2, i;
+    item aux;
+    char opt;
+    do{
+    system("clear");
+    printf("1.Guardar items\n2.Retirar items\n3.Volver");
+    scanf("%d", &x);
+    system("clear");
+    switch (x){
+        case 1:
+            do{
+                system("clear");
+                for(i=0; strcmp(charac->inv[i].name, "not")!=0 && i<100;i++){
+                    printf("%d. %s\n", i+1, charac->inv[i].name);
+                }
+                printf("seleccione el item que quiere guardar (0 para cancelar)\n");
+                scanf("%d", &itemnum);
+                if(itemnum==0){
+                    y=0;
+                }else if (strcmp(cofre[999].name, "not")!=0){
+                    printf("el cofre esta lleno! selecciona un item para sustituirlo\n");
+                    for (i=0;i<1000;i++){
+                        printf("%d. %s\n", i+1, cofre[i].name);
+                    }
+                    printf("selecciona el numero del item que quieres sustituir (0 para cancelar)\n");
+                    scanf("%d", &itemnum2);
+                    system("clear");
+                    if (itemnum2!=0 && itemnum2<=1000 && itemnum2>0){
+                        if (strcmp(cofre[itemnum2].name, "not")!=0){
+                        aux=cofre[itemnum2-1];
+                        cofre[itemnum2-1]=charac->inv[itemnum-1];
+                        charac->inv[itemnum-1]=aux;
+                        y=0;
+                        }else{
+                            printf("No hay ningun item con ese numero asignado");
+                            y=1;
+                        }
+                    }else{
+                        y=1;
+                    }
+                }else{
+                    for(i=0;strcmp(cofre[i].name, "not")!=0;i++);
+                            cofre[i+1]=charac->inv[itemnum2-1];
+                            strcpy(charac->inv[itemnum2-1].name, "not");
+                            y=0;
+                }
+            }while (y==1);
+            x=1;
+            break;
+        case 2:
+            system("clear");
+            if(strcmp(cofre[0].name, "not")==0){
+                printf("El cofre esta vacio!!");
+            }else{
+                for(i=0; strcmp(cofre[i].name, "not")!=0 && i<1000;i++){
+                    printf("%d. %s\n", i+1, cofre[i].name);
+                }
+                do{
+                printf("Quieres retirar algun item? Inserta el numero del item (0 para volver)");
+                scanf("%d", &itemnum);
+                system("clear");
+                if (itemnum!=0 && itemnum>0 && itemnum<=1000){
+                                do{
+                    printf("retirar el item numero %d (%s)? [Y/N]", itemnum, cofre[itemnum-1].name);
+                    scanf("%c", &opt);
+                    system("clear");
+                    if (opt == 'Y' || opt == 'y') { 
+                        if (strcmp(charac->inv[99].name, "not")!=0){
+                            printf("Tu inventario esta lleno! elige un item con el que sustituirlo\n");
+                            for (i=0;i<100;i++){
+                                printf("%d. %s\n", i+1, charac->inv[i].name);
+                            }
+                                printf("selecciona un item que sustituir (0 para cancelar)\n");
+                                scanf("%d", &itemnum2);
+                                system("clear");
+                                if (itemnum2!=0 && itemnum>0 && itemnum<=100){
+                                    if (strcmp(charac->inv[itemnum2-1].name, "not")!=0){
+                                    aux=charac->inv[itemnum2-1];
+                                    charac->inv[itemnum2]=cofre[itemnum-1];
+                                    cofre[itemnum-1]=aux;
+                                    }else{
+                                        printf("Ese numero no tiene ningun item asignado");
+                                    }
+                                }
+                                    y=0;
+                        }else{
+                            for(i=0;strcmp(charac->inv[i].name, "not")!=0;i++);
+                            charac->inv[i+1]=cofre[itemnum];
+                            strcpy(cofre[itemnum].name, "not");
+                            y=0;
+                        }
+                    }else if (opt == 'N' || opt == 'n'){
+                        y=0;
+                        }else{
+                        printf("Eres idiota?? Elige bien");
+                        y=1;
+                        }
+                    }while (y==1);
+                    z=1;
+                }else{
+                    z=0;
+                    }
+                system("clear");
+                }while (z==1);
+            }
+            x=1;
+            break;
+        case 3:
+            x=0;
+            break;
+        default:
+            printf("Eres idiota?? Elige bien");
+            x=1;
+    }
+    }while (x==1);
+}
+
+void changeEquip(chara *charac){
+    int i, x, y;
+    system("clear");
+    printf("Armas:\n");
+    if (strcmp(charac->weapons[0].name, "not")!=0){
+        printf("1. %s\n", charac->weapons[0].name);
+    }else{
+        printf("1. Nada equipado\n");
+    }
+    if (strcmp(charac->weapons[1].name, "not")!=0){
+        printf("2. %s\n", charac->weapons[1].name);
+    }else{
+        printf("2. Nada equipado\n");
+    }
+    printf("Armaduras:\n");
+    if (strcmp(charac->gear[0].name, "not")!=0){
+        printf("3. %s\n", charac->gear[0].name);
+    }else{
+        printf("3. Nada equipado\n");
+    }
+    if (strcmp(charac->gear[1].name, "not")!=0){
+        printf("4. %s\n", charac->gear[1].name);
+    }else{
+        printf("4. Nada equipado\n");
+    }
+    
+    if (strcmp(charac->gear[2].name, "not")!=0){
+        printf("5. %s\n", charac->gear[2].name);
+    }else{
+        printf("5. Nada equipado\n");
+    }
+    if (strcmp(charac->gear[3].name, "not")!=0){
+        printf("6. %s\n", charac->gear[3].name);
+    }else{
+        printf("6. Nada equipado\n");
+    }
+    do{
+    printf("Que quieres hacer?\n1.Equipar\n2.Desequipar\n3.Volver");
+    scanf("%d", &x);
+    system("clear");
+    switch (x){
+        case 1:
+            
+            break;
+        case 2:
+            
+            break;
+        case 3:
+            
+            break;
+        default:
+            printf("Eres idiota?? Elige bien");
+            y=0;
+            break;
+    }
+    }while (y==1);
+}
