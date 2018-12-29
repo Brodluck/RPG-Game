@@ -8,17 +8,68 @@ typedef struct {
 
 
 
-/*short tutorial(npc enemy, chara charac) {
-    int charactuto;
-    int enemytuto;
-    charac = charactuto;
-    enemy = enemytuto;
-
-    printf("Bien, para empezar, tienes que saber que esto es un juego de rol por turnos. Que significa esto? Pues que tu tienes unas habilidades y unos atributos\ny al enfrentarte a enemigos te pones a prueba");
-    printf("\nPara empezar vamos a hacer un pequeño combate para que te ubiques. Presiona enter para empezar");
-    scanf("");
+void tutorial() {
+    int x;
+    char enter;
+    healthBar(50, 50, 50, 50); printf("\n");
+    typeText("Te enfrentas a un maniqui!! Preparate para un entrenamiento!", delay); printf("\n");
+    do{
+    typeText("1.ataque", delay); printf("\n"); typeText("2.Ataque fuerte", delay); printf("\n\n");
+    typeText("Vamos a usar un ataque normal, este apenas nunca falla, pero quita menos vida, pulsa 1 para atacar: ", delay);
+    scanf("%d", &x);
+    if (x!=1){
+        typeText("selecciona la opcion de 'ataque'", delay);
+        }else{
+        break;
+        }
+    }while (1);
     system("clear");
-}       //FALTA acabar esto*/
+    healthBar(50, 50, 40, 50); printf("\n");
+    typeText("Has usado ataque normal, has quitado 10 puntos de vida (inserta cualquier numero para continuar)", delay);
+    scanf("%d", &x);
+    system("clear");
+    healthBar(43, 50, 40, 50); printf("\n");
+    typeText("El enemigo ha usado ataque normal, te ha quitado 7 puntos de vida", delay);
+    do{
+    typeText("1.ataque", delay); printf("\n"); typeText("2.Ataque fuerte", delay); printf("\n\n");
+    typeText("Vamos a usar un ataque fuerte, este quita mas, pero falla mas a menudo. Pulsa 2 para atacar: ", delay);
+    scanf("%d", &x);
+    if (x!=2){
+        typeText("selecciona la opcion de 'ataque fuerte'", delay);
+        }else{
+        break;
+        }
+    }while (1);
+    system("clear");
+    healthBar(50, 50, 40, 50); printf("\n");
+    typeText("Has usado ataque fuerte, has quitado 39 puntos de vida (inserta cualquier numero para continuar)", delay);
+    scanf("%d", &x);
+    system("clear");
+    healthBar(43, 50, 1, 50); printf("\n");
+    typeText("El enemigo ha usado ataque fuerte, pero ha fallado... (inserta cualquier numero para continuar)", delay);
+    scanf("%d", &x);
+    system("clear");
+    healthBar(43, 50, 1, 50); printf("\n");
+    do{
+    printf("\n");
+    typeText("1.ataque", delay); printf("\n"); typeText("2.Ataque fuerte", delay); printf("\n\n");
+    scanf("%d", &x);
+    if (x==2){
+        typeText("Has hecho un ataque fuerte, has quitado 20 de vida y eliminado al oponente", delay);
+        break;
+    }else if (x==1){
+        typeText("Has hecho un ataque, has quitado 10 de vida y eliminado al oponente", delay);
+        break;
+    }else{
+        printf("selecciona uno o dos");
+    }
+    }while (1);
+    printf("\n");
+    typeText("ENHORABUENA, has completado el tutorial!!(pulsa cualquier numero para continuar)", delay);
+    scanf("%d", &x);
+    system("clear");
+}
+
 
 short takepotion(int currentHealth) {
     if (currentHealth > 100) {
