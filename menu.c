@@ -106,7 +106,7 @@ short skill_book(chara *charac) {
 short mochila(chara *charac){
     int x, i;
     printf ("mochila de %s\n\n", charac->name);
-    while (i<100 && strcmp(charac->inv[i].name, "not")!=0){
+    for (i=0;i<100 && strcmp(charac->inv[i].name, "not")!=0;i++){
         printf("%d. %s\n", i+1, charac->inv[i]);
     }
     printf("Enter an inventory number (0 to exit)");
@@ -126,7 +126,95 @@ short mochila(chara *charac){
         }else{
             printf("Atribute level: Legendary\n");
         }
-        printf("ID: %d", charac->inv[x-1].ID);
+        printf("ID: %s", charac->inv[x-1].ID);
         return 1;
     }else return 2;
 }
+
+short shelter(chara *charac){
+    int x, y, y2;
+    typeText("Bienvenido a tu refugio", delay);
+    printf("\n1.Inventario\n2.Personaje\n3.Descansar\n4.Volver\n5.Guardar y salir");
+    scanf("%d", &x);
+    system("clear");
+    switch (x){
+        case 1:
+            do{
+            printf("1.Mochila\n2.Cofre\n3.Cambiar equipamiento\n4.Volver");
+            scanf("%d", &y);
+            switch (y){
+                case 1:
+                    do{
+                    y = mochila(charac);
+                    }while (y==1);
+                    y2=0;
+                    break;
+                case 2:
+                    Cofre(charac);
+                    y2=0;
+                    break;
+                case 3:
+                    changeEquip(charac);
+                    break;
+                case 4:
+                    y2=1;
+                }
+            }while (y2==0);
+            return 2;
+            break;
+        case 2:
+            characterDisplay(charac);
+            return 2;
+            break;
+        case 3:
+            typeText("Te tumbas a tomar un apacible descanso... Te sientes descansado", delay);
+            charac->rest=1;
+            return 2;
+            break;
+        case 4:
+            return 1;
+            break;
+        case 5:
+            return 3;
+        default:
+            printf("Eres idiota?? Elige bien");
+            return 2;
+    }
+}
+
+void characterDisplay(chara *charac){
+    printf("name: %s\n", charac->name);
+    printf("Raza: ");
+    switch (charac->race){
+        case 1:
+            printf("Elfo\n");
+            break;
+        case 2:
+            printf("Enano\n");
+            break;
+        case 3:
+            printf("Orco\n");
+            break;
+        case 4:
+            printf("Humano\n");
+    }
+    printf("Clase: ");
+    switch (charac->class){
+        case 1:
+            printf("Guerrero\n");
+            break;
+        case 2:
+            printf("Mago\n");
+            break;
+        case 3:
+            printf("Paladin\n");
+    }
+    printf("level: %d\n", charac->level);
+    printf("Vida maxima: %d\n", charac->vidamax);
+    printf("Ataque: %.1lf\n", charac->att);
+    printf("Ataque magico: %.1lf\n", charac->attm);
+    printf("Defensa: %.1lf\n", charac->def);
+    printf("Defensa magica: %.1lf\n", charac->defm);
+    printf("Agilidad %.1lf\n", charac->vel);
+}
+
