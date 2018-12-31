@@ -7,10 +7,10 @@ int menu(chara *charac, int dead) {
 
     if (dead) {
         option = 2;
-    }else{
-    typeText("WELCOME TO THE RPG GAME\n1.Start\n2.Load Game\n3.Exit\n", delay);
-    scanf("%d", &option);
-    system("clear");
+    } else {
+        typeText("WELCOME TO THE RPG GAME\n1.Start\n2.Load Game\n3.Exit\n", delay);
+        scanf("%d", &option);
+        system("clear");
     }
     switch (option) {
         case 1:
@@ -40,7 +40,6 @@ int menu(chara *charac, int dead) {
     fclose(f);
     return 2;
 }
-
 
 short skill_book(chara *charac) {
     int option;
@@ -103,63 +102,63 @@ short skill_book(chara *charac) {
     }
 }
 
-short mochila(chara *charac){
+short mochila(chara *charac) {
     int x, i;
-    printf ("mochila de %s\n\n", charac->name);
-    for (i=0;i<100 && strcmp(charac->inv[i].name, "not")!=0;i++){
-        printf("%d. %s\n", i+1, charac->inv[i]);
+    printf("mochila de %s\n\n", charac->name);
+    for (i = 0; i < 100 && strcmp(charac->inv[i].name, "not") != 0; i++) {
+        printf("%d. %s\n", i + 1, charac->inv[i]);
     }
     printf("Enter an inventory number (0 to exit)");
     scanf("%d", &x);
     system("clear");
-    if (x!=0){
-        printf("%s\n\n", charac->inv[x-1].name);
-        printf("Power: %.1lf\n", charac->inv[x-1].stat);
-        printf("Magic power: %.1lf\n", charac->inv[x-1].statm);
-        printf("Level: %d\n", charac->inv[x-1].lvl);
-        if (charac->inv[x-1].rare==0){
-            printf ("Atribute level: Common\n");
-        }else if(charac->inv[x-1].extr==0){
-            printf ("Atribute level: Rare\n");
-        }else if (charac->inv[x-1].legen==0){
+    if (x != 0) {
+        printf("%s\n\n", charac->inv[x - 1].name);
+        printf("Power: %.1lf\n", charac->inv[x - 1].stat);
+        printf("Magic power: %.1lf\n", charac->inv[x - 1].statm);
+        printf("Level: %d\n", charac->inv[x - 1].lvl);
+        if (charac->inv[x - 1].rare == 0) {
+            printf("Atribute level: Common\n");
+        } else if (charac->inv[x - 1].extr == 0) {
+            printf("Atribute level: Rare\n");
+        } else if (charac->inv[x - 1].legen == 0) {
             printf("Atribute level: Very rare\n");
-        }else{
+        } else {
             printf("Atribute level: Legendary\n");
         }
-        printf("ID: %s", charac->inv[x-1].ID);
+        printf("ID: %s", charac->inv[x - 1].ID);
         return 1;
-    }else return 2;
+    } else return 2;
 }
 
-short shelter(chara *charac){
+short shelter(chara *charac) {
     int x, y, y2;
     typeText("Bienvenido a tu refugio", delay);
     printf("\n1.Inventario\n2.Personaje\n3.Descansar\n4.Volver\n5.Guardar y salir");
     scanf("%d", &x);
     system("clear");
-    switch (x){
+    switch (x) {
         case 1:
-            do{
-            printf("1.Mochila\n2.Cofre\n3.Cambiar equipamiento\n4.Volver");
-            scanf("%d", &y);
-            switch (y){
-                case 1:
-                    do{
-                    y = mochila(charac);
-                    }while (y==1);
-                    y2=0;
-                    break;
-                case 2:
-                    Cofre(charac);
-                    y2=0;
-                    break;
-                case 3:
-                    changeEquip(charac);
-                    break;
-                case 4:
-                    y2=1;
+            do {
+                printf("1.Mochila\n2.Cofre\n3.Cambiar equipamiento\n4.Volver");
+                scanf("%d", &y);
+                switch (y) {
+                    case 1:
+                        do {
+                            y = mochila(charac);
+                        } while (y == 1);
+                        y2 = 0;
+                        break;
+                    case 2:
+                        Cofre(charac);
+                        y2 = 0;
+                        break;
+                    case 3:
+                        changeEquip(charac);
+                        break;
+                    case 4:
+                        y2 = 1;
                 }
-            }while (y2==0);
+            } while (y2 == 0);
             return 2;
             break;
         case 2:
@@ -168,7 +167,7 @@ short shelter(chara *charac){
             break;
         case 3:
             typeText("Te tumbas a tomar un apacible descanso... Te sientes descansado", delay);
-            charac->rest=1;
+            charac->rest = 1;
             return 2;
             break;
         case 4:
@@ -182,10 +181,10 @@ short shelter(chara *charac){
     }
 }
 
-void characterDisplay(chara *charac){
+void characterDisplay(chara *charac) {
     printf("name: %s\n", charac->name);
     printf("Raza: ");
-    switch (charac->race){
+    switch (charac->race) {
         case 1:
             printf("Elfo\n");
             break;
@@ -199,7 +198,7 @@ void characterDisplay(chara *charac){
             printf("Humano\n");
     }
     printf("Clase: ");
-    switch (charac->class){
+    switch (charac->class) {
         case 1:
             printf("Guerrero\n");
             break;
