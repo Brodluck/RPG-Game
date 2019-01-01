@@ -52,8 +52,7 @@ void character(chara *charac) {
         } while ((bool == 'Y' || bool == 'y') && (bool == 'N' || bool == 'n'));
     } while (selec == 0);
     system("clear");
-    y = x;
-    switch (y) {
+    switch (x) {
         case 1:
             //elfo
             charac->race = 1;
@@ -202,83 +201,79 @@ void character(chara *charac) {
     strcpy(charac->gear[1].name, "not");
     strcpy(charac->gear[2].name, "not");
     strcpy(charac->gear[3].name, "not");
+    charac->level = 1;
 
 }
 
-void levelUp(double *att, double *attm, double *def, double *defm, double *vel, int race) {
-
-    double x = (rand() % 8 + 1) + 3;
-    if (race == 1) {
-        x = x * 0.5;
-    } else if (race == 2) {
-        x = x * 1.5;
-    } else if (race == 3) {
-        x = x * 2;
-    } else if (race == 4) {
-        x = x * 1;
-    }
-    *att += x;
-    printf("\nataque: %.0lf", *att);
-    x = rand() % 5 + 1;
-    if (race == 1) {
-        x = x * 0.5;
-    } else if (race == 2) {
-        x = x * 1.5;
-    } else if (race == 3) {
-        x = x * 2;
-    } else if (race == 4) {
-        x = x * 1;
-    }
-    *attm = *attm + x;
-    printf("\nataque magico: %.0lf", *attm);
-    x = rand() % 5 + 1;
-    if (race == 1) {
-        x = x * 0.5;
-    } else if (race == 2) {
-        x = x * 1.5;
-    } else if (race == 3) {
-        x = x * 2;
-    } else if (race == 4) {
-        x = x * 1;
-    }
-    *def = *def + x;
-    printf("\ndefensa: %.0lf", *def);
-    x = rand() % 5 + 1;
-    if (race == 1) {
-        x = x * 0.5;
-    } else if (race == 2) {
-        x = x * 1.5;
-    } else if (race == 3) {
-        x = x * 2;
-    } else if (race == 4) {
-        x = x * 1;
-    }
-    *defm = *defm + x;
-    printf("\nadefensa magica: %.0lf", *defm);
-    x = rand() % 5 + 1;
-    if (race == 1) {
-        x = x * 0.5;
-    } else if (race == 2) {
-        x = x * 1.5;
-    } else if (race == 3) {
-        x = x * 2;
-    } else if (race == 4) {
-        x = x * 1;
-    }
-    *vel = *vel + x;
-    printf("\nvelocidad: %.0lf", *vel);
-}
-
-/* void expUp(chara *charac, int expg) {
-    printf("has conseguido %d ptos de experiencia", expg);
+void expUp(chara *charac, int expg) {
+    printf("has conseguido %d ptos de experiencia\n", expg);
     charac->exp = charac->exp + expg;
-    if (charac->exp > pow(charac->level, 3)) {
-        charac->level++;
-        levelUp(&charac->att, &charac->attm, &charac->def, &charac->defm, &charac->vel, &charac->race);
-        printf("Enhorabuena!! has subido al nivel %d", charac->level);
+    if (charac->exp > charac->level * charac->level * charac->level) {
+        charac->exp = charac->exp - charac->level * charac->level * charac->level;
+        charac->level=charac->level + 1;
+        printf("Enhorabuena! has subido al nivel %d!\n", charac->level);
+        int x = (rand() % 8 + 1) + 3;
+        if (charac->race == 1) {
+            x = x * 0.5;
+        } else if (charac->race == 2) {
+            x = x * 1.5;
+        } else if (charac->race == 3) {
+            x = x * 2;
+        } else if (charac->race == 4) {
+            x = x * 1;
+        }
+        charac->att = charac->att + x;
+        printf("ataque: %.1lf\n", charac->att);
+        x = rand() % 5 + 1;
+        if (charac->race == 1) {
+            x = x * 0.5;
+        } else if (charac->race == 2) {
+            x = x * 1.5;
+        } else if (charac->race == 3) {
+            x = x * 2;
+        } else if (charac->race == 4) {
+            x = x * 1;
+        }
+        charac->attm = charac->attm + x;
+        printf("ataque magico: %.1lf\n", charac->attm);
+        x = rand() % 5 + 1;
+        if (charac->race == 1) {
+            x = x * 0.5;
+        } else if (charac->race == 2) {
+            x = x * 1.5;
+        } else if (charac->race == 3) {
+            x = x * 2;
+        } else if (charac->race == 4) {
+            x = x * 1;
+        }
+        charac->def = charac->def + x;
+        printf("defensa: %.1lf\n", charac->def);
+        x = rand() % 5 + 1;
+        if (charac->race == 1) {
+            x = x * 0.5;
+        } else if (charac->race == 2) {
+            x = x * 1.5;
+        } else if (charac->race == 3) {
+            x = x * 2;
+        } else if (charac->race == 4) {
+            x = x * 1;
+        }
+        charac->defm = charac->defm + x;
+        printf("adefensa magica: %.1lf\n", charac->defm);
+        x = rand() % 5 + 1;
+        if (charac->race == 1) {
+            x = x * 0.5;
+        } else if (charac->race == 2) {
+            x = x * 1.5;
+        } else if (charac->race == 3) {
+            x = x * 2;
+        } else if (charac->race == 4) {
+            x = x * 1;
+        }
+        charac->vel = charac->vel + x;
+        printf("velocidad: %.1lf\n", charac->vel);
     }
 }
- */
 
 void Cofre(chara *charac) {
     int x, y, z, itemnum, itemnum2, i;
@@ -399,7 +394,7 @@ void Cofre(chara *charac) {
 }
 
 void changeEquip(chara *charac) {
-    int i, x, y, z;
+    int i, x, y, z, h;
     item aux;
     system("clear");
     printf("Armas:\n");
@@ -559,7 +554,114 @@ void changeEquip(chara *charac) {
                     printf("Seleccione el item (0 para cancelar)");
                     scanf("%d", &x);
                     if (x <= 6 && x >= 1) {
-
+                        switch (x) {
+                            case 1:
+                            case 2:
+                                do {
+                                    printf("Donde lo quiere guardar?\n1.Bolsa\n2.Cofre");
+                                    scanf("%d", &x);
+                                    system("clear");
+                                    if (x == 1) {
+                                        for (h = 0; h < 100; h++) {
+                                            if (strcmp(charac->inv[i].name, "not") == 0) {
+                                                printf("%d. Empty\n", i + 1);
+                                            } else {
+                                                printf("%d. %s\n", i + 1, charac->inv[i].name);
+                                            }
+                                        }
+                                        printf("Seleccione el lugar en el que guardarlo (0 para cancelar)");
+                                        scanf("%d", &h);
+                                        system("clear");
+                                        if (strcmp(charac->inv[h - 1].name, "not") != 0) {
+                                            aux = charac->inv[h - 1];
+                                            charac->inv[h - 1] = charac->weapons[x - 1];
+                                            charac->weapons[x - 1] = aux;
+                                        } else {
+                                            charac->inv[h - 1] = charac->weapons[x - 1];
+                                            strcpy(charac->weapons[x - 1].name, "not");
+                                        }
+                                        z = 0;
+                                    } else if (x == 2) {
+                                        for (h = 0; h < 1000; h++) {
+                                            if (strcmp(cofre[h].name, "not") == 0) {
+                                                printf("%d. Empty\n", h + 1);
+                                            } else {
+                                                printf("%d. %s\n", h + 1, cofre[h].name);
+                                            }
+                                        }
+                                        printf("Seleccione el lugar en el que guardarlo (0 para cancelar)");
+                                        scanf("%d", &h);
+                                        system("clear");
+                                        if (strcmp(cofre[h - 1].name, "not") != 0) {
+                                            aux = charac->inv[h - 1];
+                                            cofre[h - 1] = charac->weapons[x - 1];
+                                            charac->weapons[x - 1] = aux;
+                                        } else {
+                                            cofre[h - 1] = charac->weapons[x - 1];
+                                            strcpy(charac->weapons[x - 1].name, "not");
+                                        }
+                                        z = 0;
+                                    } else {
+                                        printf("Eres idiota?? Elige bien");
+                                        z = 1;
+                                    }
+                                } while (z == 1);
+                                break;
+                            case 3:
+                            case 4:
+                            case 5:
+                            case 6:
+                                do {
+                                    printf("Donde lo quiere guardar?\n1.Bolsa\n2.Cofre");
+                                    scanf("%d", &x);
+                                    system("clear");
+                                    if (x == 1) {
+                                        for (h = 0; h < 100; h++) {
+                                            if (strcmp(charac->inv[i].name, "not") == 0) {
+                                                printf("%d. Empty\n", i + 1);
+                                            } else {
+                                                printf("%d. %s\n", i + 1, charac->inv[i].name);
+                                            }
+                                        }
+                                        printf("Seleccione el lugar en el que guardarlo (0 para cancelar)");
+                                        scanf("%d", &h);
+                                        system("clear");
+                                        if (strcmp(charac->inv[h - 1].name, "not") != 0) {
+                                            aux = charac->inv[h - 1];
+                                            charac->inv[h - 1] = charac->gear[x - 3];
+                                            charac->gear[x - 3] = aux;
+                                        } else {
+                                            charac->inv[h - 1] = charac->gear[x - 3];
+                                            strcpy(charac->gear[x - 3].name, "not");
+                                        }
+                                        z = 0;
+                                    } else if (x == 2) {
+                                        for (h = 0; h < 1000; h++) {
+                                            if (strcmp(cofre[i].name, "not") == 0) {
+                                                printf("%d. Empty\n", i + 1);
+                                            } else {
+                                                printf("%d. %s\n", i + 1, cofre[i].name);
+                                            }
+                                        }
+                                        printf("Seleccione el lugar en el que guardarlo (0 para cancelar)");
+                                        scanf("%d", &h);
+                                        system("clear");
+                                        if (strcmp(cofre[h - 1].name, "not") != 0) {
+                                            aux = charac->inv[h - 1];
+                                            cofre[h - 1] = charac->gear[x - 3];
+                                            charac->gear[x - 3] = aux;
+                                        } else {
+                                            cofre[h - 1] = charac->gear[x - 3];
+                                            strcpy(charac->gear[x - 3].name, "not");
+                                        }
+                                        z = 0;
+                                    } else {
+                                        printf("Eres idiota?? Elige bien");
+                                        z = 1;
+                                    }
+                                } while (z == 1);
+                                break;
+                        }
                         i = 0;
                     } else if (x == 0) {
                         i = 1;
