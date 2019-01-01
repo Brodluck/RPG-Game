@@ -664,7 +664,8 @@ void changeEquip(chara *charac) {
                         }
                         i = 0;
                     } else if (x == 0) {
-                        i = 1;
+                        i = 0;
+                        system("clear");
                     } else {
                         printf("Eres idiota?? Elige bien");
                         i = 1;
