@@ -147,9 +147,10 @@ int combat(npc *enemy, chara *charac) {
     s.magic_armor = 0;
     s.heal = 35;
 
+    char selec;
     item drop;
     double dmg, deftemp;
-    int turno = 1, option, percentage, x, miss, flag, cont, Eclass = rand() % 3;
+    int turno = 1, option, percentage, x, miss, flag, cont, Eclass = rand() % 3, expg;
     ;
     short y, rangeHA, rangeHB, moch = 0;
 
@@ -354,6 +355,9 @@ int combat(npc *enemy, chara *charac) {
             if (enemy->vida <= 0) {
                 typeText("Estupendo! Has derrotado a ", delay);
                 typeText(enemy->name, delay);
+                printf("\n\n");
+                expg = pow(enemy->level, 2);
+                expUp(charac, expg);
                 x = rand() % 4;
                 if (x == 1) {
                     x = rand() % 7;
@@ -376,7 +380,14 @@ int combat(npc *enemy, chara *charac) {
                     typeText(" y descubres un objeto interesante\n", delay);
                     printf("obtienes el siguiente item: %s", drop.name);
                 }
-                return 1;
+                printf("\nContinuar?[Y/N]");
+                scanf("%c", &selec);
+                if (selec == 'Y' || selec == 'y') {
+                    return 1;
+                } else if (selec == 'N' || selec == 'n') {
+                    return 3;
+                }
+
             }
 
         } else if (turno == 0) {
