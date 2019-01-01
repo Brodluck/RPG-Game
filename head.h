@@ -38,7 +38,7 @@ typedef struct {
 
 int menu(chara *charac, int dead);
 void character(chara *charac);
-void levelUp(double *att, double *attm, double *def, double *defm, double *vel, int race);
+void expUp(chara *charac, int expg);
 void itemGen(item *object, chara *charac, int enemG, int enemG2);
 int combat(npc *enemy, chara *charac);
 void enemyGen(chara charac, npc *enemy);
