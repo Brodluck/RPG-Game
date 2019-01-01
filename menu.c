@@ -108,7 +108,7 @@ short mochila(chara *charac) {
     for (i = 0; i < 100 && strcmp(charac->inv[i].name, "not") != 0; i++) {
         printf("%d. %s\n", i + 1, charac->inv[i]);
     }
-    printf("Enter an inventory number (0 to exit)");
+    printf("Inserta el numero de un item (0 para salir)");
     scanf("%d", &x);
     system("clear");
     if (x != 0) {
@@ -144,6 +144,7 @@ short shelter(chara *charac) {
                 switch (y) {
                     case 1:
                         do {
+                            system("clear");
                             y = mochila(charac);
                         } while (y == 1);
                         y2 = 0;
