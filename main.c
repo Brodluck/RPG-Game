@@ -35,42 +35,44 @@ int main() {
     }
     system("clear");
     do {
-        printf("Que quieres hacer?\n1.Luchar\n2.Ir al refugio");
-        scanf("%d", &x);
-        system("clear");
-        switch (x) {
-            case 1:
-                option = 1;
-                break;
-            case 2:
-                do {
-                    system("clear");
-                    y = shelter(&charac);
-                    if (y == 3) {
-                        return 0;
-                    }
-                } while (y == 2);
-                option = 0;
-                break;
-            default:
-                printf("Eres idiota?? Elige bien");
-                option = 0;
-        }
-    } while (option == 0);
-    enemyGen(charac, &enemy);
-    combatResult = combat(&enemy, &charac);
-    if (combatResult == 1) {
+        do {
+            printf("Que quieres hacer?\n1.Luchar\n2.Ir al refugio");
+            scanf("%d", &x);
+            system("clear");
+            switch (x) {
+                case 1:
+                    option = 1;
+                    break;
+                case 2:
+                    do {
+                        system("clear");
+                        y = shelter(&charac);
+                        if (y == 3) {
+                            return 0;
+                        }
+                    } while (y == 2);
+                    option = 0;
+                    break;
+                default:
+                    printf("Eres idiota?? Elige bien");
+                    option = 0;
+            }
+        } while (option == 0);
+        enemyGen(charac, &enemy);
+        combatResult = combat(&enemy, &charac);
+        if (combatResult == 1) {
 
-    } else if (combatResult == -1) {
-        printf("Has huido sin problemas\n");
-    } else if (combatResult == 0) {
-        dead = 1;
-        strt = menu(&charac, dead);
-        if (strt = 2) {
-            printf("Se ha cargado partida correctamente en el ultimo punto guardado");
+        } else if (combatResult == -1) {
+            printf("Has huido sin problemas\n");
+        } else if (combatResult == 0) {
+            dead = 1;
+            strt = menu(&charac, dead);
+            if (strt = 2) {
+                printf("Se ha cargado partida correctamente en el ultimo punto guardado");
+            }
+        }else if(combatResult == 3){
+            return 0;
         }
-    } else if (combatResult == 1) {
-
-    }
+    } while (1);
     return 0;
 }
