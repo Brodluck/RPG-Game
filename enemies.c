@@ -64,9 +64,63 @@ void enemyGen(chara charac, npc *enemy) {
         enemy->vel = 0;
         strcat(enemy->name, " humano");
     }
-    /*for (i = 0; i < enemy->level; i++) {
-        levelUp(&enemy->att, &enemy->attm, &enemy->def, &enemy->defm, &enemy->vel, &enemy->race);
-    }*/
+    for (i = 0; i < enemy->level; i++) {
+        int x = (rand() % 8 + 1) + 3;
+    if (enemy->race == 1) {
+        x = x * 0.5;
+    } else if (enemy->race == 2) {
+        x = x * 1.5;
+    } else if (enemy->race == 3) {
+        x = x * 2;
+    } else if (enemy->race == 4) {
+        x = x * 1;
+    }
+    enemy->att = enemy->att + x;
+    x = rand() % 5 + 1;
+    if (enemy->race == 1) {
+        x = x * 0.5;
+    } else if (enemy->race == 2) {
+        x = x * 1.5;
+    } else if (enemy->race == 3) {
+        x = x * 2;
+    } else if (enemy->race == 4) {
+        x = x * 1;
+    }
+    enemy->attm = enemy->attm + x;
+    x = rand() % 5 + 1;
+    if (enemy->race == 1) {
+        x = x * 0.5;
+    } else if (enemy->race == 2) {
+        x = x * 1.5;
+    } else if (enemy->race == 3) {
+        x = x * 2;
+    } else if (enemy->race == 4) {
+        x = x * 1;
+    }
+    enemy->def = enemy->def + x;
+    x = rand() % 5 + 1;
+    if (enemy->race == 1) {
+        x = x * 0.5;
+    } else if (enemy->race == 2) {
+        x = x * 1.5;
+    } else if (enemy->race == 3) {
+        x = x * 2;
+    } else if (enemy->race == 4) {
+        x = x * 1;
+    }
+    enemy->defm = enemy->defm + x;
+    x = rand() % 5 + 1;
+    if (enemy->race == 1) {
+        x = x * 0.5;
+    } else if (enemy->race == 2) {
+        x = x * 1.5;
+    } else if (enemy->race == 3) {
+        x = x * 2;
+    } else if (enemy->race == 4) {
+        x = x * 1;
+    }
+    enemy->vel = enemy->vel + x;
+    }
 
     itemGen(&enemy->weapons[0], &charac, 1, 0);
     itemGen(&enemy->weapons[1], &charac, 1, 0);
